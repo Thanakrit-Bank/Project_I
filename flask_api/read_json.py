@@ -1,7 +1,7 @@
 import json
   
 # Opening JSON file
-f = open(r'D:\Coding\JavaScript\REACT_Native\flask_api\thailand.json')
+f = open(r'C:\Users\Administrator\Desktop\Project_I\flask_api\thailand.json')
   
 # returns JSON object as 
 # a dictionary

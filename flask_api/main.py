@@ -1,6 +1,5 @@
 from flask import Flask,jsonify
 from flask_restful import Api, Resource
-from flask_cors import CORS
 from read_json import get_province
 
 app = Flask(__name__)
