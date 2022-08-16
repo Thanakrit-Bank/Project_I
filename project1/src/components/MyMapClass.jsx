@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {FeatureGroup, GeoJSON, MapContainer,TileLayer} from 'react-leaflet' 
 import 'leaflet/dist/leaflet.css' 
-import '../css/input.css'
 
 class MapGeoJson extends Component {
         state = { 
@@ -19,7 +18,7 @@ class MapGeoJson extends Component {
     }
     fetchData(url) {
         let request = fetch(url);
-    
+        console.log('feching');
         request
           .then(r => r.json())
           .then(data => {
@@ -50,20 +49,16 @@ class MapGeoJson extends Component {
         }
       }
 
-    handleOk = (e) => {
-      console.log(this.state.province+'Form Button OK');
-      this.fetchData(this.state.url + this.state.province);
-    };
-  
     handleCancel = e => {
       
     };
   
     onLatChange = (e) => {
+      this.fetchData(this.state.url + this.state.province);
       this.setState({
         province: e.target.value,
       })
-      this.fetchData(this.state.url + this.state.province);
+      console.log('go to fech');
     }
     draw = () =>{
       return(
@@ -80,27 +75,25 @@ class MapGeoJson extends Component {
             <div style={{textAlign:'right'}}>
                 <span >
                   <select onChange={(e) => this.onLatChange(e)}>
-                    <option value='all'>All Province</option>
+                    <option value='all' selected>All Province</option>
                     {this.state.all_P.map((p) => {
                       return (<option value={p}>{p}</option>) 
                     })}
                   </select>
-                  <button id="serch" onClick={this.handleOk}>Search</button>
                 </span>
             </div>
-              
-              
 
-              <MapContainer center={this.state.center} zoom={this.state.zoom} scrollWheelZoom={true} style={{height:'95vh'}}>
-                 <TileLayer
-                      url='https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=UWwVBYXDjNUkBGiF7hvU'
-                      attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-                      maxZoom= {20}
-                  /> 
-                  {this.draw()}
-              </MapContainer>
+            <MapContainer center={this.state.center} zoom={this.state.zoom} scrollWheelZoom={true} style={{height:'95vh'}}>
+                <TileLayer
+                    url='https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=UWwVBYXDjNUkBGiF7hvU'
+                    attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+                    maxZoom= {20}
+                /> 
+                {console.log('render!!')}
+                {this.draw()}
+            </MapContainer>
 
-            </div>
+          </div>
         );
     }
 }
