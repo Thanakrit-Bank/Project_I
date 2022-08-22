@@ -17,7 +17,11 @@ class MapGeoJson extends Component {
         console.log('did mount');
     }
     fetchData(url) {
-        let request = fetch(url);
+      const reqOptions ={
+        method:"get", 
+        headers:{"x-access-token": "test"},
+      }
+        let request = fetch(url, reqOptions);
         console.log('feching');
         request
           .then(r => r.json())
@@ -60,14 +64,6 @@ class MapGeoJson extends Component {
       })
       console.log('go to fech');
     }
-    draw = () =>{
-      return(
-        <GeoJSON key={this.state.province}  data={this.state.data} style={this.myStyle}>
-            {console.log(this.state.data)}
-            {console.log(this.state.province)}
-        </GeoJSON>
-      )
-    }
 
     render() { 
         return (
@@ -75,7 +71,7 @@ class MapGeoJson extends Component {
             <div style={{textAlign:'right'}}>
                 <span >
                   <select onChange={(e) => this.onLatChange(e)}>
-                    <option value='all' selected>All Province</option>
+                    <option value='all' defaultValue>All Province</option>
                     {this.state.all_P.map((p) => {
                       return (<option value={p}>{p}</option>) 
                     })}
@@ -90,7 +86,10 @@ class MapGeoJson extends Component {
                     maxZoom= {20}
                 /> 
                 {console.log('render!!')}
-                {this.draw()}
+                <GeoJSON key={this.state.province}  data={this.state.data} style={this.myStyle}>
+                    {console.log(this.state.data)}
+                    {console.log(this.state.province)}
+                </GeoJSON>
             </MapContainer>
 
           </div>
