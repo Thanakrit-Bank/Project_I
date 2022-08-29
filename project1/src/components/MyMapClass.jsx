@@ -1,6 +1,7 @@
-import React, {Component} from "react";
-import {FeatureGroup, GeoJSON, MapContainer,TileLayer} from 'react-leaflet' 
+import React, {Component, L} from "react";
+import {FeatureGroup, GeoJSON, MapContainer,Marker,TileLayer, Popup} from 'react-leaflet' 
 import 'leaflet/dist/leaflet.css' 
+import getGridNC from "./getGrid";
 
 class MapGeoJson extends Component {
         state = { 
@@ -14,8 +15,10 @@ class MapGeoJson extends Component {
   
     componentDidMount() {
         this.fetchData(this.state.url + this.state.province);
+        
         console.log('did mount');
     }
+
     fetchData(url) {
       const reqOptions ={
         method:"get", 
@@ -23,6 +26,7 @@ class MapGeoJson extends Component {
       }
         let request = fetch(url, reqOptions);
         console.log('feching');
+        // return request
         request
           .then(r => r.json())
           .then(data => {
@@ -34,29 +38,17 @@ class MapGeoJson extends Component {
           });
     }
 
-    input_styles = () =>{
-      return({
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
-      padding: 10,
-      })
-    } 
-      
     myStyle = () => {
         return {
-          color: "green",
+          color: "orange",
           weight: 1,
           opacity: 1,
-          fillColor: "red",
+          fillColor: 'none',
           dashArray: '8 5'
         }
       }
 
-    handleCancel = e => {
       
-    };
-  
     onLatChange = (e) => {
       this.fetchData(this.state.url + this.state.province);
       this.setState({
@@ -64,7 +56,7 @@ class MapGeoJson extends Component {
       })
       console.log('go to fech');
     }
-
+    
     render() { 
         return (
           <div>
@@ -85,11 +77,15 @@ class MapGeoJson extends Component {
                     attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
                     maxZoom= {20}
                 /> 
+                {/* this.state.data */}
                 {console.log('render!!')}
-                <GeoJSON key={this.state.province}  data={this.state.data} style={this.myStyle}>
+                <GeoJSON key={this.state.province}  data={getGridNC()} style={this.myStyle}>
                     {console.log(this.state.data)}
                     {console.log(this.state.province)}
+                    {/* <Popup> {getGridNC().properties.index} </Popup> */}
                 </GeoJSON>
+                
+                
             </MapContainer>
 
           </div>
