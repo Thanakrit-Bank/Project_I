@@ -1,5 +1,5 @@
 import React, {Component, L} from "react";
-import {GeoJSON, MapContainer, TileLayer, Popup} from 'react-leaflet' 
+import {GeoJSON, MapContainer, TileLayer, FeatureGroup, Popup} from 'react-leaflet' 
 import 'leaflet/dist/leaflet.css' 
 // import getGridNC from "./getGrid";
 
@@ -8,8 +8,8 @@ class MapGeoJson extends Component {
                     data:[],
                     center:[13.2955977,102.2090103],
                     zoom:6,
-                    // url:'http://127.0.0.1:5000/get_province/',
                     url: 'http://127.0.0.1:5000/get_grid',
+                    // url:'http://127.0.0.1:5000/get_province/',
                     // province:'all',
                     // all_P:['Amnat Charoen', 'Ang Thong', 'Bangkok Metropolis', 'Bueng Kan', 'Buri Ram', 'Chachoengsao', 'Chai Nat', 'Chaiyaphum', 'Chanthaburi', 'Chiang Mai', 'Chiang Rai', 'Chon Buri', 'Chumphon', 'Kalasin', 'Kamphaeng Phet', 'Kanchanaburi', 'Khon Kaen', 'Krabi', 'Lampang', 'Lamphun', 'Loei', 'Lop Buri', 'Mae Hong Son', 'Maha Sarakham', 'Mukdahan', 'Nakhon Nayok', 'Nakhon Pathom', 'Nakhon Phanom', 'Nakhon Ratchasima', 'Nakhon Sawan', 'Nakhon Si Thammarat', 'Nan', 'Narathiwat', 'Nong Bua Lam Phu', 'Nong Khai', 'Nonthaburi', 'Pathum Thani', 'Pattani', 'Phangnga', 'Phatthalung', 'Phayao', 'Phetchabun', 'Phetchaburi', 'Phichit', 'Phitsanulok', 'Phra Nakhon Si Ayutthaya', 'Phrae', 'Phuket', 'Prachin Buri', 'Prachuap Khiri Khan', 'Ranong', 'Ratchaburi', 'Rayong', 'Roi Et', 'Sa Kaeo', 'Sakon Nakhon', 'Samut Prakan', 'Samut Sakhon', 'Samut Songkhram', 'Saraburi', 'Satun', 'Si Sa Ket', 'Sing Buri', 'Songkhla', 'Sukhothai', 'Suphan Buri', 'Surat Thani', 'Surin', 'Tak', 'Trang', 'Trat', 'Ubon Ratchathani', 'Udon Thani', 'Uthai Thani', 'Uttaradit', 'Yala', 'Yasothon']
                     } 
@@ -44,7 +44,7 @@ class MapGeoJson extends Component {
           color: "white",
           weight: 1,
           opacity: 1,
-          fillColor: 'none',
+          // fillColor: 'none',
           // dashArray: '8 5'
         }
       }
@@ -79,13 +79,18 @@ class MapGeoJson extends Component {
                 /> 
                 {/* this.state.data */}
                 {console.log('render!!')}
-                <GeoJSON key={this.state.data}  data={this.state.data} style={this.myStyle}>
-                    {console.log(this.state.data)}
-                    {/* {console.log(this.state.province)} */}
-                    {/* <Popup> {getGridNC().properties.index} </Popup> */}
-                </GeoJSON>
-                
-                
+                <FeatureGroup>
+                  {this.state.data.map( f => {
+                    return (
+                      <GeoJSON key={f.properties.grid_id}  data={f} style={this.myStyle}>
+                        {console.log(f)}
+                        {/* {console.log(this.state.province)} */}
+                        <Popup> {f.properties.index} </Popup>
+                      </GeoJSON>
+                    )
+                  })}
+                </FeatureGroup>
+               
             </MapContainer>
 
           // </div>
