@@ -1,5 +1,5 @@
-import React, {Component, L} from "react";
-import {GeoJSON, MapContainer, TileLayer, FeatureGroup, Popup} from 'react-leaflet' 
+import React, {Component} from "react";
+import {GeoJSON, MapContainer, TileLayer, Popup, FeatureGroup} from 'react-leaflet' 
 import 'leaflet/dist/leaflet.css' 
 // import getGridNC from "./getGrid";
 
@@ -9,9 +9,8 @@ class MapGeoJson extends Component {
                     center:[13.2955977,102.2090103],
                     zoom:6,
                     url: 'http://127.0.0.1:5000/get_grid',
+                    // url: 'http://127.0.0.1:5000/get_spei/Mae Hong Son',
                     // url:'http://127.0.0.1:5000/get_province/',
-                    // province:'all',
-                    // all_P:['Amnat Charoen', 'Ang Thong', 'Bangkok Metropolis', 'Bueng Kan', 'Buri Ram', 'Chachoengsao', 'Chai Nat', 'Chaiyaphum', 'Chanthaburi', 'Chiang Mai', 'Chiang Rai', 'Chon Buri', 'Chumphon', 'Kalasin', 'Kamphaeng Phet', 'Kanchanaburi', 'Khon Kaen', 'Krabi', 'Lampang', 'Lamphun', 'Loei', 'Lop Buri', 'Mae Hong Son', 'Maha Sarakham', 'Mukdahan', 'Nakhon Nayok', 'Nakhon Pathom', 'Nakhon Phanom', 'Nakhon Ratchasima', 'Nakhon Sawan', 'Nakhon Si Thammarat', 'Nan', 'Narathiwat', 'Nong Bua Lam Phu', 'Nong Khai', 'Nonthaburi', 'Pathum Thani', 'Pattani', 'Phangnga', 'Phatthalung', 'Phayao', 'Phetchabun', 'Phetchaburi', 'Phichit', 'Phitsanulok', 'Phra Nakhon Si Ayutthaya', 'Phrae', 'Phuket', 'Prachin Buri', 'Prachuap Khiri Khan', 'Ranong', 'Ratchaburi', 'Rayong', 'Roi Et', 'Sa Kaeo', 'Sakon Nakhon', 'Samut Prakan', 'Samut Sakhon', 'Samut Songkhram', 'Saraburi', 'Satun', 'Si Sa Ket', 'Sing Buri', 'Songkhla', 'Sukhothai', 'Suphan Buri', 'Surat Thani', 'Surin', 'Tak', 'Trang', 'Trat', 'Ubon Ratchathani', 'Udon Thani', 'Uthai Thani', 'Uttaradit', 'Yala', 'Yasothon']
                     } 
   
     componentDidMount() {
@@ -39,16 +38,6 @@ class MapGeoJson extends Component {
           });
     }
 
-    myStyle = () => {
-        return {
-          color: "white",
-          weight: 1,
-          opacity: 1,
-          // fillColor: 'none',
-          // dashArray: '8 5'
-        }
-      }
-     
     onLatChange = (e) => {
       this.fetchData(this.state.url + this.state.province);
       this.setState({
@@ -77,23 +66,48 @@ class MapGeoJson extends Component {
                     attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
                     maxZoom= {20}
                 /> 
-                {/* this.state.data */}
+
                 {console.log('render!!')}
                 <FeatureGroup>
-                  {this.state.data.map( f => {
+
+                  {this.state.data.map(data => {
+
+                    var myStyleGrid = {
+                        color: "white",
+                        weight: 0,
+                        opacity: 0.5,
+                        fillColor: 'white',
+                    }
+                    
+                    if(data.properties.index < 600){
+                      myStyleGrid.fillColor = '#FFEDA0'
+                    }else if(data.properties.index < 700){
+                      myStyleGrid.fillColor = '#FED976'
+                    }else if(data.properties.index < 800){
+                      myStyleGrid.fillColor = '#FEB24C'
+                    }else if(data.properties.index < 900){
+                      myStyleGrid.fillColor = '#FD8D3C'
+                    }else if(data.properties.index < 1000){
+                      myStyleGrid.fillColor = '#FC4E2A'
+                    }else if(data.properties.index < 1100){
+                      myStyleGrid.fillColor = '#E31A1C'
+                    }else if(data.properties.index < 1200){
+                      myStyleGrid.fillColor = '#BD0026'
+                    }else if(data.properties.index < 1300){
+                      myStyleGrid.fillColor = '#800026'
+                    }
+                    
                     return (
-                      <GeoJSON key={f.properties.grid_id}  data={f} style={this.myStyle}>
-                        {console.log(f)}
-                        {/* {console.log(this.state.province)} */}
-                        <Popup> {f.properties.index} </Popup>
-                      </GeoJSON>
-                    )
+                    <GeoJSON key={data.properties.grid_id}  data={data} style={myStyleGrid}>
+                      {console.log(data)}
+                      <Popup> {data.properties.index} </Popup>
+                    </GeoJSON>)
                   })}
+                
                 </FeatureGroup>
                
             </MapContainer>
 
-          // </div>
         );
     }
 }
