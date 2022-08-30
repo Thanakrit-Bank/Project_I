@@ -1,6 +1,6 @@
 import json 
 
-f = open(r'C:\Users\Administrator\Desktop\Project_I\flask_api\nc.json')
+f = open("nc.json")
   
 # returns JSON object as 
 # a dictionary
