@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {GeoJSON, MapContainer, TileLayer, Popup, FeatureGroup} from 'react-leaflet' 
 import 'leaflet/dist/leaflet.css' 
-// import getGridNC from "./getGrid";
+import Legend from "./Legend";
 
 class MapGeoJson extends Component {
         state = { 
@@ -44,7 +44,7 @@ class MapGeoJson extends Component {
         province: e.target.value,
       })
       console.log('go to fech');
-    }
+    } 
     
     render() { 
         return (
@@ -59,7 +59,7 @@ class MapGeoJson extends Component {
           //         </select>
           //       </span>
           //   </div>
-
+          
             <MapContainer center={this.state.center} zoom={this.state.zoom} scrollWheelZoom={true} style={{height:'95vh'}}>
                 <TileLayer
                     url='https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=UWwVBYXDjNUkBGiF7hvU'
@@ -103,11 +103,9 @@ class MapGeoJson extends Component {
                       <Popup> {data.properties.index} </Popup>
                     </GeoJSON>)
                   })}
-                
                 </FeatureGroup>
-               
+                <Legend />
             </MapContainer>
-
         );
     }
 }

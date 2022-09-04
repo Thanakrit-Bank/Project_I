@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "use-leaflet": "^1.6.1"
+  }
+}
