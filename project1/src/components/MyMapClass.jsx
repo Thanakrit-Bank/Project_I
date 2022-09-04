@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {GeoJSON, MapContainer, TileLayer, Popup, FeatureGroup,LayersControl} from 'react-leaflet' 
 import 'leaflet/dist/leaflet.css' 
+import Legend from "./Legend";
 // import getGridNC from "./getGrid";
 
 class MapGeoJson extends Component {
@@ -42,8 +43,6 @@ class MapGeoJson extends Component {
 
         return (
             <MapContainer center={this.state.center} zoom={this.state.zoom} scrollWheelZoom={true} style={{height:'95vh'}}>
-                
-
                 <LayersControl>
                     <BaseLayer checked name="Satellite View">
                         <TileLayer
@@ -107,7 +106,7 @@ class MapGeoJson extends Component {
                   })}
                 
                 </FeatureGroup>
-               
+                <Legend/>
             </MapContainer>
 
         );

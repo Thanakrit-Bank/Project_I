@@ -2,17 +2,12 @@ from flask import Flask,jsonify,request
 import json
 from flask_cors import CORS
 from get_grid import getGridData
-<<<<<<< HEAD
 from get_province import GetProvince
 from nc_json import convert_nc_json
-=======
-# from get_spei import getSpei
-# from get_province import GetProvince
->>>>>>> 714cb0203873a62c9e5b72ed0c134063510f311f
 
 app = Flask(__name__)
 api = CORS(app)
-f = open(r'C:\Users\Administrator\Desktop\Project_I\flask_api\token.json')
+f = open(r'./token.json')
 data = json.load(f)
 
 @app.route('/get_province/<string:p_name>')
