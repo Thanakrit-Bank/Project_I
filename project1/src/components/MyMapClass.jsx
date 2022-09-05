@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {GeoJSON, MapContainer, TileLayer, Popup, FeatureGroup,LayersControl} from 'react-leaflet' 
 import 'leaflet/dist/leaflet.css' 
 import Legend from "./Legend";
+import selectProvince from "./SelectProvince";
 // import getGridNC from "./getGrid";
 
 class MapGeoJson extends Component {
@@ -12,6 +13,7 @@ class MapGeoJson extends Component {
                     url: 'http://127.0.0.1:5000/get_grid',
                     // url: 'http://127.0.0.1:5000/get_spei/Bangkok Metropolis&1902-02',
                     // url:'http://127.0.0.1:5000/get_province/',
+                    all_P : ['Amnat Charoen', 'Ang Thong', 'Bangkok Metropolis', 'Bueng Kan', 'Buri Ram', 'Chachoengsao', 'Chai Nat', 'Chaiyaphum', 'Chanthaburi', 'Chiang Mai', 'Chiang Rai', 'Chon Buri', 'Chumphon', 'Kalasin', 'Kamphaeng Phet', 'Kanchanaburi', 'Khon Kaen', 'Krabi', 'Lampang', 'Lamphun', 'Loei', 'Lop Buri', 'Mae Hong Son', 'Maha Sarakham', 'Mukdahan', 'Nakhon Nayok', 'Nakhon Pathom', 'Nakhon Phanom', 'Nakhon Ratchasima', 'Nakhon Sawan', 'Nakhon Si Thammarat', 'Nan', 'Narathiwat', 'Nong Bua Lam Phu', 'Nong Khai', 'Nonthaburi', 'Pathum Thani', 'Pattani', 'Phangnga', 'Phatthalung', 'Phayao', 'Phetchabun', 'Phetchaburi', 'Phichit', 'Phitsanulok', 'Phra Nakhon Si Ayutthaya', 'Phrae', 'Phuket', 'Prachin Buri', 'Prachuap Khiri Khan', 'Ranong', 'Ratchaburi', 'Rayong', 'Roi Et', 'Sa Kaeo', 'Sakon Nakhon', 'Samut Prakan', 'Samut Sakhon', 'Samut Songkhram', 'Saraburi', 'Satun', 'Si Sa Ket', 'Sing Buri', 'Songkhla', 'Sukhothai', 'Suphan Buri', 'Surat Thani', 'Surin', 'Tak', 'Trang', 'Trat', 'Ubon Ratchathani', 'Udon Thani', 'Uthai Thani', 'Uttaradit', 'Yala', 'Yasothon']
                     } 
   
     componentDidMount() {
@@ -42,7 +44,17 @@ class MapGeoJson extends Component {
       const {BaseLayer} = LayersControl;
 
         return (
-            <MapContainer center={this.state.center} zoom={this.state.zoom} scrollWheelZoom={true} style={{height:'95vh'}}>
+          <div>
+          {/* <div style={{textAlign:'right'}}>
+              <select onChange={(e) => this.onLatChange(e)}>
+                  <option value='all' defaultValue>All Province</option>
+                  {this.state.all_P.map((p) => {
+                      return (<option value={p}>{p}</option>) 
+                  })}
+              </select>
+          </div> */}
+            <selectProvince/>
+            <MapContainer center={this.state.center} zoom={this.state.zoom} scrollWheelZoom={true} style={{height:'80vh'}}>
                 <LayersControl>
                     <BaseLayer checked name="Satellite View">
                         <TileLayer
@@ -108,7 +120,7 @@ class MapGeoJson extends Component {
                 </FeatureGroup>
                 <Legend/>
             </MapContainer>
-
+          </div>
         );
     }
 }
