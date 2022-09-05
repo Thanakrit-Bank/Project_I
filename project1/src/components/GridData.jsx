@@ -3,7 +3,8 @@ import React, { useState,useEffect } from 'react'
 
 
 function GridData(props) {
-    const [url, seturl] = useState('http://127.0.0.1:5000/get_grid')
+    const [url, seturl] = useState('http://127.0.0.1:5000/get_spei/Chiang Mai&1902-02')
+    // const [url, seturl] = useState('http://127.0.0.1:5000/get_grid')
     const [data, setData] = useState([])
 
     useEffect(()=>{
@@ -54,7 +55,7 @@ function GridData(props) {
         
         return (
         <GeoJSON key={data.properties.grid_id}  data={data} style={myStyleGrid}>
-            {/* {console.log(data)} */}
+            {console.log(data)}
             <Popup> {Math.round(data.properties.index*1000)/1000} </Popup>
         </GeoJSON>)
         })}

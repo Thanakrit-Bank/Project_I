@@ -73,18 +73,21 @@ def convert_nc_json(province, date):
                         "index": "{:.3f}".format(temp)
                     },
                     "geometry":{
-                        "type": "polygon",
+                        "type": "Polygon",
                         "coordinates":[
-                            [lon_nc - grid_size, lat_nc - grid_size],
-                            [lon_nc + grid_size, lat_nc - grid_size],
-                            [lon_nc + grid_size, lat_nc + grid_size],
-                            [lon_nc - grid_size, lat_nc + grid_size],
-                            [lon_nc - grid_size, lat_nc - grid_size] 
+                            [
+                                [lon_nc - grid_size, lat_nc - grid_size],
+                                [lon_nc + grid_size, lat_nc - grid_size],
+                                [lon_nc + grid_size, lat_nc + grid_size],
+                                [lon_nc - grid_size, lat_nc + grid_size],
+                                [lon_nc - grid_size, lat_nc - grid_size] 
+                            ]
+                           
                         ]
                     }
                 }
                 data_form["fetures"].append(grid)
-    return data_form
+    return data_form["fetures"]
 
 # convert_nc_json('Bangkok Metropolis', '1902-02')
 
