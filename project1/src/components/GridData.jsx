@@ -1,15 +1,18 @@
-import {GeoJSON, MapContainer, TileLayer, Popup, FeatureGroup,LayersControl} from 'react-leaflet' 
+import {GeoJSON, Popup, FeatureGroup} from 'react-leaflet' 
 import React, { useState,useEffect } from 'react'
 
 
 function GridData(props) {
-    const [url, seturl] = useState('http://127.0.0.1:5000/get_spei/Chiang Mai&1902-02')
+    const [url, setUrl] = useState('http://127.0.0.1:5000/get_spei/Amnat Charoen&1902-02')
+    // const [url, seturl] = useState('http://127.0.0.1:5000/get_province/Chiang Mai')
     // const [url, seturl] = useState('http://127.0.0.1:5000/get_grid')
     const [data, setData] = useState([])
 
     useEffect(()=>{
+        setUrl('http://127.0.0.1:5000/get_spei/'.concat(props.pName).concat('&1902-02'))
         fetchData(url)
-    }, [])
+        console.log(url);
+    },[props.pName])
 
     function fetchData(url) {
         const reqOptions ={

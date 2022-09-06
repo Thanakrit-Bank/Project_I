@@ -7,31 +7,31 @@ function SelectProvince() {
     const mapInstance = useMap();
     const [province_select, setProvince] = useState('all')
 
-    useEffect(() => {
-      const select = L.control({ position: "topright" });
+   
+    const select = L.control({ position: "topright" });
 
 
-      select.onAdd = () => {
-        const div = L.DomUtil.create("div", "info select");
-  
-        let province = ''
-        all_P.forEach((p) => {
-          let option = `<option value=${p}>${p}</option>`
-          province += option
-        })
-  
-        div.innerHTML = `<select  onSelectionchange={(e) => setProvince(e.target.value)}>
-                            <option value='all' defaultValue>All Province</option>
-                            ${province}
-                            ${console.log(province_select)}
-                        </select>`
-                        
-                                
-                            
-        return div;
-      };
-      select.addTo(mapInstance);
-    }, [])
+    select.onAdd = () => {
+      const div = L.DomUtil.create("div", "info select");
+
+      let province = ''
+      all_P.forEach((p) => {
+        let option = `<option value=${p}>${p}</option>`
+        province += option
+      })
+
+      div.innerHTML = `<select  onSelectionchange={(e) => setProvince(e.target.value)}>
+                          <option value='all' defaultValue>All Province</option>
+                          ${province}
+                          ${console.log(province_select)}
+                      </select>`
+                      
+                              
+                          
+      return div;
+    };
+    select.addTo(mapInstance);
+   
     
 }
 
