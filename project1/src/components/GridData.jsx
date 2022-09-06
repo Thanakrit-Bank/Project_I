@@ -3,13 +3,14 @@ import React, { useState,useEffect } from 'react'
 
 
 function GridData(props) {
-    const [url, setUrl] = useState('http://127.0.0.1:5000/get_spei/Amnat Charoen&1902-02')
+    // const [url, setUrl] = useState('http://127.0.0.1:5000/get_spei/Amnat Charoen&1902-02')
     // const [url, seturl] = useState('http://127.0.0.1:5000/get_province/Chiang Mai')
     // const [url, seturl] = useState('http://127.0.0.1:5000/get_grid')
     const [data, setData] = useState([])
+    const url = 'http://127.0.0.1:5000/get_spei/'.concat(props.pName).concat('&1902-02')
 
     useEffect(()=>{
-        setUrl('http://127.0.0.1:5000/get_spei/'.concat(props.pName).concat('&1902-02'))
+        setData([])
         fetchData(url)
         console.log(url);
     },[props.pName])
@@ -19,18 +20,20 @@ function GridData(props) {
           method:"get", 
           headers:{"x-access-token": "test"},
         }
-          let request = fetch(url, reqOptions);
-          console.log('feching');
-          request
-            .then(r => r.json())
-            .then(data => {
-                setData(data)
-            }, (error) => {
-              console.error(error);
-            });
+        
+        let request = fetch(url, reqOptions);
+        console.log('feching');
+        request
+        .then(r => r.json())
+        .then(data => {
+            setData(data)
+        }, (error) => {
+            console.error(error);
+        });
       }
     return (
     <FeatureGroup>
+    
         {data.map(data => {
         var myStyleGrid = {
             color: "white",
@@ -62,7 +65,9 @@ function GridData(props) {
             <Popup> {Math.round(data.properties.index*1000)/1000} </Popup>
         </GeoJSON>)
         })}
-    
+        {console.log(props.pName)}
+        {console.log(url)}
+        {console.log('return')}
     </FeatureGroup> 
   )
 }

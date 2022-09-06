@@ -23,7 +23,6 @@ function MainMap() {
                 {all_P.map((p, index) => {
                     return <option value={p} key={index}>{p}</option>
                 })}
-                {console.log(province_select)}
             </select>
 
             <MapContainer center={center} zoom={zoom} scrollWheelZoom={true} style={{height:'90vh'}}>
@@ -54,7 +53,6 @@ function MainMap() {
                 </LayersControl>
 
                 <GridData pName={province_select}/>
-
                 <Legend/>
 
             </MapContainer>
