@@ -1,8 +1,8 @@
 import json
   
 # Opening JSON file
-f = open('thailand.json')
-f_all = open('full_thailand.json')
+f = open(r'thailand.json')
+f_all = open(r'full_thailand.json')
 # returns JSON object as 
 # a dictionary
 data = json.load(f)

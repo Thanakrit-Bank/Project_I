@@ -1,6 +1,6 @@
 import json 
 
-f = open(r"./nc.json")
+f = open(r"nc.json")
   
 # returns JSON object as 
 # a dictionary

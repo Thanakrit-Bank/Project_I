@@ -9,19 +9,19 @@ const Legend = () => {
     useEffect(() => {
     // get color depending on population density value
     const getColor = d => {
-      return d > legendData.spei.min + 7*interval
+      return d > (legendData.spei.min + 7*interval).toFixed(2)
         ? "#800026"
-        : d > legendData.spei.min + 6*interval
+        : d > (legendData.spei.min + 6*interval).toFixed(2)
         ? "#BD0026"
-        : d > legendData.spei.min + 5*interval
+        : d > (legendData.spei.min + 5*interval).toFixed(2)
         ? "#E31A1C"
-        : d > legendData.spei.min + 4*interval
+        : d > (legendData.spei.min + 4*interval).toFixed(2)
         ? "#FC4E2A"
-        : d > legendData.spei.min + 3*interval
+        : d > (legendData.spei.min + 3*interval).toFixed(2)
         ? "#FD8D3C"
-        : d > legendData.spei.min + 2*interval
+        : d > (legendData.spei.min + 2*interval).toFixed(2)
         ? "#FEB24C"
-        : d > legendData.spei.min + interval
+        : d > (legendData.spei.min + interval).toFixed(2)
         ? "#FED976"
         : "#FFEDA0";
     };
@@ -30,8 +30,18 @@ const Legend = () => {
 
     legend.onAdd = () => {
       const div = L.DomUtil.create("div", "info legend");
-      const grades = [legendData.spei.min, legendData.spei.min + interval, legendData.spei.min + 2*interval, legendData.spei.min + 3*interval, legendData.spei.min + 4*interval, 
-                      legendData.spei.min + 5*interval, legendData.spei.min + 6*interval, legendData.spei.min + 7*interval];
+      const grades = 
+      [
+        legendData.spei.min.toFixed(2), 
+        (legendData.spei.min + interval).toFixed(2), 
+        (legendData.spei.min + 2*interval).toFixed(2), 
+        (legendData.spei.min + 3*interval).toFixed(2), 
+        (legendData.spei.min + 4*interval).toFixed(2), 
+        (legendData.spei.min + 5*interval).toFixed(2), 
+        (legendData.spei.min + 6*interval).toFixed(2), 
+        (legendData.spei.min + 7*interval).toFixed(2)
+      ];
+
       let labels = [];
       let from;
       let to;

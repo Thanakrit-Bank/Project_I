@@ -42,19 +42,19 @@ function GridData(props) {
             fillOpacity: 0.75,
             fillColor: 'white',
         }
-        if(data.properties.index < legendData.spei.min + interval){
+        if(data.properties.index < (legendData.spei.min + interval.toFixed(2))){
             myStyleGrid.fillColor = '#FFEDA0'
-        }else if(data.properties.index < legendData.spei.min + 2*interval){
+        }else if(data.properties.index < (legendData.spei.min + 2*interval.toFixed(2))){
             myStyleGrid.fillColor = '#FED976'
-        }else if(data.properties.index < legendData.spei.min + 3*interval){
+        }else if(data.properties.index < (legendData.spei.min + 3*interval.toFixed(2))){
             myStyleGrid.fillColor = '#FEB24C'
-        }else if(data.properties.index < legendData.spei.min + 4*interval){
+        }else if(data.properties.index < (legendData.spei.min + 4*interval.toFixed(2))){
             myStyleGrid.fillColor = '#FD8D3C'
-        }else if(data.properties.index < legendData.spei.min + 5*interval){
+        }else if(data.properties.index < (legendData.spei.min + 5*interval.toFixed(2))){
             myStyleGrid.fillColor = '#FC4E2A'
-        }else if(data.properties.index < legendData.spei.min + 6*interval){
+        }else if(data.properties.index < (legendData.spei.min + 6*interval.toFixed(2))){
             myStyleGrid.fillColor = '#E31A1C'
-        }else if(data.properties.index < legendData.spei.min + 7*interval){
+        }else if(data.properties.index < (legendData.spei.min + 7*interval.toFixed(2))){
             myStyleGrid.fillColor = '#BD0026'
         }else {
             myStyleGrid.fillColor = '#800026'
@@ -66,9 +66,11 @@ function GridData(props) {
             <Popup> {Math.round(data.properties.index*1000)/1000} </Popup>
         </GeoJSON>)
         })}
+
         {console.log(props.pName)}
         {console.log(url)}
         {console.log('return')}
+
     </FeatureGroup> 
   )
 }

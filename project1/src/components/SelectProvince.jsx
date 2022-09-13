@@ -24,15 +24,10 @@ function SelectProvince() {
                           <option value='all' defaultValue>All Province</option>
                           ${province}
                           ${console.log(province_select)}
-                      </select>`
-                      
-                              
-                          
+                      </select>`                        
       return div;
     };
-    select.addTo(mapInstance);
-   
-    
+    select.addTo(mapInstance);    
 }
 
 export default SelectProvince;
