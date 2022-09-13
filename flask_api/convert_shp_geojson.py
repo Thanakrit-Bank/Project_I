@@ -1,3 +1,3 @@
 import geopandas
-myshpfile = geopandas.read_file(r'D:\Coding\JavaScript\REACT_Native\Data_Project\Tambon\Tambon\TH_Tambon.shp')
-myshpfile.to_file('myJson.json', driver='GeoJSON')
+myshpfile = geopandas.read_file(r"C:\Users\s6201\Downloads\World_Countries\World_Countries.shp")
+myshpfile.to_file('country.json', driver='GeoJSON')

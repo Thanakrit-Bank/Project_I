@@ -1,6 +1,6 @@
 import {GeoJSON, Popup, FeatureGroup} from 'react-leaflet' 
 import React, { useState,useEffect } from 'react'
-
+import legendData from  './../data/dataLegend'  
 
 function GridData(props) {
     // const [url, setUrl] = useState('http://127.0.0.1:5000/get_spei/Amnat Charoen&1902-02')
@@ -8,6 +8,7 @@ function GridData(props) {
     // const [url, seturl] = useState('http://127.0.0.1:5000/get_grid')
     const [data, setData] = useState([])
     const url = 'http://127.0.0.1:5000/get_spei/'.concat(props.pName).concat('&1902-02')
+    const interval = (legendData.spei.max - legendData.spei.min)/8
 
     useEffect(()=>{
         setData([])
@@ -41,19 +42,19 @@ function GridData(props) {
             fillOpacity: 0.75,
             fillColor: 'white',
         }
-        if(data.properties.index < 600){
+        if(data.properties.index < legendData.spei.min + interval){
             myStyleGrid.fillColor = '#FFEDA0'
-        }else if(data.properties.index < 700){
+        }else if(data.properties.index < legendData.spei.min + 2*interval){
             myStyleGrid.fillColor = '#FED976'
-        }else if(data.properties.index < 800){
+        }else if(data.properties.index < legendData.spei.min + 3*interval){
             myStyleGrid.fillColor = '#FEB24C'
-        }else if(data.properties.index < 900){
+        }else if(data.properties.index < legendData.spei.min + 4*interval){
             myStyleGrid.fillColor = '#FD8D3C'
-        }else if(data.properties.index < 1000){
+        }else if(data.properties.index < legendData.spei.min + 5*interval){
             myStyleGrid.fillColor = '#FC4E2A'
-        }else if(data.properties.index < 1100){
+        }else if(data.properties.index < legendData.spei.min + 6*interval){
             myStyleGrid.fillColor = '#E31A1C'
-        }else if(data.properties.index < 1200){
+        }else if(data.properties.index < legendData.spei.min + 7*interval){
             myStyleGrid.fillColor = '#BD0026'
         }else {
             myStyleGrid.fillColor = '#800026'

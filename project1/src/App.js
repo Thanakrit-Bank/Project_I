@@ -1,6 +1,7 @@
-import MapGeoJson from "./components/MyMapClass";
+// import MapGeoJson from "./components/MyMapClass";
 import "./App.css"
 import MainMap from "./components/MainMap";
+import 'leaflet/dist/leaflet.css' 
 
 function App() {
   return (

@@ -1,31 +1,30 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { useState } from 'react';
 import {MapContainer, TileLayer,LayersControl} from 'react-leaflet' 
 import GridData from './GridData';
 import Legend from "./Legend";
-import SelectProvince from './SelectProvince';
-import SelectProvinceV2 from './SelectProvinceV2';
+
 
 function MainMap() {
 
     const center = [13.2955977,102.2090103]
     const zoom = 6
     const all_P = ['Amnat Charoen', 'Ang Thong', 'Bangkok Metropolis', 'Bueng Kan', 'Buri Ram', 'Chachoengsao', 'Chai Nat', 'Chaiyaphum', 'Chanthaburi', 'Chiang Mai', 'Chiang Rai', 'Chon Buri', 'Chumphon', 'Kalasin', 'Kamphaeng Phet', 'Kanchanaburi', 'Khon Kaen', 'Krabi', 'Lampang', 'Lamphun', 'Loei', 'Lop Buri', 'Mae Hong Son', 'Maha Sarakham', 'Mukdahan', 'Nakhon Nayok', 'Nakhon Pathom', 'Nakhon Phanom', 'Nakhon Ratchasima', 'Nakhon Sawan', 'Nakhon Si Thammarat', 'Nan', 'Narathiwat', 'Nong Bua Lam Phu', 'Nong Khai', 'Nonthaburi', 'Pathum Thani', 'Pattani', 'Phangnga', 'Phatthalung', 'Phayao', 'Phetchabun', 'Phetchaburi', 'Phichit', 'Phitsanulok', 'Phra Nakhon Si Ayutthaya', 'Phrae', 'Phuket', 'Prachin Buri', 'Prachuap Khiri Khan', 'Ranong', 'Ratchaburi', 'Rayong', 'Roi Et', 'Sa Kaeo', 'Sakon Nakhon', 'Samut Prakan', 'Samut Sakhon', 'Samut Songkhram', 'Saraburi', 'Satun', 'Si Sa Ket', 'Sing Buri', 'Songkhla', 'Sukhothai', 'Suphan Buri', 'Surat Thani', 'Surin', 'Tak', 'Trang', 'Trat', 'Ubon Ratchathani', 'Udon Thani', 'Uthai Thani', 'Uttaradit', 'Yala', 'Yasothon']
-    const [province_select, setProvince] = useState('Amnat Charoen')
+    const [province_select, setProvince] = useState('all')
 
     const {BaseLayer} = LayersControl;
     
     return (
         <div>
-            <select  onChange={(e) => setProvince(e.target.value)}>
-                {/* <option value='all' defaultValue>All Province</option> */}
-                {all_P.map((p, index) => {
-                    return <option value={p} key={index}>{p}</option>
-                })}
-            </select>
+            
 
-            <MapContainer center={center} zoom={zoom} scrollWheelZoom={true} style={{height:'90vh'}}>
+            <MapContainer className='map-view' center={center} zoom={zoom} scrollWheelZoom={true} >
+                <select  onChange={(e) => setProvince(e.target.value)} className='map-view select'>
+                    {/* <option value='all' defaultValue>All Province</option> */}
+                    {all_P.map((p, index) => {
+                        return <option value={p} key={index}>{p}</option>
+                    })}
+                </select>
                 {console.log("render!!")}
                 <LayersControl>
                     <BaseLayer checked name="Satellite View">

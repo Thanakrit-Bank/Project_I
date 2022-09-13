@@ -1,25 +1,27 @@
 import { useMap } from "react-leaflet";
 import L from "leaflet";
 import { useEffect } from "react";
+import legendData from  './../data/dataLegend'  
 
 const Legend = () => {
     const mapInstance = useMap();
-  useEffect(() => {
+    const interval = (legendData.spei.max - legendData.spei.min)/8
+    useEffect(() => {
     // get color depending on population density value
     const getColor = d => {
-      return d > 1200
+      return d > legendData.spei.min + 7*interval
         ? "#800026"
-        : d > 1100
+        : d > legendData.spei.min + 6*interval
         ? "#BD0026"
-        : d > 1000
+        : d > legendData.spei.min + 5*interval
         ? "#E31A1C"
-        : d > 900
+        : d > legendData.spei.min + 4*interval
         ? "#FC4E2A"
-        : d > 800
+        : d > legendData.spei.min + 3*interval
         ? "#FD8D3C"
-        : d > 700
+        : d > legendData.spei.min + 2*interval
         ? "#FEB24C"
-        : d > 600
+        : d > legendData.spei.min + interval
         ? "#FED976"
         : "#FFEDA0";
     };
@@ -28,7 +30,8 @@ const Legend = () => {
 
     legend.onAdd = () => {
       const div = L.DomUtil.create("div", "info legend");
-      const grades = [0, 600, 700, 800, 900, 1000, 1100, 1200];
+      const grades = [legendData.spei.min, legendData.spei.min + interval, legendData.spei.min + 2*interval, legendData.spei.min + 3*interval, legendData.spei.min + 4*interval, 
+                      legendData.spei.min + 5*interval, legendData.spei.min + 6*interval, legendData.spei.min + 7*interval];
       let labels = [];
       let from;
       let to;

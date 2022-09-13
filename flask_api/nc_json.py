@@ -42,27 +42,37 @@ def convert_list_to_tuple(list):
     return temp
 
 def convert_nc_json(province, date):
+
     data_form = {
         "type": "FeaturesCollection",
         "fetures": []
     }
+
     date_index = get_index(date)
-    shp = GetProvince(province) # shape file of province 
+    shp = GetProvince(province) # shape file of province
     polygon = []
+    tttt = len(shp['features']['geometry']['coordinates'])
     if(len(shp['features']['geometry']['coordinates']) == 1):
         polygon = convert_list_to_tuple(shp['features']['geometry']['coordinates'][0])
     else :
         for i in shp['features']['geometry']['coordinates']:
             polygon.append(convert_list_to_tuple(i[0])) 
+
     polygon_province = Polygon(polygon)
     count = 0
+
     for ind_lat,lat_nc in enumerate(lat):
+
         for ind_lon,lon_nc in enumerate(lon):
+
             point = Point(lon_nc, lat_nc)
+
             if(polygon_province.contains(point)):
+
                 count += 1
                 temp = values[date_index[0], ind_lat, ind_lon].tolist()
                 print(point, date, date_index[0], values[date_index[0], ind_lat, ind_lon])
+
                 grid ={
                     "type":"Feature",
                     "properties": {
