@@ -43,6 +43,7 @@ body {
   top: 100px;
   width: 10vw;
   height: 20px;
-  left: 10px;
+  /* left: 10px; */
   z-index: 4000;
+  right: 10px;
 }
