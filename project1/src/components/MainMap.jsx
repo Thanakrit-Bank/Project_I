@@ -17,7 +17,7 @@ function MainMap() {
             <MapContainer className='map-view' center={center} zoom={zoom} scrollWheelZoom={true}>
                 
                 <select onChange={(e) => setProvince(e.target.value)} className='map-view select'>
-                    {/* <option value='all' defaultValue>All Province</option> */}
+                    <option value='all' defaultValue>All Province</option>
                     {all_P.map((p, index) => {
                         return <option value={p} key={index}>{p}</option>
                     })}               

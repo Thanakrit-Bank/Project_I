@@ -9,6 +9,7 @@ function GridData(props) {
     const [data, setData] = useState([])
     const url = 'http://127.0.0.1:5000/get_spei/'.concat(props.pName).concat('&1902-02')
     const interval = (legendData.spei.max - legendData.spei.min)/8
+    const twoDegit = parseFloat(interval).toFixed(2)
 
     useEffect(()=>{
         setData([])
@@ -32,6 +33,7 @@ function GridData(props) {
             console.error(error);
         });
       }
+
     return (
     <FeatureGroup>
     
@@ -42,19 +44,19 @@ function GridData(props) {
             fillOpacity: 0.75,
             fillColor: 'white',
         }
-        if(data.properties.index < (legendData.spei.min + interval.toFixed(2))){
+        if(data.properties.index < legendData.spei.min + twoDegit){
             myStyleGrid.fillColor = '#FFEDA0'
-        }else if(data.properties.index < (legendData.spei.min + 2*interval.toFixed(2))){
+        }else if(data.properties.index < legendData.spei.min + 2*twoDegit){
             myStyleGrid.fillColor = '#FED976'
-        }else if(data.properties.index < (legendData.spei.min + 3*interval.toFixed(2))){
+        }else if(data.properties.index < legendData.spei.min + 3*twoDegit){
             myStyleGrid.fillColor = '#FEB24C'
-        }else if(data.properties.index < (legendData.spei.min + 4*interval.toFixed(2))){
+        }else if(data.properties.index < legendData.spei.min + 4*twoDegit){
             myStyleGrid.fillColor = '#FD8D3C'
-        }else if(data.properties.index < (legendData.spei.min + 5*interval.toFixed(2))){
+        }else if(data.properties.index < legendData.spei.min + 5*twoDegit){
             myStyleGrid.fillColor = '#FC4E2A'
-        }else if(data.properties.index < (legendData.spei.min + 6*interval.toFixed(2))){
+        }else if(data.properties.index < legendData.spei.min + 6*twoDegit){
             myStyleGrid.fillColor = '#E31A1C'
-        }else if(data.properties.index < (legendData.spei.min + 7*interval.toFixed(2))){
+        }else if(data.properties.index < legendData.spei.min + 7*twoDegit){
             myStyleGrid.fillColor = '#BD0026'
         }else {
             myStyleGrid.fillColor = '#800026'
@@ -74,7 +76,5 @@ function GridData(props) {
     </FeatureGroup> 
   )
 }
-
-
 
 export default GridData

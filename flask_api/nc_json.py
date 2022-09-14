@@ -7,7 +7,7 @@ from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 
 
-data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
+data = Dataset(r"C:\Users\Administrator\Desktop\Project_I\flask_api\spei01.nc")
 
 lat = data.variables['lat'][:]
 lon = data.variables['lon'][:]

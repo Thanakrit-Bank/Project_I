@@ -7,7 +7,7 @@ from nc_json import convert_nc_json
 
 app = Flask(__name__)
 api = CORS(app)
-f = open(r'token.json')
+f = open(r'C:\Users\Administrator\Desktop\Project_I\flask_api\token.json')
 data = json.load(f)
 
 @app.route('/get_province/<string:p_name>')
