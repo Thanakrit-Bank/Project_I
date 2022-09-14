@@ -7,7 +7,7 @@ from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 
 
-data = Dataset(r"C:\Users\Administrator\Desktop\Project_I\flask_api\spei01.nc")
+data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
 
 lat = data.variables['lat'][:]
 lon = data.variables['lon'][:]
@@ -50,14 +50,23 @@ def convert_nc_json(province, date):
 
     date_index = get_index(date)
     shp = GetProvince(province) # shape file of province
+    temp_polygon = []
     polygon = []
-    tttt = len(shp['features']['geometry']['coordinates'])
-    if(len(shp['features']['geometry']['coordinates']) == 1):
+    # tttt = len(shp['features']['geometry']['coordinates'])
+    if (province == 'all'):
+        for i in shp['features'][0]['geometry']['coordinates']:
+            temp_polygon.append(convert_list_to_tuple(i[0]))
+        for i in temp_polygon:
+            for j in i:
+                polygon.append(j)
+    elif(len(shp['features']['geometry']['coordinates']) == 1):
         polygon = convert_list_to_tuple(shp['features']['geometry']['coordinates'][0])
     else :
         for i in shp['features']['geometry']['coordinates']:
-            polygon.append(convert_list_to_tuple(i[0])) 
-
+            temp_polygon.append(convert_list_to_tuple(i[0])) 
+        for i in temp_polygon:
+            for j in i:
+                polygon.append(j)
     polygon_province = Polygon(polygon)
     count = 0
 
@@ -67,7 +76,7 @@ def convert_nc_json(province, date):
 
             point = Point(lon_nc, lat_nc)
 
-            if(polygon_province.contains(point)):
+            if(polygon_province.contains(point) and values[date_index[0], ind_lat, ind_lon] != '--'):
 
                 count += 1
                 temp = values[date_index[0], ind_lat, ind_lon].tolist()
