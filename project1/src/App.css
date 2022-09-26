@@ -40,10 +40,10 @@ body {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 100px;
+  top: 30%;
   width: 10vw;
   height: 20px;
-  /* left: 10px; */
+  left: 10px;
   z-index: 4000;
-  right: 10px;
+  /* right: 10px; */
 }
