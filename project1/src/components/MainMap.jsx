@@ -15,7 +15,7 @@ function MainMap() {
     
     return (
         <div>
-            <MapContainer className='map-view' center={center} zoom={zoom} scrollWheelZoom={true}>
+            <MapContainer className='map-view' center={center} zoom={zoom} scrollWheelZoom={true} zoomControl={false}>
                 
                 <select onChange={(e) => setProvince(e.target.value)} className='map-view select'>
                     <option value='all' defaultValue>All Province</option>
@@ -25,7 +25,7 @@ function MainMap() {
                 </select>
                 
                 {console.log("render!!")}
-                <LayersControl>
+                {/* <LayersControl>
                     <BaseLayer checked name="Satellite View">
                         <TileLayer
                             url='https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
@@ -66,26 +66,31 @@ function MainMap() {
                         />                      
                     </BaseLayer>
 
-                    <BaseLayer name="toner-labels">
+                    <BaseLayer name="toner-hybrid">
                     <TileLayer
-                            url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}'
+                            url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}'
                             attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             maxZoom= {20}
                             subdomains= 'abcd'
                             ext= 'png'
                         />
                     </BaseLayer>
+                </LayersControl> */}
 
-                    <BaseLayer name="toner-lines">
-                    <TileLayer
-                            url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lines/{z}/{x}/{y}{r}.{ext}'
-                            attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-                            maxZoom= {20}
-                            subdomains= 'abcd'
-                            ext= 'png'
-                        />
-                    </BaseLayer>
-                </LayersControl>
+                <TileLayer
+                    url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+                    attribution='Tiles &copy; Esri &mdash; Source: Esri'
+                    maxZoom= {20}
+                    subdomains= 'abcd'
+                />
+
+                <TileLayer
+                    url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}'
+                    attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    maxZoom= {20}
+                    subdomains= 'abcd'
+                    ext= 'png'
+                />          
 
                 <GridData pName={province_select}/>
                 <Legend/>

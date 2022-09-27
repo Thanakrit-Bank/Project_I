@@ -23,8 +23,8 @@ function Calend() {
         </p>
       ) : (
         <p className='map-calend text'>
-          <span className='bold'>Default selected date:</span>{' '}
-          {date.toDateString()}
+          <span className='bold'>Default selected date: {' '}
+          {date.toDateString()}</span>
         </p>
       )}
       </div>
