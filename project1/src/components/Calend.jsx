@@ -15,14 +15,14 @@ function Calend() {
           className='map-calend'
         />
       {date.length > 0 ? (
-        <p className='text-center'>
-          <span className='bold'>Start:</span>{' '}
+        <p className='map-calend text'>
+          <span className='bold'>Start:{' '}
           {date[0].toDateString()}
           &nbsp;|&nbsp;
-          <span className='bold'>End:</span> {date[1].toDateString()}
+          End: {date[1].toDateString()}</span>
         </p>
       ) : (
-        <p className='text-center'>
+        <p className='map-calend text'>
           <span className='bold'>Default selected date:</span>{' '}
           {date.toDateString()}
         </p>

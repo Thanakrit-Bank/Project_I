@@ -1,10 +1,10 @@
-import datetime, json
+from cmath import sin
+import datetime, math
 from get_province import GetProvince
-import numpy as np
-import pandas as pd
 from netCDF4 import Dataset
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
+
 
 
 data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
@@ -28,14 +28,14 @@ date_start = datetime.datetime.strptime(start_nc, "%Y-%m-%d")
 def get_index(date):
     index = 0
     list_index = []
-    for i in time[:]:
+    for i in time[:] :
         date_i = date_start + datetime.timedelta(days=i)
         if( str(date_i.strftime('%Y-%m')) in date):
             list_index.append(index)
         index += 1 
     return list_index
 
-def convert_list_to_tuple(list):
+def convert_list_to_tuple(list): 
     temp = []
     for i in list:
         temp.append(tuple(i))
@@ -52,14 +52,15 @@ def convert_nc_json(province, date):
     shp = GetProvince(province) # shape file of province
     temp_polygon = []
     polygon = []
-    # tttt = len(shp['features']['geometry']['coordinates'])
+
     if (province == 'all'):
-        for i in shp['features'][0]['geometry']['coordinates']:
-            temp_polygon.append(convert_list_to_tuple(i[0]))
+        for i in shp['features']['geometry']['coordinates']:
+            temp_polygon.append(convert_list_to_tuple(i))
         for i in temp_polygon:
             for j in i:
                 polygon.append(j)
-    elif(len(shp['features']['geometry']['coordinates']) == 1):
+
+    elif(shp["features"]['geometry']['type'] == 'Polygon'): 
         polygon = convert_list_to_tuple(shp['features']['geometry']['coordinates'][0])
     else :
         for i in shp['features']['geometry']['coordinates']:
@@ -67,6 +68,7 @@ def convert_nc_json(province, date):
         for i in temp_polygon:
             for j in i:
                 polygon.append(j)
+
     polygon_province = Polygon(polygon)
     count = 0
 
@@ -75,9 +77,8 @@ def convert_nc_json(province, date):
         for ind_lon,lon_nc in enumerate(lon):
 
             point = Point(lon_nc, lat_nc)
-
-            if(polygon_province.contains(point) and values[date_index[0], ind_lat, ind_lon] != '--'):
-
+            shortestDistance = polygon_province.distance(point)
+            if((polygon_province.contains(point) or (shortestDistance <= math.sin(math.pi/4)*2*grid_size)) and values[date_index[0], ind_lat, ind_lon] != '--'):
                 count += 1
                 temp = values[date_index[0], ind_lat, ind_lon].tolist()
                 print(point, date, date_index[0], values[date_index[0], ind_lat, ind_lon])
