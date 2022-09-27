@@ -89,7 +89,7 @@ function MainMap() {
 
                 <GridData pName={province_select}/>
                 <Legend/>
-                <Calend/>
+                <Calend className="map-calend"/>
 
             </MapContainer>
         </div>           

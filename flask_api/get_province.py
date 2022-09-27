@@ -1,8 +1,8 @@
 import json
   
 # Opening JSON file
-f = open(r'C:\Users\Administrator\Desktop\Project_I\flask_api\thailand.json')
-f_all = open(r'C:\Users\Administrator\Desktop\Project_I\flask_api\full_thailand.json')
+f = open(r'thailand.json')
+f_all = open(r'full_thailand.json')
 # returns JSON object as 
 # a dictionary
 data = json.load(f)
