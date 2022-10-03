@@ -40,7 +40,7 @@ body {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 320px;
+  top: 340px;
   width: 150px;
   height: 20px;
   left: 10px;
@@ -57,12 +57,7 @@ body {
 }
 
 .map-calend.text {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
   background-color: aliceblue;
   padding: 3px;
-  top: 270px;
-  left: 10px;
-  z-index: 4000;
+  top: 300px;
 }

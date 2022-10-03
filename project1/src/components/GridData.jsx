@@ -1,5 +1,5 @@
-import {GeoJSON, Popup, FeatureGroup} from 'react-leaflet' 
-import React, { useState,useEffect } from 'react'
+import { GeoJSON, Popup, FeatureGroup } from 'react-leaflet' 
+import React, { useState, useEffect } from 'react'
 import legendData from  './../data/dataLegend'  
 import * as turf from '@turf/turf'
 
