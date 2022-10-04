@@ -8,7 +8,7 @@ function GridData(props) {
     const [shp, setShp] = useState([])
     const [isLoadinga, setIsLoadinga] = useState(true)
     const [isLoadingb, setIsLoadingb] = useState(true)
-    const url_grid = 'http://127.0.0.1:5000/get_spei/'.concat(props.pName).concat('&1902-02')
+    const url_grid = 'http://127.0.0.1:5000/get_index/'.concat(props.dataIndex,'&',props.pName,'&','2006-01')
     const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
     const interval = (legendData.spei.max - legendData.spei.min)/8
     const twoDegit = parseFloat(interval).toFixed(2)
@@ -17,7 +17,7 @@ function GridData(props) {
         setData([])
         fetchData(url_grid, url_shp)
         console.log(url_grid);
-    },[props.pName])
+    },[props.pName, props.dataIndex])
 
     function fetchData(url_grid,url_shp) {
         const reqOptions ={
@@ -87,8 +87,6 @@ function GridData(props) {
                     <div>
                         <GeoJSON key={data.properties.grid_id}  data={intersection} style={myStyleGrid}>
                             <Popup> {Math.round(data.properties.index*1000)/1000} </Popup>
-                            {/* {console.log(data.geometry.coordinates)} */}
-                            {/* {console.log(poly2)} */}
                         </GeoJSON>
                     </div>
                     )

@@ -1,7 +1,6 @@
 from flask import Flask,jsonify,request
 import json
 from flask_cors import CORS
-from get_grid import getGridData
 from get_province import GetProvince
 from nc_json import convert_nc_json
 
@@ -18,18 +17,10 @@ def get(p_name):
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
 
-@app.route('/get_grid')
-def getGrid():
+@app.route('/get_index/<string:data_index>&<string:p_name>&<string:date>')
+def getGridSpei(data_index,p_name,date = '2006-01'):
     if (request.headers.get('x-access-token') == data['key']):
-        temp = getGridData()
-        response = jsonify(temp)
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        return response
-
-@app.route('/get_spei/<string:p_name>&<string:date>')
-def getGridSpei(p_name,date = '1902-02'):
-    if (request.headers.get('x-access-token') == data['key']):
-        temp = convert_nc_json(p_name,date)
+        temp = convert_nc_json(p_name, date, data_index)
         response = jsonify(temp)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response

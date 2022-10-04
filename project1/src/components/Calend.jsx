@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 
 function Calend() {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date('2006', '00', '01'));
 
   return (
       <div>

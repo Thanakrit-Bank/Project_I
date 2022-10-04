@@ -3,30 +3,37 @@ import L from "leaflet";
 import { useEffect } from "react";
 import legendData from  './../data/dataLegend'  
 
-const Legend = () => {
+const Legend = (props) => {
     const mapInstance = useMap();
-    const interval = (legendData.spei.max - legendData.spei.min)/8
+    var data = legendData.spei
+    if (props.dataIndex === 'cdd_mpi' ||  'cdd_era' ){
+      data = legendData.cdd_mpi
+    }else if(props.dataIndex === 'spei'){
+      data = legendData.spei
+    }
+    var color = data.color
+    const interval = (data.max - data.min)/8
     const twoDegit = parseFloat(interval).toFixed(2)
     useEffect(() => {
     // get color depending on population density value
     const getColor = d => {
-      return d > legendData.spei.min + 7*interval
-        ? "#FFEDA0"
-        : d > legendData.spei.min + 6*interval
-        ? "#FED976"
-        : d > legendData.spei.min + 5*interval
-        ? "#FED976"
-        : d > legendData.spei.min + 4*interval
-        ? "#FEB24C"
-        : d > legendData.spei.min + 3*interval
-        ? "#FD8D3C"
-        : d > legendData.spei.min + 2*interval
-        ? "#FC4E2A"
-        : d > legendData.spei.min + interval
-        ? "#E31A1C"
-        : d > legendData.spei.min
-        ? "#BD0026"
-        : "#800026"
+      return d > data.min + 7*interval
+        ? color[0]
+        : d > data.min + 6*interval
+        ? color[1]
+        : d > data.min + 5*interval
+        ? color[2]
+        : d > data.min + 4*interval
+        ? color[3]
+        : d > data.min + 3*interval
+        ? color[4]
+        : d > data.min + 2*interval
+        ? color[5]
+        : d > data.min + interval
+        ? color[6]
+        : d > data.min
+        ? color[7]
+        : color[8]
     };
 
     const legend = L.control({ position: "bottomright" });
@@ -44,14 +51,14 @@ const Legend = () => {
         // (legendData.spei.min + 6*interval).toFixed(2), 
         // (legendData.spei.min + 7*interval).toFixed(2)
 
-        (legendData.spei.min + 7*twoDegit).toFixed(2), 
-        (legendData.spei.min + 6*twoDegit).toFixed(2), 
-        (legendData.spei.min + 5*twoDegit).toFixed(2), 
-        (legendData.spei.min + 4*twoDegit).toFixed(2), 
-        (legendData.spei.min + 3*twoDegit).toFixed(2), 
-        (legendData.spei.min + 2*twoDegit).toFixed(2), 
-        (legendData.spei.min + 1*twoDegit).toFixed(2),
-        legendData.spei.min
+        (data.min + 7*twoDegit).toFixed(2), 
+        (data.min + 6*twoDegit).toFixed(2), 
+        (data.min + 5*twoDegit).toFixed(2), 
+        (data.min + 4*twoDegit).toFixed(2), 
+        (data.min + 3*twoDegit).toFixed(2), 
+        (data.min + 2*twoDegit).toFixed(2), 
+        (data.min + 1*twoDegit).toFixed(2),
+        data.min
       ];
 
       let labels = [];
@@ -76,7 +83,7 @@ const Legend = () => {
     };
 
     legend.addTo(mapInstance);
-  } , []);
+  } , [props.dataIndex]);
   return null;
 };
 

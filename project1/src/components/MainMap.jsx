@@ -5,19 +5,30 @@ import GridData from './GridData';
 import Legend from "./Legend";
 import Calend from "./Calend";
 import { latLngBounds } from 'leaflet';
+import SelectData from './SelectData';
+import SelectProvince from './SelectProvince';
 
 function MainMap() {
 
     const center = [13.2955977,102.2090103]
     const zoom = 6
-    const all_P = ['Amnat Charoen', 'Ang Thong', 'Bangkok Metropolis', 'Bueng Kan', 'Buri Ram', 'Chachoengsao', 'Chai Nat', 'Chaiyaphum', 'Chanthaburi', 'Chiang Mai', 'Chiang Rai', 'Chon Buri', 'Chumphon', 'Kalasin', 'Kamphaeng Phet', 'Kanchanaburi', 'Khon Kaen', 'Krabi', 'Lampang', 'Lamphun', 'Loei', 'Lop Buri', 'Mae Hong Son', 'Maha Sarakham', 'Mukdahan', 'Nakhon Nayok', 'Nakhon Pathom', 'Nakhon Phanom', 'Nakhon Ratchasima', 'Nakhon Sawan', 'Nakhon Si Thammarat', 'Nan', 'Narathiwat', 'Nong Bua Lam Phu', 'Nong Khai', 'Nonthaburi', 'Pathum Thani', 'Pattani', 'Phangnga', 'Phatthalung', 'Phayao', 'Phetchabun', 'Phetchaburi', 'Phichit', 'Phitsanulok', 'Phra Nakhon Si Ayutthaya', 'Phrae', 'Phuket', 'Prachin Buri', 'Prachuap Khiri Khan', 'Ranong', 'Ratchaburi', 'Rayong', 'Roi Et', 'Sa Kaeo', 'Sakon Nakhon', 'Samut Prakan', 'Samut Sakhon', 'Samut Songkhram', 'Saraburi', 'Satun', 'Si Sa Ket', 'Sing Buri', 'Songkhla', 'Sukhothai', 'Suphan Buri', 'Surat Thani', 'Surin', 'Tak', 'Trang', 'Trat', 'Ubon Ratchathani', 'Udon Thani', 'Uthai Thani', 'Uttaradit', 'Yala', 'Yasothon']
+    
     const [province_select, setProvince] = useState('all')
+    const [dataIndex, setDataIndex] = useState('spei')
+
     const southWestView = [-90, -180]
     const northEastView = [90, 180]
     const bounds = latLngBounds(southWestView, northEastView)
+
+    const onChangeSelectData = (data) => {
+        setDataIndex(data)
+    }
+
+    const onChangeSelectProvince = (data) => {
+        setProvince(data)
+    }
     
     return (
-        <div>
             <MapContainer className='map-view'
                 center={center} 
                 zoom={zoom} 
@@ -28,13 +39,10 @@ function MainMap() {
                 maxBounds={bounds}
             >
                 
-                <select onChange={(e) => setProvince(e.target.value)} className='map-view select'>
-                    <option value='all' defaultValue>All Province</option>
-                    {all_P.map((p, index) => {
-                        return <option value={p} key={index}>{p}</option>
-                    })}               
-                </select>
-                
+                <SelectProvince onChengeSelect= {onChangeSelectProvince}/>
+
+                <SelectData onChengeSelect={onChangeSelectData} type = {dataIndex}/>
+
                 {console.log("render!!")}
 
                 <LayersControl>
@@ -68,12 +76,11 @@ function MainMap() {
                     </LayersControl.Overlay>
                 </LayersControl>
 
-                <GridData pName={province_select}/>
-                <Legend/>
+                <GridData dataIndex={dataIndex} pName={province_select}/>
+                <Legend dataIndex = {dataIndex}/>
                 <Calend className="map-calend"/>
 
             </MapContainer>
-        </div>           
   )
 }
 
