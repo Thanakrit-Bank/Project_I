@@ -5,15 +5,26 @@ import legendData from  './../data/dataLegend'
 
 const Legend = (props) => {
     const mapInstance = useMap();
+
+    // var data = legendData.spei
+    // if (props.dataIndex === 'cdd_mpi' ||  'cdd_era' ){
+    //   data = legendData.cdd_mpi
+    // }else if(props.dataIndex === 'spei'){
+    //   data = legendData.spei
+    // }
+    // var color = data.color
+
     var data = legendData.spei
-    if (props.dataIndex === 'cdd_mpi' ||  'cdd_era' ){
-      data = legendData.cdd_mpi
-    }else if(props.dataIndex === 'spei'){
+    if (props.dataIndex === 'spei'){
       data = legendData.spei
+    }else if(props.dataIndex === 'cdd_mpi' ||  'cdd_era' ){
+      data = legendData.cdd_mpi
     }
     var color = data.color
+
     const interval = (data.max - data.min)/8
     const twoDegit = parseFloat(interval).toFixed(2)
+    
     useEffect(() => {
     // get color depending on population density value
     const getColor = d => {
@@ -74,7 +85,7 @@ const Legend = (props) => {
             getColor(from + 1) +
             '"></i> ' +
             from +
-            (to ? " &ndash; " + to : "+")
+            (to ? " &ndash; " + to : " > ")
         );
       }
 
@@ -83,6 +94,8 @@ const Legend = (props) => {
     };
 
     legend.addTo(mapInstance);
+
+    return () => legend.remove();
   } , [props.dataIndex]);
   return null;
 };

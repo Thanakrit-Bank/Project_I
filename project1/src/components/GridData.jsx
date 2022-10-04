@@ -8,9 +8,19 @@ function GridData(props) {
     const [shp, setShp] = useState([])
     const [isLoadinga, setIsLoadinga] = useState(true)
     const [isLoadingb, setIsLoadingb] = useState(true)
+    
     const url_grid = 'http://127.0.0.1:5000/get_index/'.concat(props.dataIndex,'&',props.pName,'&','2006-01')
     const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
-    const interval = (legendData.spei.max - legendData.spei.min)/8
+    
+    var dataIndex = legendData.spei
+    if (props.dataIndex === 'spei'){
+      dataIndex = legendData.spei
+    }else if(props.dataIndex === 'cdd_mpi' ||  'cdd_era' ){
+      dataIndex = legendData.cdd_mpi
+    }
+    var color = dataIndex.color
+    
+    const interval = (dataIndex.max - dataIndex.min)/8
     const twoDegit = parseFloat(interval).toFixed(2)
     
     useEffect(()=>{
@@ -59,24 +69,48 @@ function GridData(props) {
                 fillColor: 'white',
                 borderColor: 'black'
             }
-            if(data.properties.index < legendData.spei.min + twoDegit){
-                myStyleGrid.fillColor = '#FFEDA0'
-            }else if(data.properties.index < legendData.spei.min + 2*twoDegit){
-                myStyleGrid.fillColor = '#FED976'
-            }else if(data.properties.index < legendData.spei.min + 3*twoDegit){
-                myStyleGrid.fillColor = '#FEB24C'
-            }else if(data.properties.index < legendData.spei.min + 4*twoDegit){
-                myStyleGrid.fillColor = '#FD8D3C'
-            }else if(data.properties.index < legendData.spei.min + 5*twoDegit){
-                myStyleGrid.fillColor = '#FC4E2A'
-            }else if(data.properties.index < legendData.spei.min + 6*twoDegit){
-                myStyleGrid.fillColor = '#E31A1C'
-            }else if(data.properties.index < legendData.spei.min + 7*twoDegit){
-                myStyleGrid.fillColor = '#BD0026'
+
+            // if(data.properties.index < dataIndex.min + 7*interval){
+            //     myStyleGrid.fillColor = color[0]
+            // }else if(data.properties.index < dataIndex.min + 6*interval){
+            //     myStyleGrid.fillColor = color[1]
+            // }else if(data.properties.index < dataIndex.min + 5*interval){
+            //     myStyleGrid.fillColor = color[2]
+            // }else if(data.properties.index < dataIndex.min + 4*interval){
+            //     myStyleGrid.fillColor = color[3]
+            // }else if(data.properties.index < dataIndex.min + 3*interval){
+            //     myStyleGrid.fillColor = color[4]
+            // }else if(data.properties.index < dataIndex.min + 2*interval){
+            //     myStyleGrid.fillColor = color[5]
+            // }else if(data.properties.index < dataIndex.min + interval){
+            //     myStyleGrid.fillColor = color[6]
+            // }else if(data.properties.index < dataIndex.min){
+            //     myStyleGrid.fillColor = color[7]
+            // }else {
+            //     myStyleGrid.fillColor = color[8]
+            // }
+
+            if(data.properties.index < dataIndex.min){
+                myStyleGrid.fillColor = color[7]
+            }else if(data.properties.index < dataIndex.min + interval){
+                myStyleGrid.fillColor = color[6]
+            }else if(data.properties.index < dataIndex.min + 2*interval){
+                myStyleGrid.fillColor = color[5]
+            }else if(data.properties.index < dataIndex.min + 3*interval){
+                myStyleGrid.fillColor = color[4]
+            }else if(data.properties.index < dataIndex.min + 4*interval){
+                myStyleGrid.fillColor = color[3]
+            }else if(data.properties.index < dataIndex.min + 5*interval){
+                myStyleGrid.fillColor = color[2]
+            }else if(data.properties.index < dataIndex.min + 6*interval){
+                myStyleGrid.fillColor = color[1]
+            }else if(data.properties.index < dataIndex.min + 7*interval){
+                myStyleGrid.fillColor = color[0]
             }else {
-                myStyleGrid.fillColor = '#800026'
+                myStyleGrid.fillColor = color[8]
             }
             // console.log(intersection);
+
             if (isLoadinga && isLoadingb){
                 return(<div className='map-view select'>Loading.....</div>)
             }else{
