@@ -7,7 +7,7 @@ from shapely.geometry.polygon import Polygon
 
 data_index = 'spei'
 
-data = Dataset(r"spei01.nc")
+data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
 
 lat = data.variables['lat'][:]
 lon = data.variables['lon'][:]
@@ -26,14 +26,14 @@ date_start = datetime.datetime.strptime(start_nc, "%Y-%m-%d")
 def get_data(index):
     global data_index, data, lat, lon, grid_size, values, time, unit_nc, start_nc, date_start
     if (index == 'cdd_mpi'):
-        data = Dataset(r"cddETCCDI_yr_MPI-ESM-MR_rcp45_r1i1p1_2006-2100.nc")
+        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\cddETCCDI_yr_MPI-ESM-MR_rcp45_r1i1p1_2006-2100.nc")
         values = data.variables['cddETCCDI']
 
     elif(index == 'spei'):
-        data = Dataset(r"spei01.nc")
+        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
         values = data.variables['spei']
     elif(index == 'cdd_era'):
-        data = Dataset(r"cddETCCDI_yr_ERAInterim_historical_r1i1p1_1979-2012.nc")
+        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\cddETCCDI_yr_ERAInterim_historical_r1i1p1_1979-2012.nc")
         values = data.variables['cddETCCDI']
         
     lat = data.variables['lat'][:]
@@ -55,13 +55,13 @@ def get_index(date):
     index = 0
     list_index = []
     str_date = '%Y-%m'
-    t1 = time[:][1]- time[:][0]
+
+    #check frequency of data
     if (time[:][1]- time[:][0] >= 365):
         str_date = '%Y'
     
     for i in time[:] :
-        date_i = date_start + datetime.timedelta(days=math.ceil(i))
-        temp = str(date_i.strftime(str_date))
+        date_i = date_start + datetime.timedelta(days=math.ceil(i)) # day in nc file it have .5 day
         if( str(date_i.strftime(str_date)) in date):
             list_index.append(index)
         index += 1 
@@ -82,7 +82,8 @@ def convert_nc_json(province, date, index):
     get_data(index)
 
     date_index = get_index(date)
-    shp = GetProvince(province) # shape file of province
+    shp = GetProvince(province) 
+    
     temp_polygon = []
     polygon = []
 
@@ -103,17 +104,19 @@ def convert_nc_json(province, date, index):
                 polygon.append(j)
 
     polygon_province = Polygon(polygon)
-    count = 0
 
+    count = 0
     for ind_lat,lat_nc in enumerate(lat):
 
         for ind_lon,lon_nc in enumerate(lon):
 
             point = Point(lon_nc, lat_nc)
             shortestDistance = polygon_province.distance(point)
-            if((polygon_province.contains(point) or (shortestDistance <= math.sin(math.pi/4)*2*grid_size)) and values[date_index[0], ind_lat, ind_lon] != '--'):
+
+            if((polygon_province.contains(point) or (shortestDistance <= math.sin(math.pi/4)*2*grid_size)) and 
+            values[date_index[0], ind_lat, ind_lon] != '--'):
                 count += 1
-                temp = values[date_index[0], ind_lat, ind_lon].tolist()
+                temp_index = values[date_index[0], ind_lat, ind_lon].tolist()
                 print(point, date, date_index[0], values[date_index[0], ind_lat, ind_lon])
 
                 grid ={
@@ -123,7 +126,7 @@ def convert_nc_json(province, date, index):
                         "time": date,
                         "lon": lon_nc,
                         "lat": lat_nc,
-                        "index": "{:.3f}".format(temp)
+                        "index": "{:.3f}".format(temp_index)
                     },
                     "geometry":{
                         "type": "Polygon",
@@ -142,5 +145,4 @@ def convert_nc_json(province, date, index):
                 data_form["fetures"].append(grid)
     return data_form["fetures"]
 
-# convert_nc_json('Bangkok Metropolis', '1902-02')
 

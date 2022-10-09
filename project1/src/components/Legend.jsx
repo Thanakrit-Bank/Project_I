@@ -6,14 +6,6 @@ import legendData from  './../data/dataLegend'
 const Legend = (props) => {
     const mapInstance = useMap();
 
-    // var data = legendData.spei
-    // if (props.dataIndex === 'cdd_mpi' ||  'cdd_era' ){
-    //   data = legendData.cdd_mpi
-    // }else if(props.dataIndex === 'spei'){
-    //   data = legendData.spei
-    // }
-    // var color = data.color
-
     var data = legendData.spei
     if (props.dataIndex === 'spei'){
       data = legendData.spei
@@ -53,15 +45,6 @@ const Legend = (props) => {
       const div = L.DomUtil.create("div", "info legend");
       const grades = 
       [
-        // legendData.spei.min.toFixed(2),
-        // (legendData.spei.min + interval).toFixed(2), 
-        // (legendData.spei.min + 2*interval).toFixed(2), 
-        // (legendData.spei.min + 3*interval).toFixed(2), 
-        // (legendData.spei.min + 4*interval).toFixed(2), 
-        // (legendData.spei.min + 5*interval).toFixed(2), 
-        // (legendData.spei.min + 6*interval).toFixed(2), 
-        // (legendData.spei.min + 7*interval).toFixed(2)
-
         (data.min + 7*twoDegit).toFixed(2), 
         (data.min + 6*twoDegit).toFixed(2), 
         (data.min + 5*twoDegit).toFixed(2), 
