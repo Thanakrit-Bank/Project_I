@@ -7,7 +7,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "@turf/turf": "^6.5.0",
-    "antd": "^4.22.4",
+    "antd": "^4.23.4",
     "bootstrap": "^5.2.2",
     "leaflet": "^1.8.0",
     "react": "^18.2.0",

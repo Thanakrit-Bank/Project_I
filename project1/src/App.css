@@ -64,6 +64,15 @@ body {
   z-index: 4000;
 }
 
+.map-calend.antd{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 4000;
+}
+
 .map-calend.text {
   background-color: aliceblue;
   padding: 3px;

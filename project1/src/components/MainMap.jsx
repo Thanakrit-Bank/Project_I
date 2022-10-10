@@ -15,6 +15,7 @@ function MainMap() {
     
     const [province_select, setProvince] = useState('all')
     const [dataIndex, setDataIndex] = useState('spei')
+    const [date, setDate] = useState('2006-01')
 
     const southWestView = [-90, -180]
     const northEastView = [90, 180]
@@ -26,6 +27,10 @@ function MainMap() {
 
     const onChangeSelectProvince = (data) => {
         setProvince(data)
+    }
+
+    const onChangeDate = (date) => {
+        setDate(date)
     }
     
     return (
@@ -76,9 +81,9 @@ function MainMap() {
                     </LayersControl.Overlay>
                 </LayersControl>
 
-                <GridData dataIndex={dataIndex} pName={province_select}/>
+                <GridData dataIndex={dataIndex} pName={province_select} date={date}/>
                 <Legend dataIndex = {dataIndex}/>
-                <Calend className="map-calend"/>
+                <Calend className="map-calend" setDate={date} onChange={onChangeDate}/>
 
             </MapContainer>
   )

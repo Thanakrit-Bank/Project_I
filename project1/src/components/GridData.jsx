@@ -6,10 +6,8 @@ import * as turf from '@turf/turf'
 function GridData(props) {
     const [data, setData] = useState([])
     const [shp, setShp] = useState([])
-    const [isLoadinga, setIsLoadinga] = useState(true)
-    const [isLoadingb, setIsLoadingb] = useState(true)
     
-    const url_grid = 'http://127.0.0.1:5000/get_index/'.concat(props.dataIndex,'&',props.pName,'&','2006-01')
+    const url_grid = 'http://127.0.0.1:5000/get_index/'.concat(props.dataIndex,'&',props.pName,'&',props.date)
     const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
     
     var dataIndex = legendData.spei
@@ -27,7 +25,7 @@ function GridData(props) {
         setData([])
         fetchData(url_grid, url_shp)
         console.log(url_grid);
-    },[props.pName, props.dataIndex])
+    },[props.pName, props.dataIndex, props.date])
 
     function fetchData(url_grid,url_shp) {
         const reqOptions ={
@@ -41,7 +39,6 @@ function GridData(props) {
         .then(r => r.json())
         .then(data => {
             setData(data)
-            setIsLoadinga(false)
         }, (error) => {
             console.error(error);
         });
@@ -52,7 +49,6 @@ function GridData(props) {
         .then(r => r.json())
         .then(data => {
             setShp(data)
-            setIsLoadingb(false)
         }, (error) => {
             console.error(error);
         });
