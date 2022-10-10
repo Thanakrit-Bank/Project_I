@@ -1,8 +1,7 @@
-// import MapGeoJson from "./components/MyMapClass";
-import "./App.css"
 import MainMap from "./components/MainMap";
 import 'leaflet/dist/leaflet.css'
-import "react-calendar/dist/Calendar.css" 
+import "react-calendar/dist/Calendar.css"
+import "./App.css" 
 
 function App() {
   return (

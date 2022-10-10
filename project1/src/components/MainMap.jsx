@@ -1,10 +1,9 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react'
 import { MapContainer, TileLayer, LayersControl } from 'react-leaflet' 
+import { latLngBounds } from 'leaflet';
+import Calend from "./Calend";
 import GridData from './GridData';
 import Legend from "./Legend";
-import Calend from "./Calend";
-import { latLngBounds } from 'leaflet';
 import SelectData from './SelectData';
 import SelectProvince from './SelectProvince';
 

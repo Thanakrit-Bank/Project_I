@@ -19,7 +19,6 @@ function GridData(props) {
     var color = dataIndex.color
     
     const interval = (dataIndex.max - dataIndex.min)/8
-    const twoDegit = parseFloat(interval).toFixed(2)
     
     useEffect(()=>{
         setData([])
@@ -66,23 +65,25 @@ function GridData(props) {
             }
 
             if(data.properties.index < dataIndex.min){
-                myStyleGrid.fillColor = color[7]
+                myStyleGrid.fillColor = color[8]
             }else if(data.properties.index < dataIndex.min + interval){
-                myStyleGrid.fillColor = color[6]
+                myStyleGrid.fillColor = color[7]
             }else if(data.properties.index < dataIndex.min + 2*interval){
-                myStyleGrid.fillColor = color[5]
+                myStyleGrid.fillColor = color[6]
             }else if(data.properties.index < dataIndex.min + 3*interval){
-                myStyleGrid.fillColor = color[4]
+                myStyleGrid.fillColor = color[5]
             }else if(data.properties.index < dataIndex.min + 4*interval){
-                myStyleGrid.fillColor = color[3]
+                myStyleGrid.fillColor = color[4]
             }else if(data.properties.index < dataIndex.min + 5*interval){
-                myStyleGrid.fillColor = color[2]
+                myStyleGrid.fillColor = color[3]
             }else if(data.properties.index < dataIndex.min + 6*interval){
-                myStyleGrid.fillColor = color[1]
+                myStyleGrid.fillColor = color[2]
             }else if(data.properties.index < dataIndex.min + 7*interval){
+                myStyleGrid.fillColor = color[1]
+            }else if(data.properties.index < dataIndex.min + 8*interval){
                 myStyleGrid.fillColor = color[0]
             }else {
-                myStyleGrid.fillColor = color[8]
+                myStyleGrid.fillColor = color[9]
             }
             
             var poly1 = turf.polygon(data.geometry.coordinates)

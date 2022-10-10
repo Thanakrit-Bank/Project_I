@@ -1,16 +1,15 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react'
 import Calendar from 'react-calendar';
 import { DatePicker, Space} from 'antd';
-import 'antd/dist/antd.css';
 import moment from 'moment';
+import 'antd/dist/antd.css';
 
 const { RangePicker } = DatePicker;
 
 function Calend(props) {
 
   return (
-      <div >
+      <div>
         {/* <Calendar
           onChange={(e) => onChangeDate(e)}
           value={date}
@@ -34,7 +33,9 @@ function Calend(props) {
         <RangePicker 
           defaultValue={[moment(props.setDate), moment(props.setDate)]}
           onChange={(val) => props.onChange(val.toString())}
-          style={{zIndex: 4000}}/>
+          style={{zIndex: 4000}}
+          className="map-calend"
+        />
       </div>
   );
 }
