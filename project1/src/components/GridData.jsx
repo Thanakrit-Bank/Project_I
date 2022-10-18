@@ -87,7 +87,7 @@ function GridData(props) {
             }
             
             var poly1 = turf.polygon(data.geometry.coordinates)
-            var poly2 = turf.polygon(shp.features.geometry.coordinates)
+            var poly2 = turf.multiPolygon(shp.features.geometry.coordinates)
             var intersection = turf.intersect(poly1, poly2)
             return (
                 <div>

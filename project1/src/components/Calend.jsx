@@ -33,8 +33,8 @@ function Calend(props) {
         <RangePicker 
           defaultValue={[moment(props.setDate), moment(props.setDate)]}
           onChange={(val) => props.onChange(val.toString())}
-          style={{zIndex: 4000}}
           className="map-calend"
+          picker="month"
         />
       </div>
   );

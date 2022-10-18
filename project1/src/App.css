@@ -39,44 +39,28 @@ body {
 }
 
 .map-view.select{
-  display: flex;
-  flex-direction: column;
-  position: fixed;
   top: 10px;
   width: 150px;
-  height: 20px;
+  height: 34px;
   left: 430px;
   z-index: 400;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .map-view.select-data{
   top: 10px;
-  width: 50px;
-  height: 20px;
+  width: 100px;
+  height: 34px;
   left: 320px;
   z-index: 500;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .map-calend {
-  /* display: flex;
-  flex-direction: column;
-  position: fixed; */
-  top: 10px;
-  left: 10px;
-  /* z-index: 4000; */
-}
-
-/* .map-calend.antd{
-  display: flex;
-  flex-direction: column;
-  position: fixed;
   top: 10px;
   left: 10px;
   z-index: 4000;
 }
 
-.map-calend.text {
-  background-color: aliceblue;
-  padding: 3px;
-  top: 310px;
-} */
