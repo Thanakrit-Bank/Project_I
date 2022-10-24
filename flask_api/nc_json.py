@@ -96,18 +96,14 @@ def convert_nc_json(province, date, index):
     global str_date
 
     str_date = '%Y-%m'
+    
     #check frequency of data
     get_data(index)
     xxx = time[:][1]- time[:][0]
     if (time[:][1]- time[:][0] >= 365):
         str_date = '%Y'
 
-    data_form = {
-        "type": "FeaturesCollection",
-        "fetures": []
-    }
-
-    load_data = open(rf'./data/{index}/{province}.json')
+    load_data = open(rf'./data_project/{index}/{province}.json')
     data_province = json.load(load_data)
 
     day_list = get_array_day(date)
@@ -121,77 +117,9 @@ def convert_nc_json(province, date, index):
                 value += float(grid_data['properties']['time_index'][str(date)])
         value /= len(date_index)
         temp_data[ind]['properties']['index'] = value
+        # delete time_index when send data from api 
+        del temp_data[ind]['properties']['time_index']
 
     return temp_data
-    # shp = GetProvince(province) 
-    
-    # temp_polygon = []
-    # polygon = []
-
-    # if (province == 'all'):
-    #     for i in shp['features']['geometry']['coordinates']:
-    #         temp_polygon.append(convert_list_to_tuple(i))
-    #     for i in temp_polygon:
-    #         for j in i:
-    #             polygon.append(j)
-
-    # elif(shp["features"]['geometry']['type'] == 'Polygon'): 
-    #     polygon = convert_list_to_tuple(shp['features']['geometry']['coordinates'][0])
-    # else :
-    #     for i in shp['features']['geometry']['coordinates']:
-    #         temp_polygon.append(convert_list_to_tuple(i[0])) 
-    #     for i in temp_polygon:
-    #         for j in i:
-    #             polygon.append(j)
-
-    # polygon_province = Polygon(polygon)
-
-    # count = 0
-    # for ind_lat,lat_nc in enumerate(lat):
-
-    #     for ind_lon,lon_nc in enumerate(lon):
-
-    #         point = Point(lon_nc, lat_nc)
-    #         shortestDistance = polygon_province.distance(point)
-    #         value = 0
-    #         if((polygon_province.contains(point) or (shortestDistance <= math.sin(math.pi/4)*2*grid_size))):
-    #             #and values[date_index[0], ind_lat, ind_lon] != '--'
-    #             count += 1
-    #             if (len(date_index) == 1 and values[date_index[0], ind_lat, ind_lon] != '--'):
-    #                 value = values[date_index[0], ind_lat, ind_lon].tolist()
-    #             elif (len(date_index) > 1) :
-    #                 temp_index = 0
-    #                 for day in date_index:
-    #                     if (values[day, ind_lat, ind_lon] != '--'):
-    #                         temp_index += values[day, ind_lat, ind_lon].tolist()
-    #                 value = temp_index/len(date_index)
-                        
-    #             print(point, value)
-
-    #             grid ={
-    #                 "type":"Feature",
-    #                 "properties": {
-    #                     "grid_id": count,
-    #                     "time": date,
-    #                     "lon": lon_nc,
-    #                     "lat": lat_nc,
-    #                     "index": "{:.3f}".format(value)
-    #                 },
-    #                 "geometry":{
-    #                     "type": "Polygon",
-    #                     "coordinates":[
-    #                         [
-    #                             [lon_nc - grid_size, lat_nc - grid_size],
-    #                             [lon_nc + grid_size, lat_nc - grid_size],
-    #                             [lon_nc + grid_size, lat_nc + grid_size],
-    #                             [lon_nc - grid_size, lat_nc + grid_size],
-    #                             [lon_nc - grid_size, lat_nc - grid_size] 
-    #                         ]
-                           
-    #                     ]
-    #                 }
-    #             }
-    #             data_form["fetures"].append(grid)
-    # return data_form["fetures"]
 
 

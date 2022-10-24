@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Calendar from 'react-calendar';
 import { DatePicker, Space} from 'antd';
 import moment from 'moment';
@@ -7,6 +7,16 @@ import 'antd/dist/antd.css';
 const { RangePicker } = DatePicker;
 
 function Calend(props) {
+
+  const [picker, setPicker]  = useState('month')
+
+  useEffect(()=>{
+    if(props.dataType === 'cdd_mpi' || props.dataType === 'cdd_era'){
+      setPicker('year')
+    }else{
+      setPicker('month')
+    }
+  },[props.dataType])
 
   return (
       <div>
@@ -34,7 +44,7 @@ function Calend(props) {
           defaultValue={[moment(props.setDate), moment(props.setDate)]}
           onChange={(val) => props.onChange(val.toString())}
           className="map-calend"
-          picker="month"
+          picker={picker}
         />
       </div>
   );

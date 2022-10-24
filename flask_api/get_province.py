@@ -1,7 +1,7 @@
 import json
   
 # Opening JSON file
-f = open(r'sample.json')
+f = open(r'province.json')
 data = json.load(f)
 
 f_all = open(r'full_thailand.json')

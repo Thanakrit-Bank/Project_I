@@ -1,8 +1,6 @@
 import React from 'react'
 import legendData from  './../data/dataLegend'  
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 
 function SelectData(props) {
   return (

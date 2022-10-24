@@ -1,4 +1,4 @@
-import { GeoJSON, Popup, FeatureGroup } from 'react-leaflet' 
+import { GeoJSON, Popup, FeatureGroup, Polygon } from 'react-leaflet' 
 import React, { useState, useEffect } from 'react'
 import legendData from  './../data/dataLegend'  
 import * as turf from '@turf/turf'
@@ -85,13 +85,15 @@ function GridData(props) {
             }else {
                 myStyleGrid.fillColor = color[9]
             }
+            try {
+                var poly1 = turf.polygon(data.geometry.coordinates)
+            } catch  {
+                poly1 = turf.multiPolygon(data.geometry.coordinates)
+            }
             
-            var poly1 = turf.polygon(data.geometry.coordinates)
-            var poly2 = turf.multiPolygon(shp.features.geometry.coordinates)
-            var intersection = turf.intersect(poly1, poly2)
             return (
                 <div>
-                    <GeoJSON key={data.properties.grid_id}  data={intersection} style={myStyleGrid}>
+                    <GeoJSON key={data.properties.grid_id}  data={poly1} style={myStyleGrid}>
                         <Popup> {Math.round(data.properties.index*1000)/1000} </Popup>
                     </GeoJSON>
                 </div>

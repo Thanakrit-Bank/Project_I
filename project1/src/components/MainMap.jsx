@@ -82,7 +82,7 @@ function MainMap() {
 
                 <GridData dataIndex={dataIndex} pName={province_select} date={date}/>
                 <Legend dataIndex = {dataIndex}/>
-                <Calend className="map-calend" setDate={date} onChange={onChangeDate}/>
+                <Calend className="map-calend" setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
 
             </MapContainer>
   )
