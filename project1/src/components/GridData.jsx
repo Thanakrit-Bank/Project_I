@@ -53,6 +53,10 @@ function GridData(props) {
         });
       }
 
+    const setCenter = (coordinate) => {
+        props.SetViewOnChange(coordinate)
+    }
+
     return (
     <FeatureGroup>
         {data.map(data => {
@@ -62,6 +66,10 @@ function GridData(props) {
                 fillOpacity: 0.75,
                 fillColor: 'white',
                 borderColor: 'black'
+            }
+
+            if (data.properties.time_index){
+                setCenter(data.geometry.coordinates[0][0])
             }
 
             if(data.properties.index < dataIndex.min){

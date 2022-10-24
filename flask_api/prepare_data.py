@@ -138,6 +138,7 @@ def convert_nc_json(province, index):
                             [lon_nc - grid_size, lat_nc - grid_size] 
                         ]
             polygon_grid = Polygon(grid_cell)
+            
             # check intersection with shapely module 
             if(polygon_province.intersects(polygon_grid)):
 

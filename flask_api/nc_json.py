@@ -96,14 +96,14 @@ def convert_nc_json(province, date, index):
     global str_date
 
     str_date = '%Y-%m'
-    
+
     #check frequency of data
     get_data(index)
     xxx = time[:][1]- time[:][0]
     if (time[:][1]- time[:][0] >= 365):
         str_date = '%Y'
 
-    load_data = open(rf'./data_project/{index}/{province}.json')
+    load_data = open(rf'./data/{index}/{province}.json')
     data_province = json.load(load_data)
 
     day_list = get_array_day(date)
@@ -117,8 +117,10 @@ def convert_nc_json(province, date, index):
                 value += float(grid_data['properties']['time_index'][str(date)])
         value /= len(date_index)
         temp_data[ind]['properties']['index'] = value
+
         # delete time_index when send data from api 
-        del temp_data[ind]['properties']['time_index']
+        temp_data[ind]['properties']['time_index'] = False
+    temp_data[len(data_province)//2]['properties']['time_index'] = True
 
     return temp_data
 

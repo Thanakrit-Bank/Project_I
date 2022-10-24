@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MapContainer, TileLayer, LayersControl } from 'react-leaflet' 
+import { MapContainer, TileLayer, LayersControl,useMap } from 'react-leaflet' 
 import { latLngBounds } from 'leaflet';
 import Calend from "./Calend";
 import GridData from './GridData';
@@ -9,9 +9,10 @@ import SelectProvince from './SelectProvince';
 
 function MainMap() {
 
-    const center = [13.2955977,102.2090103]
+    // const center = [13.2955977,102.2090103]
     const zoom = 6
     
+    const [center, setCenter] = useState([13.2955977,102.2090103])
     const [province_select, setProvince] = useState('all')
     const [dataIndex, setDataIndex] = useState('spei')
     const [date, setDate] = useState('2006-01')
@@ -31,6 +32,17 @@ function MainMap() {
     const onChangeDate = (date) => {
         setDate(date)
     }
+
+    // set center of map to center of province
+    function SetViewOnChange(coords) {
+        const map = useMap();
+        if (province_select === 'all'){
+            map.setView([13.2955977,102.2090103], 6);
+        }else{
+            map.setView([coords[1], coords[0]], 8);
+        }
+        return null;
+      }
     
     return (
             <MapContainer className='map-view'
@@ -80,7 +92,7 @@ function MainMap() {
                     </LayersControl.Overlay>
                 </LayersControl>
 
-                <GridData dataIndex={dataIndex} pName={province_select} date={date}/>
+                <GridData dataIndex={dataIndex} pName={province_select} date={date} SetViewOnChange={SetViewOnChange}/>
                 <Legend dataIndex = {dataIndex}/>
                 <Calend className="map-calend" setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
 
