@@ -8,7 +8,7 @@ from datetime import date, timedelta, datetime
 
 data_index = 'spei'
 
-data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
+data = Dataset(r"spei01.nc")
 
 lat = data.variables['lat'][:]
 lon = data.variables['lon'][:]
@@ -27,14 +27,14 @@ date_start = datetime.strptime(start_nc, "%Y-%m-%d")
 def get_data(index):
     global data_index, data, lat, lon, grid_size, values, time, unit_nc, start_nc, date_start
     if (index == 'cdd_mpi'):
-        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\cddETCCDI_yr_MPI-ESM-MR_rcp45_r1i1p1_2006-2100.nc")
+        data = Dataset(r"cddETCCDI_yr_MPI-ESM-MR_rcp45_r1i1p1_2006-2100.nc")
         values = data.variables['cddETCCDI']
 
     elif(index == 'spei'):
-        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
+        data = Dataset(r"spei01.nc")
         values = data.variables['spei']
     elif(index == 'cdd_era'):
-        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\cddETCCDI_yr_ERAInterim_historical_r1i1p1_1979-2012.nc")
+        data = Dataset(r"cddETCCDI_yr_ERAInterim_historical_r1i1p1_1979-2012.nc")
         values = data.variables['cddETCCDI']
         
     lat = data.variables['lat'][:]

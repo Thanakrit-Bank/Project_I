@@ -62,15 +62,17 @@ const Legend = (props) => {
       let to;
 
       for (let i = 0; i < grades.length; i++) {
-        from = grades[i];
-        to = grades[i + 1];
+        to = grades[i];
+        from = grades[i + 1];
 
         labels.push(
           '<i style="background:' +
-            getColor(from + 1) +
+            getColor(to + 1) +
             '"></i>' 
-            + from.toFixed(0) 
-            + (to ? " &ndash; " + to.toFixed(0) : "")
+            + (from ? "" + from.toFixed(0) : "<")
+            + (to ? (i < grades.length-1 ? " &ndash; " : "")  + to.toFixed(0) : "")
+            // + from.toFixed(0) 
+            // + (to ? " &ndash; " + to.toFixed(0) : "")
         );
       }
 
