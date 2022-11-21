@@ -16,9 +16,12 @@ function SelectData(props) {
         // </DropdownButton>
         <select onChange={(e) => props.onChengeSelect(e.target.value)} className='map-view select-data'>
             {/* <option value='all' defaultValue>All Province</option> */}
-            {Object.keys(legendData).map((p, index) => {
-                return <option value={p} key={index}>{p}</option>
-            })}               
+            <optgroup label="Indices_bak">
+              {Object.keys(legendData).map((p, index) => {
+                  return <option value={p} key={index}>{p}</option>
+
+              })}
+            </optgroup>
         </select>
   )
 }

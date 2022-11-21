@@ -8,10 +8,10 @@ const { RangePicker } = DatePicker;
 
 function Calend(props) {
 
-  const [picker, setPicker]  = useState('month')
-
+  const [picker, setPicker]  = useState('year')
+  const groupYear = ['rcp45_PRCPTOT','rcp85_PRCPTOT','rcp45_TMEANmean','rcp85_TMEANmean']
   useEffect(()=>{
-    if(props.dataType === 'cdd_mpi' || props.dataType === 'cdd_era'){
+    if(props.dataType === 'cdd_mpi' || props.dataType === 'cdd_era' || groupYear.includes(props.dataType)){
       setPicker('year')
     }else{
       setPicker('month')

@@ -8,7 +8,7 @@ from datetime import date, timedelta, datetime
 
 data_index = 'spei'
 
-data = Dataset(r"spei01.nc")
+data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
 
 lat = data.variables['lat'][:]
 lon = data.variables['lon'][:]
@@ -27,14 +27,14 @@ date_start = datetime.strptime(start_nc, "%Y-%m-%d")
 def get_data(index):
     global data_index, data, lat, lon, grid_size, values, time, unit_nc, start_nc, date_start
     if (index == 'cdd_mpi'):
-        data = Dataset(r"cddETCCDI_yr_MPI-ESM-MR_rcp45_r1i1p1_2006-2100.nc")
+        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\cddETCCDI_yr_MPI-ESM-MR_rcp45_r1i1p1_2006-2100.nc")
         values = data.variables['cddETCCDI']
 
     elif(index == 'spei'):
-        data = Dataset(r"spei01.nc")
+        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
         values = data.variables['spei']
     elif(index == 'cdd_era'):
-        data = Dataset(r"cddETCCDI_yr_ERAInterim_historical_r1i1p1_1979-2012.nc")
+        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\cddETCCDI_yr_ERAInterim_historical_r1i1p1_1979-2012.nc")
         values = data.variables['cddETCCDI']
         
     lat = data.variables['lat'][:]
@@ -71,7 +71,7 @@ def get_array_day(dates):
     day_list = []
 
     if(len(temp_date) == 1):
-        time = datetime.strptime(dates, '%Y-%m')
+        time = datetime.strptime(dates, '%Y')
         temp = day_list.append(time.strftime(str_date))
         return day_list
     else:
@@ -86,41 +86,42 @@ def get_array_day(dates):
             temp = list(set(day_list))
         return temp
 
-def convert_list_to_tuple(list): 
-    temp = []
-    for i in list:
-        temp.append(tuple(i))
-    return temp
-
 def convert_nc_json(province, date, index):
     global str_date
 
-    str_date = '%Y-%m'
+    str_date = '%Y'
 
     #check frequency of data
-    get_data(index)
-    xxx = time[:][1]- time[:][0]
-    if (time[:][1]- time[:][0] >= 365):
-        str_date = '%Y'
-
-    load_data = open(rf'./data/{index}/{province}.json')
+    # get_data(index)
+    # xxx = time[:][1]- time[:][0]
+    # if (time[:][1]- time[:][0] >= 365):
+    #     str_date = '%Y'
+# "D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\indices_bak\rcp45_PRCPTOT"
+    load_data = open(rf'D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\indices_bak/{index}/{province}.json')
     data_province = json.load(load_data)
+
+    # it used to check string date format
+    if (data_province['properties']['date_type'] == 'year'):
+        str_date = '%Y'
 
     day_list = get_array_day(date)
 
     date_index = get_index(day_list)
-    temp_data = data_province
-    for ind,grid_data in enumerate(data_province):
+    temp_data = data_province['fetures']
+    for ind,grid_data in enumerate(data_province['fetures']):
         value = 0
-        for date in date_index:
-            if (grid_data['properties']['time_index'][str(date)] != '--'):
-                value += float(grid_data['properties']['time_index'][str(date)])
-        value /= len(date_index)
+        for day in day_list:
+            st = int(data_province['properties']['start_time'])
+            str_index_time = str(int(day)-int(data_province['properties']['start_time']))
+            if (grid_data['properties']['time_index'][str_index_time] != '--'):
+                value += float(grid_data['properties']['time_index'][str_index_time])
+        value /= len(day_list)
         temp_data[ind]['properties']['index'] = value
 
         # delete time_index when send data from api 
         temp_data[ind]['properties']['time_index'] = False
-    temp_data[len(data_province)//2]['properties']['time_index'] = True
+    index_center = len(data_province['fetures'])//2
+    temp_data[index_center]['properties']['time_index'] = True
 
     return temp_data
 

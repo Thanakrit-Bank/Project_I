@@ -1,19 +1,25 @@
 const dataLegend = {
-    'spei': {
-        'max': 5,
-        'min': -4,
-        'color': ['#FFEDA0',"#FED976","#FEC900","#FEB24C","#FD8D3C","#FC4E2A","#E31A1C","#BD0026","#800026"]
-    },
-    'cdd_mpi': {
-        'max': 250,
-        'min': 10,
-        'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
-    },
-    'cdd_era': {
-        'max': 365,
-        'min': 0,
-        'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
-    },
+        'rcp45_PRCPTOT': {
+            'max': 3000,
+            'min': 300,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'rcp85_PRCPTOT': {
+            'max': 3000,
+            'min': 300,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'rcp45_TMEANmean': {
+            'max': 30,
+            'min': 10,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'rcp85_TMEANmean': {
+            'max': 30,
+            'min': 10,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+    
 }
 
 export default dataLegend

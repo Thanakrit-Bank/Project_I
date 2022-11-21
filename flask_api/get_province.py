@@ -21,6 +21,6 @@ def GetProvince( p_name ):
         for province in data['features']:
             temp_p = province['properties']['name']
             if(p_name == temp_p):
-                temp_json['features'] = province
+                temp_json['features'].append(province)
     f.close()
     return temp_json

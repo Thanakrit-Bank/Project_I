@@ -14,8 +14,8 @@ function MainMap() {
     
     const [center, setCenter] = useState([13.2955977,102.2090103])
     const [province_select, setProvince] = useState('all')
-    const [dataIndex, setDataIndex] = useState('spei')
-    const [date, setDate] = useState('2006-01')
+    const [dataIndex, setDataIndex] = useState('rcp45_PRCPTOT')
+    const [date, setDate] = useState('2006')
 
     const southWestView = [-90, -180]
     const northEastView = [90, 180]
