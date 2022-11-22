@@ -45,8 +45,9 @@ def get_data(index):
         values = data.variables['TMEANmean']
     else:
         rcp_type = index.split('_')[0]
-        index_type = index.split('_')[1]
-        data = Dataset(rf"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\indices\ensemble_{rcp_type}_{index_type}.nc")
+        index_type = index.split('_')[-1]
+        data = Dataset(rf"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\_SPI\{index}.nc")
+        # data = Dataset(rf"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\_SPI\ensemble_{rcp_type}_{index_type}.nc")
         values = data.variables[index_type]
 
     lat = data.variables['lat'][:]
@@ -56,13 +57,13 @@ def get_data(index):
 
 
     time = data.variables['time'] # time from indices_bak is floating
-
-    # unit_nc = time.units.split('since')[0].strip() # "days since 1900-1-1"
-    # start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
+    xxx = time[:][1]
+    unit_nc = time.units.split('since')[0].strip() # "days since 1900-1-1"
+    start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
     # if (len(start_nc) > 10):
     #     start_nc = start_nc.split(' ')[0].strip() 
 
-    date_start = datetime.datetime.strptime(str(int(time[0])), "%Y")
+    date_start = datetime.datetime.strptime(start_nc, "%Y-%m-%d")
 
 def get_index(date): #list of date 
     
@@ -226,7 +227,7 @@ data_province = json.load(f_load)
 import os
 
 #get name of index in folder "indices_bak" 
-path = r"D:\Coding\JavaScript\REACT_Native\Data_Project\data\indices"
+path = r"D:\Coding\JavaScript\REACT_Native\Data_Project\data\_SPI"
 dir_list = os.listdir(path)
 
 ### create file each province
@@ -234,8 +235,9 @@ for folder_name in dir_list:
     print(folder_name)
     if(folder_name != 'monthly'):
         name_index = folder_name.split('.')[0].split('_')
-        name_subfolder = name_index[1]+"_"+name_index[2]
-        os.mkdir(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\indices\{name_subfolder}")
+        # name_subfolder = name_index[1]+"_"+name_index[2]
+        name_subfolder = folder_name.split('.')[0]
+        os.mkdir(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\SPI\{name_subfolder}")
         num_pro = 0
         for i in data_province['features']:
             num_pro += 1
@@ -244,17 +246,18 @@ for folder_name in dir_list:
             data_json = convert_nc_json(name_province, name_subfolder)
             json_object = json.dumps(data_json, indent=4)
             # Writing to sample.json  , 'cdd_era', 'spei'
-            with open(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\indices\{name_subfolder}\{name_province}.json", "w") as outfile:
+            with open(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\SPI\{name_subfolder}\{name_province}.json", "w") as outfile:
                 outfile.write(json_object)
 
 ### create json file all province
 # for folder_name in dir_list:
 #     print(folder_name)
+#     name_subfolder = folder_name.split('.')[0]
 #     if(folder_name != 'monthly'):
-#         name_index = folder_name.split('.')[0].split('_')
+#         os.mkdir(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\SPI\{name_subfolder}")
+#         name_index = folder_name.split('.')[0].split('_')[-1]
 #         num_pro = 0
-#         name_subfolder = name_index[1]+"_"+name_index[2]
 #         data_json = convert_nc_json('all', name_subfolder)
 #         json_object = json.dumps(data_json, indent=4)
-#         with open(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\indices_bak\{name_subfolder}\\all.json", "w") as outfile:
+#         with open(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\SPI\{name_subfolder}\\all.json", "w") as outfile:
 #             outfile.write(json_object)

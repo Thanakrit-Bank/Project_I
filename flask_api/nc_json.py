@@ -1,69 +1,5 @@
-from cmath import sin
-import math, calendar,json
-from get_province import GetProvince
-from netCDF4 import Dataset
-from shapely.geometry import Point
-from shapely.geometry.polygon import Polygon
+import calendar,json
 from datetime import date, timedelta, datetime
-
-data_index = 'spei'
-
-data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
-
-lat = data.variables['lat'][:]
-lon = data.variables['lon'][:]
-
-grid_size = (lat[1]-lat[0])/2
-
-values = data.variables['spei']
-
-time = data.variables['time']
-
-unit_nc = time.units.split('since')[0].strip() # "days since 1900-1-1"
-start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
-str_date = '%Y-%m-%d'
-date_start = datetime.strptime(start_nc, "%Y-%m-%d")
-
-def get_data(index):
-    global data_index, data, lat, lon, grid_size, values, time, unit_nc, start_nc, date_start
-    if (index == 'cdd_mpi'):
-        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\cddETCCDI_yr_MPI-ESM-MR_rcp45_r1i1p1_2006-2100.nc")
-        values = data.variables['cddETCCDI']
-
-    elif(index == 'spei'):
-        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\spei01.nc")
-        values = data.variables['spei']
-    elif(index == 'cdd_era'):
-        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\cddETCCDI_yr_ERAInterim_historical_r1i1p1_1979-2012.nc")
-        values = data.variables['cddETCCDI']
-        
-    lat = data.variables['lat'][:]
-    lon = data.variables['lon'][:]
-
-    grid_size = (lat[1]-lat[0])/2
-
-
-    time = data.variables['time']
-
-    unit_nc = time.units.split('since')[0].strip() # "days since 1900-1-1"
-    start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
-    if (len(start_nc) > 10):
-        start_nc = start_nc.split(' ')[0].strip() 
-
-    date_start = datetime.strptime(start_nc, "%Y-%m-%d")
-
-def get_index(date): #list of date 
-    
-    index = 0
-    list_index = []
-    
-    for i in time[:] :
-        date_i = date_start + timedelta(days=math.ceil(i)) # day in nc file it have .5 day
-        tmp = str(date_i.strftime(str_date))
-        if( str(date_i.strftime(str_date)) in date):
-            list_index.append(index)
-        index += 1 
-    return list_index
 
 def get_array_day(dates):
     # Tue Jan 10 2006 00:00:00 GMT+0700,Wed Feb 15 2006 00:00:00 GMT+0700 
@@ -86,18 +22,12 @@ def get_array_day(dates):
             temp = list(set(day_list))
         return temp
 
-def convert_nc_json(province, date, index):
+def convert_nc_json(province, date, index, index_folder):
     global str_date
 
     str_date = '%Y'
 
-    #check frequency of data
-    # get_data(index)
-    # xxx = time[:][1]- time[:][0]
-    # if (time[:][1]- time[:][0] >= 365):
-    #     str_date = '%Y'
-# "D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\indices_bak\rcp45_PRCPTOT"
-    load_data = open(rf'D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\indices_bak/{index}/{province}.json')
+    load_data = open(rf'D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\{index_folder}/{index}/{province}.json')
     data_province = json.load(load_data)
 
     # it used to check string date format
@@ -106,7 +36,6 @@ def convert_nc_json(province, date, index):
 
     day_list = get_array_day(date)
 
-    date_index = get_index(day_list)
     temp_data = data_province['fetures']
     for ind,grid_data in enumerate(data_province['fetures']):
         value = 0

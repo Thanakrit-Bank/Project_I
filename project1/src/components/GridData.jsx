@@ -7,19 +7,19 @@ function GridData(props) {
     const [data, setData] = useState([])
     const [shp, setShp] = useState([])
     
-    const url_grid = 'http://127.0.0.1:5000/get_index/'.concat(props.dataIndex,'&',props.pName,'&',props.date)
+    const url_grid = 'http://127.0.0.1:5000/get_index/'.concat(props.dataIndex,'&',props.pName,'&',props.date,'&',props.index_folder)
     const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
     
-    var dataIndex = legendData.rcp45_PRCPTOT
+    var dataIndex = legendData.indices_bak.rcp45_PRCPTOT
     // if (props.dataIndex === 'rcp45_PRCPTOT'){
     //   dataIndex = legendData.rcp45_PRCPTOT
     // }else if(props.dataIndex === 'rcp85_PRCPTOT' ||  'rcp85_PRCPTOT' ){
     //   dataIndex = legendData.cdd_mpi
     // }
     if(props.dataIndex === 'rcp85_TMEANmean' || props.dataIndex ===  'rcp45_TMEANmean' ){
-        dataIndex = legendData.rcp85_TMEANmean
+        dataIndex = legendData.indices_bak.rcp85_TMEANmean
     }else if(props.dataIndex === 'rcp85_PRCPTOT' || props.dataIndex ===  'rcp45_PRCPTOT' ){
-    dataIndex = legendData.rcp85_PRCPTOT
+    dataIndex = legendData.indices_bak.rcp85_PRCPTOT
     }
     var color = dataIndex.color
     
@@ -103,8 +103,7 @@ function GridData(props) {
             } catch  {
                 poly1 = turf.multiPolygon(data.geometry.coordinates)
             }
-            // var poly2 = turf.multiPolygon(shp.features.geometry.coordinates)
-            // var poly2 = turf.multiPolygon(shp.features.geometry.coordinates)
+
             return (
                 <div>
                     <GeoJSON key={data.properties.grid_id}  data={poly1} style={myStyleGrid}>

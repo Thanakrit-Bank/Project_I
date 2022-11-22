@@ -17,10 +17,10 @@ def get(p_name):
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
 
-@app.route('/get_index/<string:data_index>&<string:p_name>&<string:date>')
-def getGridSpei(data_index,p_name,date = '2006-01'):
+@app.route('/get_index/<string:data_index>&<string:p_name>&<string:date>&<string:index_folder>')
+def getGridSpei(data_index, index_folder, p_name, date = '2006-01'):
     if (request.headers.get('x-access-token') == data['key']):
-        temp = convert_nc_json(p_name, date, data_index)
+        temp = convert_nc_json(p_name, date, data_index, index_folder)
         response = jsonify(temp)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response

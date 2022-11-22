@@ -6,11 +6,11 @@ import legendData from  './../data/dataLegend'
 const Legend = (props) => {
     const mapInstance = useMap();
 
-    var data = legendData.rcp85_PRCPTOT
+    var data = legendData.indices_bak.rcp85_PRCPTOT
     if(props.dataIndex === 'rcp85_TMEANmean' ||  'rcp45_TMEANmean' ){
-      data = legendData.rcp85_TMEANmean
+      data = legendData.indices_bak.rcp85_TMEANmean
     }else if(props.dataIndex === 'rcp85_PRCPTOT' ||  'rcp45_PRCPTOT' ){
-      data = legendData.rcp85_PRCPTOT
+      data = legendData.indices_bak.rcp85_PRCPTOT
     }
     var color = data.color
 

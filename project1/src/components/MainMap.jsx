@@ -16,13 +16,17 @@ function MainMap() {
     const [province_select, setProvince] = useState('all')
     const [dataIndex, setDataIndex] = useState('rcp45_PRCPTOT')
     const [date, setDate] = useState('2006')
+    const [index_folder, setIndex_folder] = useState('indices_bak')
 
     const southWestView = [-90, -180]
     const northEastView = [90, 180]
     const bounds = latLngBounds(southWestView, northEastView)
 
     const onChangeSelectData = (data) => {
-        setDataIndex(data)
+        let index_name = data.split("*")[0]
+        let folder_name = data.split("*")[1]
+        setDataIndex(index_name)
+        setIndex_folder(folder_name)
     }
 
     const onChangeSelectProvince = (data) => {
@@ -57,7 +61,7 @@ function MainMap() {
                 
                 <SelectProvince onChengeSelect= {onChangeSelectProvince}/>
 
-                <SelectData onChengeSelect={onChangeSelectData} type = {dataIndex}/>
+                <SelectData onChengeSelect={onChangeSelectData} type = {dataIndex} indexFolder={index_folder}/>
 
                 {console.log("render!!")}
 
@@ -92,7 +96,7 @@ function MainMap() {
                     </LayersControl.Overlay>
                 </LayersControl>
 
-                <GridData dataIndex={dataIndex} pName={province_select} date={date} SetViewOnChange={SetViewOnChange}/>
+                <GridData dataIndex={dataIndex} pName={province_select} date={date} SetViewOnChange={SetViewOnChange} index_folder={index_folder}/>
                 <Legend dataIndex = {dataIndex}/>
                 <Calend className="map-calend" setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
 

@@ -1,11 +1,15 @@
 def get_data_index(folder_name ,index_data):
-    data_index = open(rf"D:\Coding\JavaScript\REACT_Native\Data_Project\data\indices_bak\{folder_name}", "r")
+    data_index = open(rf"D:\Coding\JavaScript\REACT_Native\Data_Project\data\_SPI\{folder_name}", "r")
     index_formated = []
     data_index_split = data_index.read().split('\n')[:-1]
     date_list = []
+    mont = -1
     for i in range(len(data_index_split)):
         data_split_t = data_index_split[i].split('\t')
-        date_list.append(int(data_split_t[0]))
+        # date_list.append(data_split_t[0][:4]+"/"+data_split_t[1])
+        # date_list.append(float(data_split_t[0])+(float(data_split_t[1])*0.1))
+        mont += 1
+        date_list.append(float(mont))
         temp = []
         for x in index_data:
             if(data_split_t[x+1] == 'NA' or data_split_t[x+1] == '' or data_split_t[x+1] == ' '):
@@ -47,13 +51,14 @@ def get_index_latlon_thai(data_lat, data_lon):
 
 import netCDF4 as nc
 import os
+import numpy as np
  
 # Get the list of all files and directories
-path = r"D:\Coding\JavaScript\REACT_Native\Data_Project\data\indices_bak"
+path = r"D:\Coding\JavaScript\REACT_Native\Data_Project\data\_SPI"
 dir_list = os.listdir(path)
 for folder_name in dir_list:
     if(folder_name != 'monthly'):
-        fn = rf"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\indices_bak\{folder_name[:-4]}.nc"
+        fn = rf"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\_SPI\{folder_name[:-4]}.nc"
         ds = nc.Dataset(fn, 'w', format='NETCDF4')
 
         # get data from txt file 
@@ -73,6 +78,7 @@ for folder_name in dir_list:
         lon = ds.createDimension('lon', len(data_lon))
 
         times = ds.createVariable('time', 'f4', ('time',))
+        times.units = 'month since 1970-01-01'
         lats = ds.createVariable('lat', 'f4', ('lat',))
         lons = ds.createVariable('lon', 'f4', ('lon',))
         name_index = folder_name.split('.')[0].split('_')

@@ -42,7 +42,7 @@ body {
   top: 10px;
   width: 150px;
   height: 34px;
-  left: 430px;
+  left: 480px;
   z-index: 400;
   border-radius: 5px;
   font-size: 14px;
@@ -50,7 +50,7 @@ body {
 
 .map-view.select-data{
   top: 10px;
-  width: 100px;
+  width: 150px;
   height: 34px;
   left: 320px;
   z-index: 500;
