@@ -8,7 +8,6 @@ import SelectData from './SelectData';
 import SelectProvince from './SelectProvince';
 
 function MainMap() {
-
     // const center = [13.2955977,102.2090103]
     const zoom = 6
     
@@ -36,7 +35,6 @@ function MainMap() {
     const onChangeDate = (date) => {
         setDate(date)
     }
-
     // set center of map to center of province
     function SetViewOnChange(coords) {
         const map = useMap();

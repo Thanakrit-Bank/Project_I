@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import Calendar from 'react-calendar';
-import { DatePicker, Space} from 'antd';
+import { DatePicker } from 'antd';
 import moment from 'moment';
 import 'antd/dist/antd.css';
 
@@ -10,36 +9,17 @@ function Calend(props) {
 
   const [picker, setPicker]  = useState('year')
   const groupYear = ['rcp45_PRCPTOT','rcp85_PRCPTOT','rcp45_TMEANmean','rcp85_TMEANmean']
+  
   useEffect(()=>{
-    if(props.dataType === 'cdd_mpi' || props.dataType === 'cdd_era' || groupYear.includes(props.dataType)){
+    if (props.dataType === 'cdd_mpi' || props.dataType === 'cdd_era' || groupYear.includes(props.dataType)){
       setPicker('year')
-    }else{
+    } else {
       setPicker('month')
     }
-  },[props.dataType])
+  }, [props.dataType])
 
   return (
       <div>
-        {/* <Calendar
-          onChange={(e) => onChangeDate(e)}
-          value={date}
-          selectRange={true}
-          className='map-calend'
-        /> */}
-        {/* {date.length > 0 ? (
-          <p className='map-calend text'>
-            <span className='bold'>Start:{' '}
-            {date[0].toDateString()}
-            &nbsp;|&nbsp;
-            End: {date[1].toDateString()}</span>
-          </p>
-        ) : (
-          <p className='map-calend text'>
-            <span className='bold'>Default selected date: {' '}
-            {date.toDateString()}</span>
-          </p>
-        )} */}
-
         <RangePicker 
           defaultValue={[moment(props.setDate), moment(props.setDate)]}
           onChange={(val) => props.onChange(val.toString())}
