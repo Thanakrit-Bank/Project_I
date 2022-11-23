@@ -345,10 +345,96 @@ const dataLegend = {
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
         },
     },
+
     "spi":{
         'ensemble45_spi_m1': {
-            'max': 2,
-            'min': -2,
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble45_spi_m3': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble45_spi_m6': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble45_spi_m9': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble45_spi_m12': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble45_spi_m24': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble45_spi_m36': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble45_spi_m48': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble45_spi_m60': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble85_spi_m1': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble85_spi_m3': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble85_spi_m6': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble85_spi_m9': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble85_spi_m12': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble85_spi_m24': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble85_spi_m36': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble85_spi_m48': {
+            'max': 1000,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        },
+        'ensemble85_spi_m60': {
+            'max': 1000,
+            'min': 0.1,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
         },
     }

@@ -16,9 +16,10 @@ function GridData(props) {
         dataIndex = legendData.indices_bak.rcp85_TMEANmean
     } else if (props.dataIndex === 'rcp85_PRCPTOT' || props.dataIndex ===  'rcp45_PRCPTOT' ){
         dataIndex = legendData.indices_bak.rcp85_PRCPTOT
+    }        
     
     // Indices
-    } else if (props.dataIndex === 'rcp85_CDD' || props.dataIndex ===  'rcp45_CDD' ){
+    else if (props.dataIndex === 'rcp85_CDD' || props.dataIndex ===  'rcp45_CDD' ){
         dataIndex = legendData.indices.rcp85_CDD
     } else if (props.dataIndex === 'rcp85_CSDI' || props.dataIndex ===  'rcp45_CSDI' ){
         dataIndex = legendData.indices.rcp85_CSDI
@@ -82,8 +83,27 @@ function GridData(props) {
         dataIndex = legendData.indices.rcp85_TXx
     } else if (props.dataIndex === 'rcp85_WSDI' || props.dataIndex ===  'rcp45_WSDI' ){
         dataIndex = legendData.indices.rcp85_WSDI
-    } else if (props.dataIndex === 'ensemble45_spi_m1'){
-        dataIndex = legendData.spi.ensemble45_spi_m1
+    }
+
+    // SPI
+    else if (props.dataIndex === 'ensemble85_spi_m1' || props.dataIndex ===  'ensemble45_spi_m1' ){
+        dataIndex = legendData.spi.ensemble85_spi_m1
+    } else if (props.dataIndex === 'ensemble85_spi_m3' || props.dataIndex ===  'ensemble45_spi_m3' ){
+        dataIndex = legendData.spi.ensemble85_spi_m3
+    } else if (props.dataIndex === 'ensemble85_spi_m6' || props.dataIndex ===  'ensemble45_spi_m6' ){
+        dataIndex = legendData.spi.ensemble85_spi_m6
+    } else if (props.dataIndex === 'ensemble85_spi_m9' || props.dataIndex ===  'ensemble45_spi_m9' ){
+        dataIndex = legendData.spi.ensemble85_spi_m9
+    } else if (props.dataIndex === 'ensemble85_spi_m12' || props.dataIndex ===  'ensemble45_spi_m12' ){
+        dataIndex = legendData.spi.ensemble85_spi_m12
+    } else if (props.dataIndex === 'ensemble85_spi_m24' || props.dataIndex ===  'ensemble45_spi_m24' ){
+        dataIndex = legendData.spi.ensemble85_spi_m24
+    } else if (props.dataIndex === 'ensemble85_spi_m36' || props.dataIndex ===  'ensemble45_spi_m36' ){
+        dataIndex = legendData.spi.ensemble85_spi_m36
+    } else if (props.dataIndex === 'ensemble85_spi_m48' || props.dataIndex ===  'ensemble45_spi_m48' ){
+        dataIndex = legendData.spi.ensemble85_spi_m48
+    } else if (props.dataIndex === 'ensemble85_spi_m60' || props.dataIndex ===  'ensemble45_spi_m60' ){
+        dataIndex = legendData.spi.ensemble85_spi_m60
     }
     var color = dataIndex.color
     
@@ -162,6 +182,7 @@ function GridData(props) {
             }else {
                 myStyleGrid.fillColor = color[9]
             }
+
             try {
                 var poly1 = turf.polygon(data.geometry.coordinates)
             } catch  {
@@ -175,8 +196,7 @@ function GridData(props) {
                     </GeoJSON>
                     {/* <Polygon pathOptions={myStyleGrid} positions={poly2}/> */}
                 </div>
-                )
-            
+                )           
             })
         }        
     </FeatureGroup> 

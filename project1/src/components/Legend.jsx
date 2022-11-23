@@ -13,9 +13,10 @@ const Legend = (props) => {
     data = legendData.indices_bak.rcp85_TMEANmean
   } else if (props.dataIndex === 'rcp85_PRCPTOT' || props.dataIndex ===  'rcp45_PRCPTOT' ){
     data = legendData.indices_bak.rcp85_PRCPTOT
+  } 
   
-    // Indices
-  } else if (props.dataIndex === 'rcp85_CDD' || props.dataIndex ===  'rcp45_CDD' ){
+  // Indices
+  else if (props.dataIndex === 'rcp85_CDD' || props.dataIndex ===  'rcp45_CDD' ){
     data = legendData.indices.rcp85_CDD
   } else if (props.dataIndex === 'rcp85_CSDI' || props.dataIndex ===  'rcp45_CSDI' ){
     data = legendData.indices.rcp85_CSDI
@@ -79,8 +80,27 @@ const Legend = (props) => {
     data = legendData.indices.rcp85_TXx
   } else if (props.dataIndex === 'rcp85_WSDI' || props.dataIndex ===  'rcp45_WSDI' ){
     data = legendData.indices.rcp85_WSDI
-  }else if (props.dataIndex === 'ensemble45_spi_m1'){
-    data = legendData.spi.ensemble45_spi_m1
+  }
+
+  // SPI
+  else if (props.dataIndex === 'ensemble85_spi_m1' || props.dataIndex ===  'ensemble45_spi_m1' ){
+    data = legendData.spi.ensemble85_spi_m1
+  } else if (props.dataIndex === 'ensemble85_spi_m3' || props.dataIndex ===  'ensemble45_spi_m3' ){
+    data = legendData.spi.ensemble85_spi_m3
+  } else if (props.dataIndex === 'ensemble85_spi_m6' || props.dataIndex ===  'ensemble45_spi_m6' ){
+    data = legendData.spi.ensemble85_spi_m6
+  } else if (props.dataIndex === 'ensemble85_spi_m9' || props.dataIndex ===  'ensemble45_spi_m9' ){
+    data = legendData.spi.ensemble85_spi_m9
+  } else if (props.dataIndex === 'ensemble85_spi_m12' || props.dataIndex ===  'ensemble45_spi_m12' ){
+    data = legendData.spi.ensemble85_spi_m12
+  } else if (props.dataIndex === 'ensemble85_spi_m24' || props.dataIndex ===  'ensemble45_spi_m24' ){
+    data = legendData.spi.ensemble85_spi_m24
+  } else if (props.dataIndex === 'ensemble85_spi_m36' || props.dataIndex ===  'ensemble45_spi_m36' ){
+    data = legendData.spi.ensemble85_spi_m36
+  } else if (props.dataIndex === 'ensemble85_spi_m48' || props.dataIndex ===  'ensemble45_spi_m48' ){
+    data = legendData.spi.ensemble85_spi_m48
+  } else if (props.dataIndex === 'ensemble85_spi_m60' || props.dataIndex ===  'ensemble45_spi_m60' ){
+    data = legendData.spi.ensemble85_spi_m60
   }
   var color = data.color
 
