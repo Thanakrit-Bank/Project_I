@@ -3,30 +3,28 @@ import datetime, math, calendar, json
 from netCDF4 import Dataset
 from shapely.geometry import Point, MultiPolygon
 from shapely.geometry.polygon import Polygon
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 import sys
 sys.path.insert(0, r'D:\Project\Mix_Project\Project_I\flask_api')
 from get_province import GetProvince
 
 data_index = 'rcp45_PRCPTOT'
 
-data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\indices_bak\ensemble_rcp45_PRCPTOT.nc")
+data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\_SPI\ensemble85_spi_m1.nc")
 
 lat = data.variables['lat'][:]
 lon = data.variables['lon'][:]
 
 grid_size = (lat[1]-lat[0])/2
 
-values = data.variables['PRCPTOT']
+values = data.variables['m1']
 
 time = data.variables['time'] # time from indices_bak is floating
 
-    # unit_nc = time.units.split('since')[0].strip() # "days since 1900-1-1"
-    # start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
-    # if (len(start_nc) > 10):
-    #     start_nc = start_nc.split(' ')[0].strip() 
-
-date_start = datetime.datetime.strptime(str(int(time[0])), "%Y")
+unit_nc = time.units.split('since')[0].strip() # "days since 1900-1-1"
+start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
+str_date = '%Y-%m-%d'
+date_start = datetime.strptime(start_nc, "%Y-%m-%d")
 
 def get_data(index):
     global data_index, data, lat, lon, grid_size, values, time, unit_nc, start_nc, date_start
@@ -63,7 +61,7 @@ def get_data(index):
     # if (len(start_nc) > 10):
     #     start_nc = start_nc.split(' ')[0].strip() 
 
-    date_start = datetime.datetime.strptime(start_nc, "%Y-%m-%d")
+    date_start = datetime.strptime(start_nc, "%Y-%m-%d")
 
 def get_index(date): #list of date 
     
@@ -115,9 +113,8 @@ def convert_nc_json(province, index):
     data_form = {
         "type": "FeaturesCollection",
         "properties": {
-                        "date_type": "year",
-                        "start_time": str(int(time[:][0])),
-                        "end_time": str(int(time[:][-1])),
+                        "date_type": "month",
+                        "start_time": date_start.strftime("%Y-%m-%d"),
                     },
         "fetures": []
     }
@@ -156,11 +153,7 @@ def convert_nc_json(province, index):
     count = 0
     #loop for check each point which intersect in polygon province 
     for ind_lat,lat_nc in enumerate(lat):
-        # lat_side = (lat_nc + lat[ind_lat])/2
         for ind_lon,lon_nc in enumerate(lon):
-            # x = lon[ind_lon-1]
-            # y= lon[ind_lon]
-            # lon_side = abs((lon_nc - lon[ind_lon-1])/2)
             value = {}
             #create polygon of grid cell for check intersection with shapefile 
             grid_cell = [
@@ -171,14 +164,6 @@ def convert_nc_json(province, index):
                             [lon_nc - grid_size, lat_nc - grid_size] 
                         ]
 
-            #change solution to create grid with near lat lon instead
-            # grid_cell = [
-            #                 [lon_nc - lon_side, lat_nc - lat_side],
-            #                 [lon_nc + lon_side, lat_nc - lat_side],
-            #                 [lon_nc + lon_side, lat_nc + lat_side],
-            #                 [lon_nc - lon_side, lat_nc + lat_side],
-            #                 [lon_nc - lon_side, lat_nc - lat_side] 
-            #             ]
             polygon_grid = Polygon(grid_cell)
             
             # check intersection with shapely module 
@@ -191,8 +176,6 @@ def convert_nc_json(province, index):
                     value[i] = "{:.3f}".format(temp)
 
                 intersect = polygon_province.intersection(polygon_grid)  
-
-                see_intersect = intersect.normalize().wkt
 
                 list_coordinates = []
                 # format coordinate to form of geojson 

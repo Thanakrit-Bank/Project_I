@@ -82,6 +82,8 @@ function GridData(props) {
         dataIndex = legendData.indices.rcp85_TXx
     } else if (props.dataIndex === 'rcp85_WSDI' || props.dataIndex ===  'rcp45_WSDI' ){
         dataIndex = legendData.indices.rcp85_WSDI
+    } else if (props.dataIndex === 'ensemble45_spi_m1'){
+        dataIndex = legendData.spi.ensemble45_spi_m1
     }
     var color = dataIndex.color
     

@@ -79,6 +79,8 @@ const Legend = (props) => {
     data = legendData.indices.rcp85_TXx
   } else if (props.dataIndex === 'rcp85_WSDI' || props.dataIndex ===  'rcp45_WSDI' ){
     data = legendData.indices.rcp85_WSDI
+  }else if (props.dataIndex === 'ensemble45_spi_m1'){
+    data = legendData.spi.ensemble45_spi_m1
   }
   var color = data.color
 
