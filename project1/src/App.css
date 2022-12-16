@@ -64,3 +64,8 @@ body {
   z-index: 4000;
 }
 
+.logOut {
+  z-index: 10000;
+  bottom: 10px;
+  left: 10px;
+}

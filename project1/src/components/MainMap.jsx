@@ -6,8 +6,9 @@ import GridData from './GridData';
 import Legend from "./Legend";
 import SelectData from './SelectData';
 import SelectProvince from './SelectProvince';
+import GoogleIn from './GoogleIn';
 
-function MainMap() {
+function MainMap(props) {
     // const center = [13.2955977,102.2090103]
     const zoom = 6
     
@@ -97,7 +98,7 @@ function MainMap() {
                 <GridData dataIndex={dataIndex} pName={province_select} date={date} SetViewOnChange={SetViewOnChange} index_folder={index_folder}/>
                 <Legend dataIndex = {dataIndex}/>
                 <Calend className="map-calend" setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
-
+                <GoogleIn className="logOut" setToken={props.setToken} token={props.token}/>
             </MapContainer>
   )
 }
