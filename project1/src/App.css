@@ -38,34 +38,55 @@ body {
   z-index:0;
 }
 
-.map-view.select{
+.map-calend {
   top: 10px;
-  width: 150px;
-  height: 34px;
-  left: 480px;
-  z-index: 400;
-  border-radius: 5px;
-  font-size: 14px;
+  left: 10px;
+  z-index: 600;
+  height: 45px;
 }
 
 .map-view.select-data{
   top: 10px;
   width: 150px;
-  height: 34px;
+  height: 45px;
   left: 320px;
   z-index: 500;
   border-radius: 5px;
   font-size: 14px;
 }
 
-.map-calend {
+.map-view.select{
   top: 10px;
-  left: 10px;
-  z-index: 4000;
+  width: 150px;
+  height: 45px;
+  left: 480px;
+  z-index: 400;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
-.logOut {
-  z-index: 10000;
-  bottom: 10px;
-  left: 10px;
+.map-googleOut {
+  position: relative;
+  z-index: 1000;
+  margin-left: 640px;
+  margin-top: -34px;
+}
+
+.map-googleIn {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Login Form */
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: gray;
+  /* color: white; */
+}
+
+input {
+  color: black;
 }

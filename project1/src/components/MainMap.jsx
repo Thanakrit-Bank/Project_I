@@ -97,8 +97,8 @@ function MainMap(props) {
 
                 <GridData dataIndex={dataIndex} pName={province_select} date={date} SetViewOnChange={SetViewOnChange} index_folder={index_folder}/>
                 <Legend dataIndex = {dataIndex}/>
-                <Calend className="map-calend" setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
-                <GoogleIn className="logOut" setToken={props.setToken} token={props.token}/>
+                <Calend setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
+                <GoogleIn setToken={props.setToken} token={props.token}/>
             </MapContainer>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {GoogleLogin, GoogleLogout} from 'react-google-login';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from 'gapi-script';
 import { useEffect, useState } from 'react';
 
@@ -30,15 +30,29 @@ function GoogleIn(props) {
   }
 
   return (
-    <div className='logOut'>
-        {props.token ? (<GoogleLogout  clientId={clientId} buttonText="Log out" onLogoutSuccess={logOut}/>) : (<GoogleLogin
+    <div>
+        {props.token ? (
+        <div className="map-googleOut">
+          <GoogleLogout  
+            clientId={clientId} 
+            buttonText="Log out" 
+            onLogoutSuccess={logOut}
+            theme="dark"
+          />
+        </div>
+        ) : (
+        <div className="map-googleIn">
+          <GoogleLogin
             clientId={clientId}
-            buttonText="Login with Google"
+            buttonText="Sign In with Google"
             onSuccess={onSuccess}
             onFailure={onFailure}
             cookiePolicy={'single_host_origin'}
             isSignedIn={true}
-          />)}
+            theme="dark"
+          />
+        </div>)
+        }
     </div>
     
   );

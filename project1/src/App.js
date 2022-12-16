@@ -19,9 +19,8 @@ function App() {
     
   }
   return (
-    <div className="App">
-      <MainMap setToken={setToken} token={token}/>
-       
+    <div>
+      <MainMap setToken={setToken} token={token}/>     
     </div>
   );
 }
