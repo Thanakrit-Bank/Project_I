@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css'
 import "react-calendar/dist/Calendar.css"
 import "./App.css" 
 import LoginForm from "./components/LoginForm";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React, { useState } from 'react';
 import GoogleIn from "./components/GoogleIn";
 

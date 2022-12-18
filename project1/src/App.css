@@ -31,6 +31,8 @@ body {
   opacity: 0.75;
 }
 
+/* MainMap */
+
 .map-view {
   position: fixed;
   width: 100vw;
@@ -38,12 +40,16 @@ body {
   z-index:0;
 }
 
+/* Calendar */
+
 .map-calend {
   top: 10px;
   left: 10px;
   z-index: 600;
   height: 45px;
 }
+
+/* Select Data */
 
 .map-view.select-data{
   top: 10px;
@@ -55,6 +61,8 @@ body {
   font-size: 14px;
 }
 
+/* Select Province */
+
 .map-view.select{
   top: 10px;
   width: 150px;
@@ -64,6 +72,8 @@ body {
   border-radius: 5px;
   font-size: 14px;
 }
+
+/* Google Authen */
 
 .map-googleOut {
   position: relative;
