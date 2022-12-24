@@ -59,7 +59,7 @@ def convert_nc_json(province, date, index, index_folder):
                 
                 if (grid_data['properties']['time_index'][str(index_month)] != '--'):
                     value += float(grid_data['properties']['time_index'][str(index_month)])
-                    temp_time_series[day].append(float(grid_data['properties']['time_index'][str_index_time]))
+                    temp_time_series[day].append(float(grid_data['properties']['time_index'][str(index_month)]))
 
         value /= len(day_list)
         temp_data[ind]['properties']['index'] = value

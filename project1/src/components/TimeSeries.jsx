@@ -16,15 +16,16 @@ const TimeSeries = (props) => {
         { 'name': 'Page G', 'uv': 3490, 'pv': 4300, 'amt': 0 },
         ];
     return (
-        <LineChart width={500} height={300} data={props.data}  margin={{'top': 5, 'left': 10}}>
+        <LineChart width={500} height={300} data={props.data} className='graph'>
         {/* <LineChart data={data} margin={{'top': 500}}> */}
-            <Line type="monotone" dataKey="index" stroke="#8884d8" />
-            <CartesianGrid stroke="#ccc" />
-            <XAxis dataKey="date" />
-            <YAxis />
+            <Line type="monotone" dataKey="index" stroke="red" />
+            <CartesianGrid stroke="white" />
+            {/* <CartesianGrid strokeDasharray="3 3" fill='red'/> */}
+            <XAxis dataKey="date" stroke="white"/>
+            <YAxis stroke="white"/>
             <Tooltip />
             <Legend />
-    </LineChart>
+        </LineChart>
     )
 }
 

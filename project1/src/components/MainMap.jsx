@@ -107,9 +107,10 @@ function MainMap(props) {
                     <Calend setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
                     {/* <GoogleIn setToken={props.setToken} token={props.token}/> */}
                     <Logout setToken={props.setToken} token={props.token} />
+                    <TimeSeries data={timeSeriesData} />
+
                 </MapContainer>
                 {/* <h1>test</h1> */}
-                <TimeSeries data={timeSeriesData}/>
             </div>
   )
 }
