@@ -25,18 +25,20 @@ def getGridSpei(data_index, index_folder, p_name, date = '2006-01'):
         response = jsonify(temp)
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
-users = [
-    {
-        "id": 1,
-        "username": "user1",
-        "password": generate_password_hash("password1")
-    },
-    {
-        "id": 2,
-        "username": "user2",
-        "password": generate_password_hash("password2")
-    }
-]
+# users = [
+#     {
+#         "id": 1,
+#         "username": "user1",
+#         "password": generate_password_hash("password1")
+#     },
+#     {
+#         "id": 2,
+#         "username": "user2",
+#         "password": generate_password_hash("password2")
+#     }
+# ]
+
+users = data['users']
 @app.route("/login", methods=["POST"])
 def login():
     # Get the username and password from the request

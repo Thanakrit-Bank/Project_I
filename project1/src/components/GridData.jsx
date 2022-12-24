@@ -159,6 +159,7 @@ function GridData(props) {
 
             if (data.properties.time_index){
                 setCenter(data.geometry.coordinates[0][0])
+                props.setTimeSeriesData(data.properties.time_series)
             }
 
             if(data.properties.index < dataIndex.min){

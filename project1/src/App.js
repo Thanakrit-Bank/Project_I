@@ -2,18 +2,16 @@ import MainMap from "./components/MainMap";
 import 'leaflet/dist/leaflet.css'
 import "react-calendar/dist/Calendar.css"
 import "./App.css" 
-import LoginForm from "./components/LoginForm";
-// import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React, { useState } from 'react';
-import GoogleIn from "./components/GoogleIn";
+import Login from "./components/Login";
+import TimeSeries from "./components/TimeSeries";
 
 function App() {
   const [token, setToken] = useState();
   if(!token) {
     return (
       <div>
-        <LoginForm setToken={setToken} />
-        <GoogleIn  setToken={setToken}  token={token}/> 
+        <Login setToken={setToken} />
       </div>
     )
     
@@ -21,6 +19,7 @@ function App() {
   return (
     <div>
       <MainMap setToken={setToken} token={token}/>     
+      {/* <TimeSeries/> */}
     </div>
   );
 }

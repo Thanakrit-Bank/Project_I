@@ -61,7 +61,7 @@ function Calend(props) {
         <RangePicker 
           defaultValue={[moment(props.setDate), moment(props.setDate)]}
           onChange={(val) => props.onChange(val.toString())}
-          className="map-calend"
+          className="map-view map-calend"
           picker={picker}
         />
       </div>

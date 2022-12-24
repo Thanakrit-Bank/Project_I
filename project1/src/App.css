@@ -34,7 +34,7 @@ body {
 /* MainMap */
 
 .map-view {
-  position: fixed;
+  position: relative;
   width: 100vw;
   height: 100vh;
   z-index:0;
@@ -42,11 +42,12 @@ body {
 
 /* Calendar */
 
-.map-calend {
-  top: 10px;
+.map-view.map-calend {
+  top: -35px;
   left: 10px;
   z-index: 600;
   height: 45px;
+  width: 300px;
 }
 
 /* Select Data */
@@ -55,7 +56,7 @@ body {
   top: 10px;
   width: 150px;
   height: 45px;
-  left: 320px;
+  left: 170px;
   z-index: 500;
   border-radius: 5px;
   font-size: 14px;
@@ -75,11 +76,12 @@ body {
 
 /* Google Authen */
 
-.map-googleOut {
-  position: relative;
-  z-index: 1000;
-  margin-left: 640px;
-  margin-top: -34px;
+.map-view.map-googleOut {
+  top: 500px;
+  width: 150px;
+  height: 45px;
+  left: 10px;
+  z-index: 400;
 }
 
 .map-googleIn {
@@ -89,14 +91,38 @@ body {
 
 /* Login Form */
 
-.center {
+.Auth-form-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: gray;
-  /* color: white; */
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
 
-input {
-  color: black;
+.Auth-form {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
 }
