@@ -35,7 +35,7 @@ body {
 
 .map-view {
   position: fixed;
-  width: 98.5vw;
+  width: 100vw;
   height: 100vh;
   z-index:0;
 }
@@ -77,10 +77,10 @@ body {
 /* Google Authen */
 
 .map-view.map-googleOut {
-  top: 600px;
-  width: 150px;
+  top: 10px;
+  width: 120px;
   height: 45px;
-  left: 10px;
+  left: 640px;
   z-index: 400;
 }
 
@@ -127,10 +127,24 @@ label {
   color: rgb(34, 34, 34);
 }
 
+/* Time-Series */
+
+#bottomLeft {
+  position: absolute;
+  bottom: 0;
+}
+
 .graph {
-  top: 300px;
-  width: 150px;
-  height: 45px;
-  left: 10px;
+  z-index: 400;
+}
+
+/* CompareButton */
+
+#compareButton {
+  position: absolute;
+  bottom: 0;
+}
+
+.button {
   z-index: 400;
 }

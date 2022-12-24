@@ -2,6 +2,7 @@
   "dependencies": {
     "@turf/turf": "^6.5.0",
     "react-calendar": "^3.9.0",
+    "react-router-dom": "^6.6.1",
     "use-leaflet": "^1.6.1"
   }
 }

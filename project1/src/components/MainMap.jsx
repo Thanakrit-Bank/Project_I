@@ -8,6 +8,7 @@ import SelectData from './SelectData';
 import SelectProvince from './SelectProvince';
 import Logout from './Logout';
 import TimeSeries from './TimeSeries';
+import CompareButton from './CompareButton';
 
 function MainMap(props) {
     // const center = [13.2955977,102.2090103]
@@ -108,6 +109,7 @@ function MainMap(props) {
                     {/* <GoogleIn setToken={props.setToken} token={props.token}/> */}
                     <Logout setToken={props.setToken} token={props.token} />
                     <TimeSeries data={timeSeriesData} />
+                    {/* <CompareButton /> */}
 
                 </MapContainer>
                 {/* <h1>test</h1> */}

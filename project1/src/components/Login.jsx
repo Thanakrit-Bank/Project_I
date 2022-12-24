@@ -61,8 +61,10 @@ const Login = (props) => {
               Submit
             </button>
           </div>
+          <div style={{margin: 10, textAlign: "center"}}>
+            OR
+          </div>
           <div className="map-googleIn">
-            OR<br/>
           <GoogleLogin
             clientId={clientId}
             buttonText="Sign In with Google"

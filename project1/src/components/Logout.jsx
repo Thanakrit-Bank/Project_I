@@ -10,7 +10,7 @@ const Logout = (props) => {
     return (
         <GoogleLogout  
             clientId={clientId} 
-            buttonText="Log out" 
+            buttonText="Sign Out" 
             onLogoutSuccess={logOut}
             theme="dark"
             className="map-view map-googleOut"
