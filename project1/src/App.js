@@ -26,9 +26,9 @@ function App() {
       {/* <MainMap setToken={setToken} token={token}/>  */}
       {/* <TempPage/> */}
         <Routes>
-          <Route path='/login' element={<LoginPage/>}/>
+          <Route exact  path='/' element={<LoginPage/>}/>
           <Route path='/mainMap' element= {<MainMap/>}/>
-          <Route path='/page2' element={<ComparePage/>} exact/>
+          <Route path='/page2' element={<ComparePage/>} />
         </Routes>
       </Router>
     </div>

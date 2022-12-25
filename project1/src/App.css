@@ -74,6 +74,17 @@ body {
   font-size: 14px;
 }
 
+.map-view.back{
+  top: 10px;
+  width: 150px;
+  height: 45px;
+  left: 46%;
+  z-index: 4000;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+
 /* Google Authen */
 
 .map-view.map-googleOut {

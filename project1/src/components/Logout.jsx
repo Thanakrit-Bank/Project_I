@@ -10,7 +10,7 @@ const Logout = (props) => {
         props.setToken(null)
       }
     return (
-        <Link to={'/login'}>
+        <Link to={'/'}>
             <GoogleLogout  
                 clientId={clientId} 
                 buttonText="Sign Out" 
