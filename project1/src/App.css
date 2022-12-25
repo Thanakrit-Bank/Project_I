@@ -148,3 +148,12 @@ label {
 .button {
   z-index: 400;
 }
+
+.map-view.map-compare {
+  border-radius: 5px;
+  top: 10px;
+  width: 120px;
+  height: 45px;
+  left: 770px;
+  z-index: 400;
+}

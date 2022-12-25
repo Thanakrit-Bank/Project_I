@@ -1,11 +1,10 @@
-import { GeoJSON, Popup, FeatureGroup, Polygon } from 'react-leaflet' 
+import { GeoJSON, Popup, FeatureGroup } from 'react-leaflet' 
 import React, { useState, useEffect } from 'react'
 import legendData from  './../data/dataLegend'  
 import * as turf from '@turf/turf'
 
 function GridData(props) {
     const [data, setData] = useState([])
-    const [shp, setShp] = useState([])
     
     const url_grid = 'http://127.0.0.1:5000/get_index/'.concat(props.dataIndex,'&',props.pName,'&',props.date,'&',props.index_folder)
     const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
@@ -131,15 +130,15 @@ function GridData(props) {
             console.error(error);
         });
 
-        let request_shp = fetch(url_shp, reqOptions);
-        console.log('feching');
-        request_shp
-        .then(r => r.json())
-        .then(data => {
-            setShp(data)
-        }, (error) => {
-            console.error(error);
-        });
+        // let request_shp = fetch(url_shp, reqOptions);
+        // console.log('feching');
+        // request_shp
+        // .then(r => r.json())
+        // .then(data => {
+        //     setShp(data)
+        // }, (error) => {
+        //     console.error(error);
+        // });
       }
 
     const setCenter = (coordinate) => {

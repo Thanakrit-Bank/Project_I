@@ -8,13 +8,14 @@ import SelectData from './SelectData';
 import SelectProvince from './SelectProvince';
 import Logout from './Logout';
 import TimeSeries from './TimeSeries';
-import CompareButton from './CompareButton';
+import { Link } from 'react-router-dom';
+// import CompareButton from './CompareButton';
 
 function MainMap(props) {
-    // const center = [13.2955977,102.2090103]
+    const center = [13.2955977,102.2090103]
     const zoom = 6
     
-    const [center, setCenter] = useState([13.2955977,102.2090103])
+    // const [center, setCenter] = useState([13.2955977,102.2090103])
     const [province_select, setProvince] = useState('all')
     const [dataIndex, setDataIndex] = useState('rcp45_PRCPTOT')
     const [date, setDate] = useState('2006')
@@ -106,13 +107,11 @@ function MainMap(props) {
                     <GridData dataIndex={dataIndex} pName={province_select} date={date} SetViewOnChange={SetViewOnChange} index_folder={index_folder} setTimeSeriesData = {getTimeSeriesData}/>
                     <Legend dataIndex = {dataIndex}/>
                     <Calend setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
-                    {/* <GoogleIn setToken={props.setToken} token={props.token}/> */}
                     <Logout setToken={props.setToken} token={props.token} />
                     <TimeSeries data={timeSeriesData} />
                     {/* <CompareButton /> */}
-
+                    <Link to="/page2"><button className='map-view map-compare'>Compare Mode</button></Link>
                 </MapContainer>
-                {/* <h1>test</h1> */}
             </div>
   )
 }

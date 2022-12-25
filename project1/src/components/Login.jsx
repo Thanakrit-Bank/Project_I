@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { gapi } from 'gapi-script';
+import { GoogleLogin } from 'react-google-login';
+import { useEffect } from "react";
+import { gapi } from "gapi-script";
+import {Link, useNavigate} from "react-router-dom"
 
 const Login = (props) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const clientId = "410751233141-ktppjh0thn3s4m7j1mjbh5o964c37fg2.apps.googleusercontent.com"
+    
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      gapi.load("client:auth2", ()=>{
+        gapi.auth2.init({clientId:clientId})
+      })
+    },[])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -19,6 +29,7 @@ const Login = (props) => {
         });
         console.log(response);
         props.setToken(response.data)
+        navigate('/mainMap')
         } catch (error) {
         console.error(error);
         }
@@ -30,6 +41,7 @@ const Login = (props) => {
     const onSuccess = (response) => {
         console.log(response);
         props.setToken(response)
+        navigate('/mainMap')
     };
   return (
     <div className="Auth-form-container">
@@ -71,7 +83,7 @@ const Login = (props) => {
             onSuccess={onSuccess}
             onFailure={onFailure}
             cookiePolicy={'single_host_origin'}
-            isSignedIn={false}
+            isSignedIn={true}
             theme="dark"
           />
         </div>
