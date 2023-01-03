@@ -78,7 +78,8 @@ body {
   top: 10px;
   width: 150px;
   height: 45px;
-  left: 46%;
+  /* left: 640px; */
+  right: 10px;
   z-index: 4000;
   border-radius: 5px;
   font-size: 14px;
@@ -91,7 +92,8 @@ body {
   top: 10px;
   width: 120px;
   height: 45px;
-  left: 640px;
+  /* left: 640px; */
+  left: 770px;
   z-index: 400;
 }
 
@@ -165,6 +167,7 @@ label {
   top: 10px;
   width: 120px;
   height: 45px;
-  left: 770px;
+  /* left: 770px; */
+  left: 640px;
   z-index: 400;
 }
