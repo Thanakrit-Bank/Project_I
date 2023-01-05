@@ -4,7 +4,7 @@ import "react-calendar/dist/Calendar.css"
 import "./App.css" 
 import React, { useState } from 'react';
 import Login from "./components/Login";
-import ComparePage from "./comparepage/ComparePage";
+import ComparePage from "./components/ComparePage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 function App() {

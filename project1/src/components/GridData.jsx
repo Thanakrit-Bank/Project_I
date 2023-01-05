@@ -151,7 +151,7 @@ function GridData(props) {
             var myStyleGrid = {
                 color: "white",
                 weight: 0,
-                fillOpacity: 0.75,
+                fillOpacity: 0.9,
                 fillColor: 'white',
                 borderColor: 'black'
             }
