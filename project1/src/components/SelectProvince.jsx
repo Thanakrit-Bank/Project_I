@@ -19,7 +19,7 @@ const all_P =
 
 function SelectProvince(props) {
   return (
-    <select onChange={(e) => props.onChengeSelect(e.target.value)} className='map-view select'>
+    <select onChange={(e) => props.onChengeSelect(e.target.value)} className={'map-view select '.concat(props.class)}>
         <option value='all' defaultValue>All Province</option>
         {all_P.map((p, index) => {
             return <option value={p} key={index}>{p}</option>

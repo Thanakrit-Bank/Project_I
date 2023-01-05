@@ -56,20 +56,58 @@ const ComparePage = () => {
         setTimeSeriesData(data)
     }
 
+    const [province_select2, setProvince2] = useState('all')
+    const [dataIndex2, setDataIndex2] = useState('rcp45_PRCPTOT')
+    const [date2, setDate2] = useState('2006')
+    const [index_folder2, setIndex_folder2] = useState('indices_bak')
+    const [timeSeriesData2, setTimeSeriesData2] = useState([])
+
+    const southWestView2 = [-90, -180]
+    const northEastView2 = [90, 180]
+    const bounds2 = latLngBounds(southWestView2, northEastView2)
+
+    const onChangeSelectData2 = (data) => {
+        let index_name = data.split("*")[0]
+        let folder_name = data.split("*")[1]
+        setDataIndex2(index_name)
+        setIndex_folder2(folder_name)
+    }
+
+    const onChangeSelectProvince2 = (data) => {
+        setProvince2(data)
+    }
+
+    const onChangeDate2 = (date) => {
+        setDate2(date)
+    }
+    // set center of map to center of province
+    function SetViewOnChange2(coords) {
+        const map = useMap();
+        if (province_select === 'all'){
+            map.setView([13.2955977,102.2090103], 6);
+        }else{
+            map.setView([coords[1], coords[0]], 8);
+        }
+        return null;
+      }
+    
+    const getTimeSeriesData2 = (data) => {
+        setTimeSeriesData2(data)
+    }
 
   return (
     <div>
     <Link to="/mainMap"><button className='map-view back'>Back</button></Link>
     <div className="grid-container">
       <div className="grid-item">
-        <MapContainer className='map-view'
+        <MapContainer className='map-view compare'
             center={center} 
             zoom={zoom} 
             scrollWheelZoom={true} 
             zoomControl={false}
             maxZoom={20}
             minZoom={2}
-            maxBounds={bounds}
+            maxBounds={bounds2}
         >
             
             <SelectProvince onChengeSelect= {onChangeSelectProvince}/>
@@ -119,7 +157,7 @@ const ComparePage = () => {
         </MapContainer>
       </div>
       <div className="grid-item">
-       <MapContainer className='map-view'
+       <MapContainer className='map-view compare'
             center={center} 
             zoom={zoom} 
             scrollWheelZoom={true} 
@@ -129,9 +167,9 @@ const ComparePage = () => {
             maxBounds={bounds}
         >
             
-            <SelectProvince onChengeSelect= {onChangeSelectProvince}/>
+            <SelectProvince onChengeSelect= {onChangeSelectProvince2} class="compare"/>
 
-            <SelectData onChengeSelect={onChangeSelectData} type = {dataIndex} indexFolder={index_folder}/>
+            <SelectData onChengeSelect={onChangeSelectData2} type = {dataIndex2} indexFolder={index_folder2} class="compare"/>
 
             {/* {console.log("render!!")} */}
 
@@ -166,11 +204,11 @@ const ComparePage = () => {
                 </LayersControl.Overlay>
             </LayersControl>
 
-            <GridData dataIndex={dataIndex} pName={province_select} date={date} SetViewOnChange={SetViewOnChange} index_folder={index_folder} setTimeSeriesData = {getTimeSeriesData}/>
-            <Legend dataIndex = {dataIndex}/>
-            <Calend setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
+            <GridData dataIndex={dataIndex2} pName={province_select2} date={date2} SetViewOnChange={SetViewOnChange2} index_folder={index_folder2} setTimeSeriesData = {getTimeSeriesData2}/>
+            <Legend dataIndex = {dataIndex2}/>
+            <Calend setDate={date2} onChange={onChangeDate2} dataType={dataIndex2} class={'compare'}/>
             {/* <Logout setToken={props.setToken} token={props.token} /> */}
-            <TimeSeries data={timeSeriesData} />
+            <TimeSeries data={timeSeriesData2} />
             {/* <CompareButton /> */}
             {/* <Link to="/page2"><button className='map-view map-compare'>Compare Mode</button></Link> */}
         </MapContainer>
