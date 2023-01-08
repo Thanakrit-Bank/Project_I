@@ -9,6 +9,7 @@ import SelectProvince from './SelectProvince';
 import Logout from './Logout';
 import TimeSeries from './TimeSeries';
 import { Link } from 'react-router-dom';
+import Setting from './Setting';
 // import CompareButton from './CompareButton';
 
 function MainMap(props) {
@@ -56,64 +57,65 @@ function MainMap(props) {
     }
 
     return (
-            <div>
-                <MapContainer className='map-view'
-                    center={center} 
-                    zoom={zoom} 
-                    scrollWheelZoom={true} 
-                    zoomControl={false}
-                    maxZoom={20}
-                    minZoom={2}
-                    maxBounds={bounds}
-                >
+        <div>
+            <MapContainer className='map-view'
+                center={center} 
+                zoom={zoom} 
+                scrollWheelZoom={true} 
+                zoomControl={false}
+                maxZoom={20}
+                minZoom={2}
+                maxBounds={bounds}
+            >
                     
-                    <SelectProvince onChengeSelect= {onChangeSelectProvince}/>
+                <SelectProvince onChengeSelect= {onChangeSelectProvince}/>
 
-                    <SelectData onChengeSelect={onChangeSelectData} type = {dataIndex} indexFolder={index_folder}/>
+                <SelectData onChengeSelect={onChangeSelectData} type = {dataIndex} indexFolder={index_folder}/>
 
-                    {/* {console.log("render!!")} */}
+                {/* {console.log("render!!")} */}
 
-                    <LayersControl>
-                        <LayersControl.Overlay checked name="Esri.WorldImagery">
-                            <TileLayer
-                                url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
-                                attribution='Tiles &copy; Esri &mdash; Source: Esri'
-                                subdomains= 'abcd'
-                            />
-                        </LayersControl.Overlay>
+                <LayersControl>
+                    <LayersControl.Overlay checked name="Esri.WorldImagery">
+                        <TileLayer
+                            url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+                            attribution='Tiles &copy; Esri &mdash; Source: Esri'
+                            subdomains= 'abcd'
+                        />
+                    </LayersControl.Overlay>
 
-                        <LayersControl.Overlay checked name="Stamen.toner-hybrid">
-                            <TileLayer
-                                url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}'
-                                attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                subdomains= 'abcd'
-                                ext= 'png'
-                            />  
-                        </LayersControl.Overlay>
+                    <LayersControl.Overlay checked name="Stamen.toner-hybrid">
+                        <TileLayer
+                            url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}'
+                            attribution='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            subdomains= 'abcd'
+                            ext= 'png'
+                        />  
+                    </LayersControl.Overlay>
 
-                        <LayersControl.Overlay name="Alidade_smooth">
-                            <TileLayer
-                                url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
-                            />
-                        </LayersControl.Overlay>
+                    <LayersControl.Overlay name="Alidade_smooth">
+                        <TileLayer
+                            url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+                        />
+                    </LayersControl.Overlay>
 
-                        <LayersControl.Overlay name="CARTO">
-                            <TileLayer
-                                url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
-                            />
-                        </LayersControl.Overlay>
-                    </LayersControl>
+                    <LayersControl.Overlay name="CARTO">
+                        <TileLayer
+                            url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
+                        />
+                    </LayersControl.Overlay>
+                </LayersControl>
 
-                    <GridData dataIndex={dataIndex} pName={province_select} date={date} SetViewOnChange={SetViewOnChange} index_folder={index_folder} setTimeSeriesData = {getTimeSeriesData}/>
-                    <Legend dataIndex = {dataIndex}/>
-                    <Calend setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
-                    <Logout setToken={props.setToken} token={props.token} />
-                    <TimeSeries data={timeSeriesData} />
-                    {/* <CompareButton /> */}
-                    <Link to="/page2"><button className='map-view map-compare'>Compare Mode</button></Link>
-                </MapContainer>
-            </div>
-  )
+                <GridData dataIndex={dataIndex} pName={province_select} date={date} SetViewOnChange={SetViewOnChange} index_folder={index_folder} setTimeSeriesData = {getTimeSeriesData}/>
+                <Legend dataIndex = {dataIndex}/>
+                <Calend setDate={date} onChange={onChangeDate} dataType={dataIndex}/>
+                <Logout setToken={props.setToken} token={props.token} />
+                <TimeSeries data={timeSeriesData} />
+                <Setting />
+                {/* <CompareButton /> */}
+                <Link to="/page2"><button className='map-view map-compare'>Compare Mode</button></Link>
+            </MapContainer>
+        </div>
+    )
 }
 
-export default MainMap
+export default MainMap;

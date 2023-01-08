@@ -9,6 +9,7 @@ import GridData from './GridData';
 import Legend from "./Legend";
 import SelectData from './SelectData';
 import SelectProvince from './SelectProvince';
+import Setting from './Setting';
 import '../App.css'
 
 const ComparePage = () => {
@@ -209,6 +210,7 @@ const ComparePage = () => {
             <Calend setDate={date2} onChange={onChangeDate2} dataType={dataIndex2} class={'compare'}/>
             {/* <Logout setToken={props.setToken} token={props.token} /> */}
             <TimeSeries data={timeSeriesData2} />
+            <Setting />
             {/* <CompareButton /> */}
             {/* <Link to="/page2"><button className='map-view map-compare'>Compare Mode</button></Link> */}
         </MapContainer>

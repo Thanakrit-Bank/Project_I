@@ -1,40 +1,26 @@
 import MainMap from "./components/MainMap";
-import 'leaflet/dist/leaflet.css'
-import "react-calendar/dist/Calendar.css"
-import "./App.css" 
-import React, { useState } from 'react';
-import Login from "./components/Login";
+import React from 'react';
 import ComparePage from "./components/ComparePage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
+import 'leaflet/dist/leaflet.css'
+import "react-calendar/dist/Calendar.css"
+import "./App.css"
+import Setting from "./components/Setting";
+
 function App() {
-  // const [token, setToken] = useState(null);
-  // if(!token) {
-  //   return (
-  //     <div>
-  //       <Login setToken={setToken} />
-  //     </div>
-  //   )
-    
-  // }
   return (
-    // <div>
-    //   <MainMap setToken={setToken} token={token}/>     
-    // </div>
     <div>
       <Router>
-      {/* <MainMap setToken={setToken} token={token}/>  */}
-      {/* <TempPage/> */}
         <Routes>
           <Route exact  path='/' element={<LoginPage/>}/>
           <Route path='/mainMap' element= {<MainMap/>}/>
           <Route path='/page2' element={<ComparePage/>} />
+          <Route path='/page3' element={<Setting/>} />
         </Routes>
       </Router>
     </div>
-  );
-
-  
+  ); 
 }
 
 export default App;

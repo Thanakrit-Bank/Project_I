@@ -1,0 +1,135 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  background: rgb(233, 233, 233);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-family: Roboto;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.app .header {
+  height: 5rem;
+  width: 100%;
+  background-color: #292929;
+  padding: 1rem;
+  box-sizing: border-box;
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .menu-btn {
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+
+.header .nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.body {
+  position: absolute;
+  top: 65px;
+  right: 10px;
+  z-index: 400;
+}
+
+.app .body button {
+  width: 47px;
+  height: 47px;
+  border-radius: 5px;
+  font-size: 35px;
+}
+
+.modal {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15vw;
+  height: 15vh;
+  min-width: 20rem;
+  min-height: 25rem;
+  background-color: white;
+  border-radius: 10px;
+  z-index: 400;
+  opacity: 0.9;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.modal .modal-header {
+  height: 3rem;
+  border-radius: 10px 10px 0 0;
+  background-color: #1a8ae5;
+  position: relative;
+}
+
+.modal .modal-header h2 {
+  color: white;
+  position: absolute;
+  right: 0;
+  margin: 0;
+  padding: 0.4rem;
+}
+
+.modal .modal-body {
+  height: 100%;
+  /* display: grid; */
+  /* place-content: center; */
+}
+
+.app-menu {
+  color: white;
+  height: 100vh;
+  width: 20rem;
+  background-color: #292929;
+  z-index: 200;
+
+  transform: translateX(-100%);
+  transition: 0.3s;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+}
+
+.menu-open {
+  transform: translateX(0%);
+}
+
+.icon {
+  display: flex;
+}
+
+.topic {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.sub-topic {
+  font-size: 18px;
+  font-weight: bold;
+}

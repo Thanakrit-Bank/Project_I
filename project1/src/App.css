@@ -151,20 +151,24 @@ label {
 
 /* CompareButton */
 
-#compareButton {
-  position: absolute;
-  bottom: 0;
-}
-
-.button {
-  z-index: 400;
-}
-
 .map-view.map-compare {
   border-radius: 5px;
   top: 10px;
   width: 120px;
   height: 45px;
   left: 770px;
+  z-index: 400;
+}
+
+/* OptionButton */
+
+#topRight {
+  position: absolute;
+  top: 70px;
+  right: 60px;
+}
+
+.setting {
+  position: fixed;
   z-index: 400;
 }
