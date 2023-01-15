@@ -28,11 +28,12 @@ def convert_nc_json(province, date, index, index_folder):
     str_date = '%Y'
 # D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\
 # C:\Users\Administrator\Desktop\Data_Project\
-    load_data = open(rf'D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\{index_folder}/{index}/{province}.json')
+#"C:\Users\s6201\Downloads\Data_Project\data_project\ensemble"
+    load_data = open(rf'C:\Users\s6201\Downloads\Data_Project\data_project_json\ensemble\{index_folder}/{index}/{province}.json')
     data_province = json.load(load_data)
-
+    time_unit = data_province['properties']['date_type']
     # it used to check string date format
-    if (data_province['properties']['date_type'] == 'year'):
+    if (time_unit == 'year'):
         str_date = '%Y'
     else:
         str_date = '%Y-%m'
@@ -47,14 +48,14 @@ def convert_nc_json(province, date, index, index_folder):
         for day in day_list:
             if (day not in temp_time_series.keys()):
                 temp_time_series[day] = []
-            if(index_folder != 'spi'):
+            if(time_unit == "year"):
                 str_index_time = str(int(day)-int(data_province['properties']['start_time']))
                 if (grid_data['properties']['time_index'][str_index_time] != '--'):
                     value += float(grid_data['properties']['time_index'][str_index_time])
                     temp_time_series[day].append(float(grid_data['properties']['time_index'][str_index_time]))
             else :
                 date_input = datetime.strptime(day, "%Y-%m")
-                date_start = datetime.strptime(data_province['properties']['start_time'], "%Y-%m-%d")
+                date_start = datetime.strptime(data_province['properties']['start_time'], "%Y-%m")
                 r = relativedelta.relativedelta(date_input, date_start)
                 index_month = r.months + (12*r.years)
                 

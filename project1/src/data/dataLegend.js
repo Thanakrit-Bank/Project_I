@@ -346,93 +346,93 @@ const dataLegend = {
         },
     },
 
-    "spi":{
-        'ensemble45_spi_m1': {
+    "_SPI":{
+        'mpi45_spi_m1': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble45_spi_m3': {
+        'mpi45_spi_m3': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble45_spi_m6': {
+        'empi45_spi_m6': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble45_spi_m9': {
+        'mpi45_spi_m9': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble45_spi_m12': {
+        'mpi45_spi_m12': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble45_spi_m24': {
+        'mpi45_spi_m24': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble45_spi_m36': {
+        'mpi45_spi_m36': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble45_spi_m48': {
+        'mpi45_spi_m48': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble45_spi_m60': {
+        'mpi45_spi_m60': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble85_spi_m1': {
+        'mpi85_spi_m1': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble85_spi_m3': {
+        'mpi85_spi_m3': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble85_spi_m6': {
+        'mpi85_spi_m6': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble85_spi_m9': {
+        'mpi85_spi_m9': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble85_spi_m12': {
+        'mpi85_spi_m12': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble85_spi_m24': {
+        'mpi85_spi_m24': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble85_spi_m36': {
+        'mpi85_spi_m36': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble85_spi_m48': {
+        'mpi85_spi_m48': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'ensemble85_spi_m60': {
+        'mpi85_spi_m60': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f","#d53e4f"]

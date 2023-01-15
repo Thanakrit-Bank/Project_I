@@ -8,116 +8,108 @@ import sys
 sys.path.insert(0, r'D:\Project\Mix_Project\Project_I\flask_api')
 from get_province import GetProvince
 
-data_index = 'rcp45_PRCPTOT'
+# data_index = 'rcp45_PRCPTOT'
 
-data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\_SPI\ensemble85_spi_m1.nc")
+# data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\_SPI\ensemble85_spi_m1.nc")
 
-lat = data.variables['lat'][:]
-lon = data.variables['lon'][:]
+# lat = data.variables['lat'][:]
+# lon = data.variables['lon'][:]
 
-grid_size = (lat[1]-lat[0])/2
+# grid_size = (lat[1]-lat[0])/2
 
-values = data.variables['m1']
+# values = data.variables['m1']
 
-time = data.variables['time'] # time from indices_bak is floating
+# time = data.variables['time'] # time from indices_bak is floating
 
-unit_nc = time.units.split('since')[0].strip() # "days since 1900-1-1"
-start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
-str_date = '%Y-%m-%d'
-date_start = datetime.strptime(start_nc, "%Y-%m-%d")
+# unit_nc = time.units.split('since')[0].strip() # "days since 1900-1-1"
+# start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
+# str_date = '%Y-%m-%d'
+# date_start = datetime.strptime(start_nc, "%Y-%m-%d")
+index_n = ""
+data_index = []
+def get_data(index, location_index, index_type):
+    global data_index, index_n
+    if (index_n == "" or index_n != index):
+        index_n = index
+        data_index = Dataset(rf"{data_path}\{index}.nc")
+    time = data_index.variables['time']
+    unit_nc = time.units.split(' ')[0].strip()
+    if (unit_nc == "month"):
+        variable_name = index.split("_")[-2]
+        date_format = "%Y-%m"
+    else :
+        date_format = "%Y"
+        variable_name = index.split("_")[-1]
+        if(index.split("_")[-2] == "spi"):
+            date_format = "%Y-%m"
+            unit_nc = 'month'
 
-def get_data(index):
-    global data_index, data, lat, lon, grid_size, values, time, unit_nc, start_nc, date_start
-    if (index == 'rcp45_PRCPTOT'):
-        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\indices_bak\ensemble_rcp45_PRCPTOT.nc")
-        values = data.variables['PRCPTOT']
-        test = values[0,16,9]
-    elif(index == 'rcp45_TMEANmean'):
-        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\indices_bak\ensemble_rcp45_TMEANmean.nc")
-        values = data.variables['TMEANmean']
-    elif(index == 'rcp85_PRCPTOT'):
-        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\indices_bak\ensemble_rcp85_PRCPTOT.nc")
-        values = data.variables['PRCPTOT']
-    elif(index == 'rcp85_TMEANmean'):
-        data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\indices_bak\ensemble_rcp85_TMEANmean.nc")
-        values = data.variables['TMEANmean']
-    else:
-        rcp_type = index.split('_')[0]
-        index_type = index.split('_')[-1]
-        data = Dataset(rf"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\_SPI\{index}.nc")
-        # data = Dataset(rf"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\_SPI\ensemble_{rcp_type}_{index_type}.nc")
-        values = data.variables[index_type]
+    values = data_index.variables[variable_name]
 
-    lat = data.variables['lat'][:]
-    lon = data.variables['lon'][:]
+    lat = data_index.variables['lat'][:]
+    lon = data_index.variables['lon'][:]
 
     grid_size = (lat[1]-lat[0])/2
 
-
-    time = data.variables['time'] # time from indices_bak is floating
-    xxx = time[:][1]
-    unit_nc = time.units.split('since')[0].strip() # "days since 1900-1-1"
+     # "days since 1900-1-1"
     start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
-    # if (len(start_nc) > 10):
-    #     start_nc = start_nc.split(' ')[0].strip() 
+    date_start = datetime.strptime(start_nc, date_format)
+    return [values, lat, lon, date_start, time, date_format, unit_nc]
 
-    date_start = datetime.strptime(start_nc, "%Y-%m-%d")
-
-def get_index(date): #list of date 
+# def get_index(date): #list of date 
     
-    index = 0
-    list_index = []
+#     index = 0
+#     list_index = []
     
-    for i in time[:] :
-        date_i = date_start + datetime.timedelta(days=math.ceil(i)) # day in nc file it have .5 day
-        tmp = str(date_i.strftime(str_date))
-        if( str(date_i.strftime(str_date)) in date):
-            list_index.append(index)
-        index += 1 
-    return list_index
+#     for i in time[:] :
+#         date_i = date_start + datetime.timedelta(days=math.ceil(i)) # day in nc file it have .5 day
+#         tmp = str(date_i.strftime(str_date))
+#         if( str(date_i.strftime(str_date)) in date):
+#             list_index.append(index)
+#         index += 1 
+#     return list_index
 
-def get_array_day(dates):
-    # Tue Jan 10 2006 00:00:00 GMT+0700,Wed Feb 15 2006 00:00:00 GMT+0700 
-    temp_date = dates.split(' ')
-    day_list = []
+# def get_array_day(dates):
+#     # Tue Jan 10 2006 00:00:00 GMT+0700,Wed Feb 15 2006 00:00:00 GMT+0700 
+#     temp_date = dates.split(' ')
+#     day_list = []
 
-    if(len(temp_date) == 1):
-        temp = day_list.append(dates)
-        return day_list
-    else:
-        month = {month: index for index, month in enumerate(calendar.month_abbr) if month}
-        sdate = date(int(temp_date[3]), month[temp_date[1]], int(temp_date[2]))   # start date
-        edate = date(int(temp_date[8]), month[temp_date[6]], int(temp_date[7]))   # end date
+#     if(len(temp_date) == 1):
+#         temp = day_list.append(dates)
+#         return day_list
+#     else:
+#         month = {month: index for index, month in enumerate(calendar.month_abbr) if month}
+#         sdate = date(int(temp_date[3]), month[temp_date[1]], int(temp_date[2]))   # start date
+#         edate = date(int(temp_date[8]), month[temp_date[6]], int(temp_date[7]))   # end date
 
-        delta = edate - sdate       # as timedelta
-        for i in range(delta.days + 1):
-            day = sdate + timedelta(days=i)
-            day_list.append(day.strftime(str_date))
-            temp = list(set(day_list))
-        return temp
+#         delta = edate - sdate       # as timedelta
+#         for i in range(delta.days + 1):
+#             day = sdate + timedelta(days=i)
+#             day_list.append(day.strftime(str_date))
+#             temp = list(set(day_list))
+#         return temp
 
-def convert_list_to_tuple(list): 
-    temp = []
-    for i in list:
-        temp.append(tuple(i))
-    return temp
+# def convert_list_to_tuple(list): 
+#     temp = []
+#     for i in list:
+#         temp.append(tuple(i))
+#     return temp
 
-def convert_nc_json(province, index):
+def convert_nc_json(province, index, location_index, index_type):
     global str_date
 
-   
+    # get data from NC file by location
+    data_index = get_data(index, location_index, index_type)
+    values = data_index[0]
+    lat = data_index[1]
+    lon = data_index[2]
+    date_start = data_index[3]
+    time = data_index[4]
+    date_format = data_index[5]
+    time_unit = data_index[6]
 
-    data_form = {
-        "type": "FeaturesCollection",
-        "properties": {
-                        "date_type": "month",
-                        "start_time": date_start.strftime("%Y-%m-%d"),
-                    },
-        "fetures": []
-    }
-    # update data etc. lat lon index name 
-    get_data(index)
-
+    diff_lat = (lat[1]-lat[0])/2
+    diff_lon = (lon[1]-lon[0])/2
     # get data of shapefile 
     shp = GetProvince(province) 
 
@@ -143,7 +135,14 @@ def convert_nc_json(province, index):
     #         list_polygon.append(Polygon(polygon))
     #     polygon_province = MultiPolygon(list_polygon)
 
-    
+    data_form = {
+        "type": "FeaturesCollection",
+        "properties": {
+                        "date_type": time_unit,
+                        "start_time": date_start.strftime(date_format),
+                    },
+        "fetures": []
+    }
 
     see_polygon_province = polygon_province.normalize().wkt
 
@@ -154,11 +153,11 @@ def convert_nc_json(province, index):
             value = {}
             #create polygon of grid cell for check intersection with shapefile 
             grid_cell = [
-                            [lon_nc - grid_size, lat_nc - grid_size],
-                            [lon_nc + grid_size, lat_nc - grid_size],
-                            [lon_nc + grid_size, lat_nc + grid_size],
-                            [lon_nc - grid_size, lat_nc + grid_size],
-                            [lon_nc - grid_size, lat_nc - grid_size] 
+                            [lon_nc - diff_lon, lat_nc - diff_lat],
+                            [lon_nc + diff_lon, lat_nc - diff_lat],
+                            [lon_nc + diff_lon, lat_nc + diff_lat],
+                            [lon_nc - diff_lon, lat_nc + diff_lat],
+                            [lon_nc - diff_lon, lat_nc - diff_lat] 
                         ]
 
             polygon_grid = Polygon(grid_cell)
@@ -206,29 +205,29 @@ f_load = open(r'province.json')
 data_province = json.load(f_load)
 import os
 
-#get name of index in folder "indices_bak" 
-path = r"C:\Users\s6201\Downloads\Data_Project\data_project\ensemble\_SPI"
-location_index = path.split('\\')[-2]
-index_type = path.split('\\')[-1]
-dir_list = os.listdir(path)
+#get name of index in folder  
+data_path = r"C:\Users\s6201\Downloads\Data_Project\data_project\ensemble\_SPI"
+output_path = r"C:\Users\s6201\Downloads\Data_Project\data_project_json"
+location_index = data_path.split('\\')[-2]
+index_type = data_path.split('\\')[-1]
+dir_list = os.listdir(data_path)
 
 ### create file each province
 for folder_name in dir_list:
     print(folder_name)
     if(folder_name != 'monthly'):
         name_index = folder_name.split('.')[0].split('_')
-        # name_subfolder = name_index[1]+"_"+name_index[2]
-        name_subfolder = folder_name.split('.')[0]
-        os.mkdir(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\SPI\{name_subfolder}")
+        name_subfolder = folder_name.split('.')[0] # mpi_hist_spi_m3 
+        os.mkdir(f"{output_path}\{location_index}\{index_type}\{name_subfolder}")  
         num_pro = 0
         for i in data_province['features']:
             num_pro += 1
             print(num_pro)
             name_province = i['properties']['name']
-            data_json = convert_nc_json(name_province, name_subfolder)
+            data_json = convert_nc_json(name_province, name_subfolder, location_index, index_type)
             json_object = json.dumps(data_json, indent=4)
             # Writing to sample.json  , 'cdd_era', 'spei'
-            with open(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\SPI\{name_subfolder}\{name_province}.json", "w") as outfile:
+            with open(f"{output_path}\{location_index}\{index_type}\{name_subfolder}\{name_province}.json", "w") as outfile:
                 outfile.write(json_object)
 
 ### create json file all province
