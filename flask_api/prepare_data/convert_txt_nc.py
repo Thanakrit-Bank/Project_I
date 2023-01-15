@@ -84,6 +84,7 @@ import numpy as np
  
 # Get the list of all files and directories 
 path = r"C:\Users\s6201\Downloads\Data_Project\mpi\_SPI"
+output_path = r"C:\Users\s6201\Downloads\Data_Project\data_project"
 location_index = path.split('\\')[-2]
 index_type = path.split('\\')[-1]
 dir_list = os.listdir(path)
@@ -91,7 +92,7 @@ dir_list = os.listdir(path)
 for folder_name in dir_list:
     if(folder_name != 'monthly'):
         # set output directory path
-        fn = rf"C:\Users\s6201\Downloads\Data_Project\data_project\{location_index}\{index_type}\{folder_name[:-4]}.nc"
+        fn = rf"{output_path}\{location_index}\{index_type}\{folder_name[:-4]}.nc"
         ds = nc.Dataset(fn, 'w', format='NETCDF4')
 
         # get data from txt file 

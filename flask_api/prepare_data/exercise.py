@@ -1,24 +1,24 @@
-import json
+# import json
   
-# Opening JSON file
-f = open(r'country.json')
-data = json.load(f)
+# # Opening JSON file
+# # f = open(r'country.json')
+# # data = json.load(f)
 
-f_all = open(r'full_thailand.json')
-data_all = json.load(f_all)
+# f_all = open(r'full_thailand.json')
+# data_all = json.load(f_all)
 
-print(len(data["features"][0]["properties"]))
-print(data["features"][0].keys())               # ['type', 'properties', 'geometry']
+# print(len(data["features"][0]["properties"]))
+# print(data["features"][0].keys())               # ['type', 'properties', 'geometry']
 
-print(data["features"][0]['type'])  # "Feature"
+# print(data["features"][0]['type'])  # "Feature"
 
-print(data["features"][0]['properties'].keys()) # ['AREA', 'PERIMETER', 'CTRY3M_', 'CTRY3M_ID', 'COUNTRY', 'CNTRY_NAME', 'REGION', 'CONTINENT', 'LAND_OCEAN']
-print(data["features"][0]['properties'])
-#{'AREA': 944.166, 'PERIMETER': 337.918, 'CTRY3M_': 3966, 'CTRY3M_ID': 10785, 'COUNTRY': 'CH', 'CNTRY_NAME': 'China', 'REGION': 'Eastern Asia', 'CONTINENT': 'Asia', 'LAND_OCEAN': 'Continent'}
+# print(data["features"][0]['properties'].keys()) # ['AREA', 'PERIMETER', 'CTRY3M_', 'CTRY3M_ID', 'COUNTRY', 'CNTRY_NAME', 'REGION', 'CONTINENT', 'LAND_OCEAN']
+# print(data["features"][0]['properties'])
+# #{'AREA': 944.166, 'PERIMETER': 337.918, 'CTRY3M_': 3966, 'CTRY3M_ID': 10785, 'COUNTRY': 'CH', 'CNTRY_NAME': 'China', 'REGION': 'Eastern Asia', 'CONTINENT': 'Asia', 'LAND_OCEAN': 'Continent'}
 
-print(data["features"][0]['geometry'].keys())   # ['type', 'coordinates']
-print(data["features"][0]['geometry']["type"])  # "Polygon"
-print(len(data["features"][0]['geometry']["coordinates"][0]))  #[[[lat, lon], [lat, lon], [lat, lon], [lat, lon], ........... ]]
+# print(data["features"][0]['geometry'].keys())   # ['type', 'coordinates']
+# print(data["features"][0]['geometry']["type"])  # "Polygon"
+# print(len(data["features"][0]['geometry']["coordinates"][0]))  #[[[lat, lon], [lat, lon], [lat, lon], [lat, lon], ........... ]]
 
 
 import pandas as pd
@@ -26,7 +26,7 @@ import numpy as np
 import geopandas as gpd
 import matplotlib.pyplot as plt
 
-df_places = gpd.read_file('southeast-asia_.geojson')
+df_places = gpd.read_file(r"D:\Project\Mix_Project\Project_I\flask_api\southeast-asia_.geojson")
 df_places['geometry'].plot()
 plt.show()
 

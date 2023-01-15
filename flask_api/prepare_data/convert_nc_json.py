@@ -8,30 +8,15 @@ import sys
 sys.path.insert(0, r'D:\Project\Mix_Project\Project_I\flask_api')
 from get_province import GetProvince
 
-# data_index = 'rcp45_PRCPTOT'
-
-# data = Dataset(r"D:\Coding\JavaScript\REACT_Native\Data_Project\For_project\_SPI\ensemble85_spi_m1.nc")
-
-# lat = data.variables['lat'][:]
-# lon = data.variables['lon'][:]
-
-# grid_size = (lat[1]-lat[0])/2
-
-# values = data.variables['m1']
-
-# time = data.variables['time'] # time from indices_bak is floating
-
-# unit_nc = time.units.split('since')[0].strip() # "days since 1900-1-1"
-# start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
-# str_date = '%Y-%m-%d'
-# date_start = datetime.strptime(start_nc, "%Y-%m-%d")
 index_n = ""
 data_index = []
 def get_data(index, location_index, index_type):
     global data_index, index_n
+    # if use same data with the last call don't want to read NC data 
     if (index_n == "" or index_n != index):
         index_n = index
         data_index = Dataset(rf"{data_path}\{index}.nc")
+        
     time = data_index.variables['time']
     unit_nc = time.units.split(' ')[0].strip()
     if (unit_nc == "month"):
@@ -55,45 +40,6 @@ def get_data(index, location_index, index_type):
     start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
     date_start = datetime.strptime(start_nc, date_format)
     return [values, lat, lon, date_start, time, date_format, unit_nc]
-
-# def get_index(date): #list of date 
-    
-#     index = 0
-#     list_index = []
-    
-#     for i in time[:] :
-#         date_i = date_start + datetime.timedelta(days=math.ceil(i)) # day in nc file it have .5 day
-#         tmp = str(date_i.strftime(str_date))
-#         if( str(date_i.strftime(str_date)) in date):
-#             list_index.append(index)
-#         index += 1 
-#     return list_index
-
-# def get_array_day(dates):
-#     # Tue Jan 10 2006 00:00:00 GMT+0700,Wed Feb 15 2006 00:00:00 GMT+0700 
-#     temp_date = dates.split(' ')
-#     day_list = []
-
-#     if(len(temp_date) == 1):
-#         temp = day_list.append(dates)
-#         return day_list
-#     else:
-#         month = {month: index for index, month in enumerate(calendar.month_abbr) if month}
-#         sdate = date(int(temp_date[3]), month[temp_date[1]], int(temp_date[2]))   # start date
-#         edate = date(int(temp_date[8]), month[temp_date[6]], int(temp_date[7]))   # end date
-
-#         delta = edate - sdate       # as timedelta
-#         for i in range(delta.days + 1):
-#             day = sdate + timedelta(days=i)
-#             day_list.append(day.strftime(str_date))
-#             temp = list(set(day_list))
-#         return temp
-
-# def convert_list_to_tuple(list): 
-#     temp = []
-#     for i in list:
-#         temp.append(tuple(i))
-#     return temp
 
 def convert_nc_json(province, index, location_index, index_type):
     global str_date
@@ -205,30 +151,43 @@ f_load = open(r'province.json')
 data_province = json.load(f_load)
 import os
 
-#get name of index in folder  
-data_path = r"C:\Users\s6201\Downloads\Data_Project\data_project\ensemble\_SPI"
-output_path = r"C:\Users\s6201\Downloads\Data_Project\data_project_json"
-location_index = data_path.split('\\')[-2]
-index_type = data_path.split('\\')[-1]
-dir_list = os.listdir(data_path)
+#get name of index in folder
+# "C:\Users\s6201\Downloads\Data_Project\data_project\ensemble\_SPI"  
+# data_path = r"C:\Users\s6201\Downloads\Data_Project\data_project\ensemble\_SPI" # path of data 
+# output_path = r"C:\Users\s6201\Downloads\Data_Project\data_project_json" # path of output 
+# location_index = data_path.split('\\')[-2]
+# index_type = data_path.split('\\')[-1]
+# dir_list = os.listdir(data_path)
+
+folder_data = r"C:\Users\s6201\Downloads\Data_Project\data_project"
+dir_list2 = os.listdir(folder_data)
+output_path = r"C:\Users\s6201\Downloads\Data_Project\data_project_json" # path of output 
 
 ### create file each province
-for folder_name in dir_list:
-    print(folder_name)
-    if(folder_name != 'monthly'):
-        name_index = folder_name.split('.')[0].split('_')
-        name_subfolder = folder_name.split('.')[0] # mpi_hist_spi_m3 
-        os.mkdir(f"{output_path}\{location_index}\{index_type}\{name_subfolder}")  
-        num_pro = 0
-        for i in data_province['features']:
-            num_pro += 1
-            print(num_pro)
-            name_province = i['properties']['name']
-            data_json = convert_nc_json(name_province, name_subfolder, location_index, index_type)
-            json_object = json.dumps(data_json, indent=4)
-            # Writing to sample.json  , 'cdd_era', 'spei'
-            with open(f"{output_path}\{location_index}\{index_type}\{name_subfolder}\{name_province}.json", "w") as outfile:
-                outfile.write(json_object)
+for big_folder in dir_list2:
+    folder_sub_data = rf"{folder_data}\{big_folder}" # path of data 
+    dir_list3 = os.listdir(folder_sub_data)
+    for sub_folder in dir_list3:
+        data_path = rf"{folder_data}\{big_folder}\{sub_folder}" # path of data 
+        location_index = data_path.split('\\')[-2]
+        index_type = data_path.split('\\')[-1]
+        dir_list = os.listdir(data_path)
+        for folder_name in dir_list:
+            print(folder_name)
+            if(folder_name != 'monthly'):
+                name_index = folder_name.split('.')[0].split('_')
+                name_subfolder = folder_name.split('.')[0] # mpi_hist_spi_m3 
+                os.mkdir(f"{output_path}\{location_index}\{index_type}\{name_subfolder}")  
+                num_pro = 0
+                for i in data_province['features']:
+                    num_pro += 1
+                    print(num_pro)
+                    name_province = i['properties']['name']
+                    data_json = convert_nc_json(name_province, name_subfolder, location_index, index_type)
+                    json_object = json.dumps(data_json, indent=4)
+                    # Writing to sample.json  , 'cdd_era', 'spei'
+                    with open(f"{output_path}\{location_index}\{index_type}\{name_subfolder}\{name_province}.json", "w") as outfile:
+                        outfile.write(json_object)
 
 ### create json file all province
 # for folder_name in dir_list:
