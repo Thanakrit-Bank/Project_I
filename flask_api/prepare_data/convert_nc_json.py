@@ -105,10 +105,7 @@ def convert_list_to_tuple(list):
 def convert_nc_json(province, index):
     global str_date
 
-    # str_date = '%Y-%m'
-    # #check frequency of data
-    # if (time[:][1]- time[:][0] >= 365):
-    #     str_date = '%Y'
+   
 
     data_form = {
         "type": "FeaturesCollection",
@@ -210,7 +207,9 @@ data_province = json.load(f_load)
 import os
 
 #get name of index in folder "indices_bak" 
-path = r"D:\Coding\JavaScript\REACT_Native\Data_Project\data\_SPI"
+path = r"C:\Users\s6201\Downloads\Data_Project\data_project\ensemble\_SPI"
+location_index = path.split('\\')[-2]
+index_type = path.split('\\')[-1]
 dir_list = os.listdir(path)
 
 ### create file each province
