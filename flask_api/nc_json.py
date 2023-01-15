@@ -27,9 +27,9 @@ def convert_nc_json(province, date, index, index_folder):
 
     str_date = '%Y'
 # D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\
-# C:\Users\Administrator\Desktop\Data_Project\
+# E:\Data_Project\ensemble
 #"C:\Users\s6201\Downloads\Data_Project\data_project\ensemble"
-    load_data = open(rf'C:\Users\s6201\Downloads\Data_Project\data_project_json\ensemble\{index_folder}/{index}/{province}.json')
+    load_data = open(rf'E:\Data_Project\ensemble\{index_folder}/{index}/{province}.json')
     data_province = json.load(load_data)
     time_unit = data_province['properties']['date_type']
     # it used to check string date format

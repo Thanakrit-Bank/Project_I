@@ -6,7 +6,7 @@ import LoginPage from "./components/LoginPage";
 import 'leaflet/dist/leaflet.css'
 import "react-calendar/dist/Calendar.css"
 import "./App.css"
-import Setting from "./components/Setting";
+import Demo from "./components/Demo";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Route exact  path='/' element={<LoginPage/>}/>
           <Route path='/mainMap' element= {<MainMap/>}/>
           <Route path='/page2' element={<ComparePage/>} />
-          <Route path='/page3' element={<Setting/>} />
+          <Route path='/page3' element={<Demo/>} />
         </Routes>
       </Router>
     </div>

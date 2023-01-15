@@ -75,10 +75,10 @@ body {
 }
 
 .map-view.back{
-  top: 10px;
+  top: 60px;
   width: 150px;
   height: 45px;
-  left: 46%;
+  left: 10px;
   z-index: 4000;
   border-radius: 5px;
   font-size: 14px;

@@ -1,6 +1,6 @@
 .grid-container {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 33.3% 33.3% 33.3%;
     /* grid-template-rows: 200px auto; */
     /* gap: 10px; */
 }
@@ -9,43 +9,85 @@
     text-align: center;
 }
 
-.map-view.compare{
-    position: fixed;
-    width: 50vw;
-    height: 100vh;
-    z-index:0;
-  }
+/* Map1 */
+
+.map-view.compare {
+  position: absolute;
+  width: 33.3vw;
+  height: 100vh;
+  z-index:0;
+}
+
+/* Map2 */
+
+.map-view.compare2 {
+  position: absolute;
+  width: 33.3vw;
+  height: 100vh;
+  z-index:0;
+}
   
-  /* Calendar */
+/* .map-view.compare.map-calend.compare2 {
+  top: 10px;
+  left: 33.6vw;
+  z-index: 6000;
+  height: 45px;
+  width: 300px;
+}
   
-  .map-view.compare.map-calend.compare {
-    top: 10px;
-    left: 1200px;
-    z-index: 6000;
-    height: 45px;
-    width: 300px;
-  }
+.map-view.compare.select-data.compare2 {
+  top: 10px;
+  width: 150px;
+  height: 45px;
+  left: 45.7vw;
+  z-index: 5000;
+  border-radius: 5px;
+  font-size: 14px;
+}
   
-  /* Select Data */
+.map-view.compare.select.compare2 {
+  top: 10px;
+  width: 150px;
+  height: 45px;
+  left: 51.9vw;
+  z-index: 4000;
+  border-radius: 5px;
+  font-size: 14px;
+} */
+
+/* Map3 */
+
+.map-view.compare3 {
+  position: absolute;
+  width: 33.3vw;
+  height: 100vh;
+  z-index:0;
+}
   
-  .map-view.compare.select-data.compare {
-    top: 10px;
-    width: 150px;
-    height: 45px;
-    left: 1510px;
-    z-index: 5000;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  /* Select Province */
-  
-  .map-view.compare.select.compare {
-    top: 10px;
-    width: 150px;
-    height: 45px;
-    left: 1670px;
-    z-index: 4000;
-    border-radius: 5px;
-    font-size: 14px;
-  }
+/* .map-view.compare.map-calend.compare3 {
+  top: 10px;
+  left: 30vw;
+  z-index: 9000;
+  height: 45px;
+  width: 300px;
+}
+    
+.map-view.compare.select-data.compare3 {
+  top: 10px;
+  width: 150px;
+  height: 45px;
+  left: 80.3vw;
+  z-index: 7000;
+  border-radius: 5px;
+  font-size: 14px;
+}
+    
+.map-view.compare.select.compare3 {
+  top: 10px;
+  width: 150px;
+  height: 45px;
+  left: 70.3vw;
+  z-index: 7000;
+  border-radius: 5px;
+  font-size: 14px;
+} */

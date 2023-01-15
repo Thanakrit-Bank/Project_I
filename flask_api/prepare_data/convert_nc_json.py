@@ -99,11 +99,11 @@ def convert_nc_json(province, index, location_index, index_type):
             value = {}
             #create polygon of grid cell for check intersection with shapefile 
             grid_cell = [
-                            [lon_nc - diff_lon, lat_nc - diff_lat],
-                            [lon_nc + diff_lon, lat_nc - diff_lat],
-                            [lon_nc + diff_lon, lat_nc + diff_lat],
-                            [lon_nc - diff_lon, lat_nc + diff_lat],
-                            [lon_nc - diff_lon, lat_nc - diff_lat] 
+                            [lon_nc - diff_lat, lat_nc - diff_lon],
+                            [lon_nc + diff_lat, lat_nc - diff_lon],
+                            [lon_nc + diff_lat, lat_nc + diff_lon],
+                            [lon_nc - diff_lat, lat_nc + diff_lon],
+                            [lon_nc - diff_lat, lat_nc - diff_lon] 
                         ]
 
             polygon_grid = Polygon(grid_cell)
@@ -159,9 +159,9 @@ import os
 # index_type = data_path.split('\\')[-1]
 # dir_list = os.listdir(data_path)
 
-folder_data = r"C:\Users\s6201\Downloads\Data_Project\data_project"
+folder_data = r"E:\Data_Project\PrepareData\data_project"
 dir_list2 = os.listdir(folder_data)
-output_path = r"C:\Users\s6201\Downloads\Data_Project\data_project_json" # path of output 
+output_path = r"E:\Data_Project\PrepareData" # path of output 
 
 ### create file each province
 for big_folder in dir_list2:

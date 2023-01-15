@@ -357,7 +357,7 @@ const dataLegend = {
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
         },
-        'empi45_spi_m6': {
+        'mpi45_spi_m6': {
             'max': 2,
             'min': -2,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f",'#3288bd']
