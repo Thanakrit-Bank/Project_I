@@ -1,0 +1,17 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.map-container {
+    height: 100vh;
+    width: 100vw;
+    position: relative  ;
+}
+
+.sider {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 999;
+}
