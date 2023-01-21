@@ -13,7 +13,7 @@ function getItem(label, key, icon, children, type) {
 }
 
 const items = [
-  getItem('Ecearth', 'sub1', <AppstoreOutlined />, [
+  getItem('Ecearth', null, <AppstoreOutlined />, [
     getItem('Indices', 'sub2', null, [
         getItem('rcp4.5', 'sub3', null, [
             getItem('test', '1'), 

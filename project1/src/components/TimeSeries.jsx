@@ -5,10 +5,10 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
   
 
 const TimeSeries = (props) => {
-    
+    // width={450} height={250}
     return (
         <div id='bottomLeft'>
-            <LineChart width={450} height={250} data={props.data} className='graph'>
+            <LineChart width={450} height={250}  data={props.data} className='graph'>
             {/* <LineChart data={data} margin={{'top': 500}}> */}
                 <CartesianGrid stroke="black" fill='#555' fillOpacity={0.7}/>
                 <Line type="monotone" dataKey="index" stroke="red" dot={false}/>

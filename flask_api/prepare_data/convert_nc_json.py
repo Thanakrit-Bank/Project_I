@@ -54,8 +54,8 @@ def convert_nc_json(province, index, location_index, index_type):
     date_format = data_index[5]
     time_unit = data_index[6]
 
-    diff_lat = (lat[1]-lat[0])/2
-    diff_lon = (lon[1]-lon[0])/2
+    diff_lat = (lat[1]-lat[0])/2  # Y
+    diff_lon = (lon[1]-lon[0])/2  # X
     # get data of shapefile 
     shp = GetProvince(province) 
 
@@ -69,17 +69,6 @@ def convert_nc_json(province, index, location_index, index_type):
             #if province == 'all' must use polygon not polygon[0]
             list_polygon.append(Polygon(polygon[0]))
         polygon_province = MultiPolygon(list_polygon)
-
-    ### create polygon of province from shapefile for all province    
-    # if(shp["features"]['geometry']['type'] == 'Polygon' ):
-    #     polygon_province = Polygon(shp['features']['geometry']['coordinates'][0])
-    # else :
-    #     see_coordinates = shp['features']['geometry']['coordinates']
-    #     list_polygon = []
-    #     for polygon in shp['features']['geometry']['coordinates']:
-    #         #if province == 'all' must use polygon not polygon[0]
-    #         list_polygon.append(Polygon(polygon))
-    #     polygon_province = MultiPolygon(list_polygon)
 
     data_form = {
         "type": "FeaturesCollection",
@@ -98,12 +87,26 @@ def convert_nc_json(province, index, location_index, index_type):
         for ind_lon,lon_nc in enumerate(lon):
             value = {}
             #create polygon of grid cell for check intersection with shapefile 
-            grid_cell = [
-                            [lon_nc - diff_lat, lat_nc - diff_lon],
-                            [lon_nc + diff_lat, lat_nc - diff_lon],
-                            [lon_nc + diff_lat, lat_nc + diff_lon],
-                            [lon_nc - diff_lat, lat_nc + diff_lon],
-                            [lon_nc - diff_lat, lat_nc - diff_lon] 
+            
+            try :
+                diff_lon_f = lon[ind_lon+1] - lon_nc
+                diff_lon_b = lon_nc - lon[ind_lon-1]
+                diff_lat_t = lat[ind_lat+1] - lat_nc
+                diff_lon_u = lat_nc - lat[ind_lat-1]
+                grid_cell = [
+                                [lon_nc + diff_lon_f, lat_nc - diff_lon_u],
+                                [lon_nc + diff_lon_f, lat_nc + diff_lat_t],
+                                [lon_nc - diff_lon_b, lat_nc + diff_lat_t],
+                                [lon_nc - diff_lon_b, lat_nc - diff_lon_u],
+                                [lon_nc + diff_lon_f, lat_nc - diff_lon_u] 
+                            ]
+            except:
+                grid_cell = [
+                            [lon_nc - diff_lon, lat_nc - diff_lat],
+                            [lon_nc + diff_lon, lat_nc - diff_lat],
+                            [lon_nc + diff_lon, lat_nc + diff_lat],
+                            [lon_nc - diff_lon, lat_nc + diff_lat],
+                            [lon_nc - diff_lon, lat_nc - diff_lat] 
                         ]
 
             polygon_grid = Polygon(grid_cell)
@@ -147,21 +150,20 @@ def convert_nc_json(province, index, location_index, index_type):
                 data_form["fetures"].append(grid)
     return data_form
 
-f_load = open(r'province.json')
-data_province = json.load(f_load)
+province_load = open(r'province.json')
+SEA_load = open(r'southeast-asia_.json')
+data_province = json.load(province_load)
+data_SEA = json.load(SEA_load)
+# load_config = open(r"D:\Project\Mix_Project\Project_I\flask_api\config.json")
+# config = json.load(f_load)
 import os
+from config import Config
 
 #get name of index in folder
-# "C:\Users\s6201\Downloads\Data_Project\data_project\ensemble\_SPI"  
-# data_path = r"C:\Users\s6201\Downloads\Data_Project\data_project\ensemble\_SPI" # path of data 
-# output_path = r"C:\Users\s6201\Downloads\Data_Project\data_project_json" # path of output 
-# location_index = data_path.split('\\')[-2]
-# index_type = data_path.split('\\')[-1]
-# dir_list = os.listdir(data_path)
-
-folder_data = r"E:\Data_Project\PrepareData\data_project"
+config_data = Config() 
+folder_data = config_data['raw_data_path']
+output_path = config_data['output_path'] # path of output  output_path
 dir_list2 = os.listdir(folder_data)
-output_path = r"E:\Data_Project\PrepareData" # path of output 
 
 ### create file each province
 for big_folder in dir_list2:
@@ -172,32 +174,49 @@ for big_folder in dir_list2:
         location_index = data_path.split('\\')[-2]
         index_type = data_path.split('\\')[-1]
         dir_list = os.listdir(data_path)
+
+        try:
+            os.mkdir(f"{output_path}\{location_index}\{index_type}")
+        except:
+            pass
+
         for folder_name in dir_list:
             print(folder_name)
             if(folder_name != 'monthly'):
                 name_index = folder_name.split('.')[0].split('_')
                 name_subfolder = folder_name.split('.')[0] # mpi_hist_spi_m3 
-                os.mkdir(f"{output_path}\{location_index}\{index_type}\{name_subfolder}")  
-                num_pro = 0
-                for i in data_province['features']:
-                    num_pro += 1
-                    print(num_pro)
-                    name_province = i['properties']['name']
-                    data_json = convert_nc_json(name_province, name_subfolder, location_index, index_type)
-                    json_object = json.dumps(data_json, indent=4)
-                    # Writing to sample.json  , 'cdd_era', 'spei'
-                    with open(f"{output_path}\{location_index}\{index_type}\{name_subfolder}\{name_province}.json", "w") as outfile:
-                        outfile.write(json_object)
+                dir_old_data = []
+                try:
+                    os.mkdir(f"{output_path}\{location_index}\{index_type}\{name_subfolder}") 
+                except:
+                    old_data = os.listdir(f"{output_path}\{location_index}\{index_type}\{name_subfolder}")
+                    for i in old_data:
+                        temp = i.split(".")[0] 
+                        dir_old_data.append(temp)
 
-### create json file all province
-# for folder_name in dir_list:
-#     print(folder_name)
-#     name_subfolder = folder_name.split('.')[0]
-#     if(folder_name != 'monthly'):
-#         os.mkdir(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\SPI\{name_subfolder}")
-#         name_index = folder_name.split('.')[0].split('_')[-1]
-#         num_pro = 0
-#         data_json = convert_nc_json('all', name_subfolder)
-#         json_object = json.dumps(data_json, indent=4)
-#         with open(f"D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\SPI\{name_subfolder}\\all.json", "w") as outfile:
-#             outfile.write(json_object)
+                num_pro = 1
+                for i in data_province['features']:
+                    name_province = i['properties']['name']
+                    print("province: ",num_pro,"/",len(data_province['features']))
+                    num_pro += 1
+                    if(name_province not in dir_old_data):
+                        data_json = convert_nc_json(name_province, name_subfolder, location_index, index_type)
+                        json_object = json.dumps(data_json, indent=4)
+                        # Writing to sample.json  , 'cdd_era', 'spei'
+                        with open(f"{output_path}\{location_index}\{index_type}\{name_subfolder}\{name_province}.json", "w") as outfile:
+                            outfile.write(json_object)
+                num_country = 1
+                for i in data_SEA['features']:
+                    contry_name = i['properties']['name']
+                    c_name = contry_name.split(' ')[0]
+                    if(c_name not in dir_old_data):
+                        data_json = convert_nc_json(contry_name, name_subfolder, location_index, index_type)
+                        json_object = json.dumps(data_json, indent=4)
+                        # Writing to sample.json  , 'cdd_era', 'spei'
+                        with open(f"{output_path}\{location_index}\{index_type}\{name_subfolder}\{c_name}.json", "w") as outfile:
+                            outfile.write(json_object)
+                    print("country: ",num_country,"/",len(data_SEA['features']))
+                    num_country += 1
+                
+
+

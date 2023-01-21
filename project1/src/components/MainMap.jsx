@@ -22,6 +22,7 @@ function MainMap(props) {
     const [date, setDate] = useState('2006')
     const [index_folder, setIndex_folder] = useState('indices_bak')
     const [timeSeriesData, setTimeSeriesData] = useState([])
+    const [test, settest] = useState('')
 
     const southWestView = [-90, -180]
     const northEastView = [90, 180]
@@ -32,6 +33,7 @@ function MainMap(props) {
         let folder_name = data.split("*")[1]
         setDataIndex(index_name)
         setIndex_folder(folder_name)
+        settest(data)
     }
 
     const onChangeSelectProvince = (data) => {

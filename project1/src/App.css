@@ -147,6 +147,8 @@ label {
 
 .graph {
   z-index: 400;
+  /* width: 600px;
+  height: 500px; */
 }
 
 /* CompareButton */

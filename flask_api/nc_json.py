@@ -1,6 +1,8 @@
 import calendar,json,math
 from datetime import date, timedelta, datetime
 from dateutil import relativedelta
+from config import Config
+# import 
 def get_array_day(dates):
     # Tue Jan 10 2006 00:00:00 GMT+0700,Wed Feb 15 2006 00:00:00 GMT+0700 
     temp_date = dates.split(' ')
@@ -29,7 +31,9 @@ def convert_nc_json(province, date, index, index_folder):
 # D:\Coding\JavaScript\REACT_Native\Data_Project\Data_Project\
 # E:\Data_Project\ensemble
 #"C:\Users\s6201\Downloads\Data_Project\data_project\ensemble"
-    load_data = open(rf'E:\Data_Project\ensemble\{index_folder}/{index}/{province}.json')
+    dir_data = Config()
+    dir_load_data = dir_data["data_index_path"]
+    load_data = open(rf'{dir_load_data}\{index_folder}/{index}/{province}.json')
     data_province = json.load(load_data)
     time_unit = data_province['properties']['date_type']
     # it used to check string date format

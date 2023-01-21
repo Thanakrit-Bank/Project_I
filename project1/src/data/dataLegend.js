@@ -23,7 +23,7 @@ const dataLegend = {
     },
 
     "indices":{
-        'rcp45_CDD': {
+        'ecearth_rcp45_CDD': {
             'max': 40,
             'min': 0.1,
             'color': ['#3288bd',"#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f"]
