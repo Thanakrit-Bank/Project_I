@@ -1,4 +1,4 @@
-{
+const dataSelection = {
     "province": ["Amnat Charoen", "Ang Thong", 
                 "Bangkok Metropolis", "Bueng Kan", "Buri Ram", 
                 "Chachoengsao", "Chai Nat", "Chaiyaphum", "Chanthaburi", "Chiang Mai", "Chiang Rai", "Chon Buri", "Chumphon", 
@@ -20,3 +20,5 @@
     "index_name" : ["CDD", "ID0", "TXn", "TMINmean", "WSDI", "RX5day", "R99p", "CWD", "TR25", "SU35", "PRCPTOT", "TR20", "TMAXmean", "R20mm", "TMEANmean", "FD16", "RX1day", "TX10P", "SU25", "TNx", "FD0", "TXx", "DTR", "TX90P", "TN90P", "R10mm", "TN10P", "SDII", "TNn", "R95p", "R25mm", "CSDI"],
     "SPI_name" : ["m3", "m6", "m60", "m12", "m36", "m1", "m9", "m24", "m48"]
 }
+
+export default dataSelection

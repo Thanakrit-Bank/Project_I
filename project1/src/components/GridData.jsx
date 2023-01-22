@@ -138,7 +138,6 @@ function GridData(props) {
                     <GeoJSON key={data.properties.grid_id}  data={poly1} style={myStyleGrid}>
                         <Popup> {Math.round(data.properties.index*1000)/1000} </Popup>
                     </GeoJSON>
-                    {/* <Polygon pathOptions={myStyleGrid} positions={poly2}/> */}
                 </div>
                 )           
             })
