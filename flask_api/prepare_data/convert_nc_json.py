@@ -6,7 +6,8 @@ from shapely.geometry.polygon import Polygon
 from datetime import date, timedelta, datetime
 import sys
 sys.path.insert(0, r'D:\Project\Mix_Project\Project_I\flask_api')
-from get_province import GetProvince
+from get_province import GettingArea
+shp_instance = GettingArea()
 
 index_n = ""
 data_index = []
@@ -34,8 +35,6 @@ def get_data(index, location_index, index_type):
     lat = data_index.variables['lat'][:]
     lon = data_index.variables['lon'][:]
 
-    grid_size = (lat[1]-lat[0])/2
-
      # "days since 1900-1-1"
     start_nc = time.units.split('since')[1].strip() # "days since 1900-1-1"
     date_start = datetime.strptime(start_nc, date_format)
@@ -57,7 +56,7 @@ def convert_nc_json(province, index, location_index, index_type):
     diff_lat = (lat[1]-lat[0])/2  # Y
     diff_lon = (lon[1]-lon[0])/2  # X
     # get data of shapefile 
-    shp = GetProvince(province) 
+    shp = shp_instance.GetProvince(province) 
 
     # create polygon of province from shapefile for each province
     if(shp["features"][0]['geometry']['type'] == 'Polygon' ):
@@ -79,17 +78,16 @@ def convert_nc_json(province, index, location_index, index_type):
         "fetures": []
     }
 
-    see_polygon_province = polygon_province.normalize().wkt
-
     count = 0
     #loop for check each point which intersect in polygon province 
     for ind_lat,lat_nc in enumerate(lat):
         for ind_lon,lon_nc in enumerate(lon):
             value = {}
-            #create polygon of grid cell for check intersection with shapefile 
             
+            #create polygon of grid cell for check intersection with shapefile 
+            #create by calculate distance grid by grid 
             try :
-                diff_lon_f = lon[ind_lon+1] - lon_nc
+                diff_lon_f = lon[ind_lon+1] - lon_nc 
                 diff_lon_b = lon_nc - lon[ind_lon-1]
                 diff_lat_t = lat[ind_lat+1] - lat_nc
                 diff_lon_u = lat_nc - lat[ind_lat-1]
