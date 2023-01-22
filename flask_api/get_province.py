@@ -2,10 +2,10 @@ import json
 class GettingArea:
     # Opening JSON file
     def __init__(self):
-        f = open(r'province.json')
+        f = open(r'province.json', encoding='utf-8')
         self.data = json.load(f)
 
-        f_all = open(r'southeast-asia_.json')
+        f_all = open(r'southeast-asia_.json', encoding='utf-8')
         self.data_sea = json.load(f_all)
         f.close()
         f_all.close()

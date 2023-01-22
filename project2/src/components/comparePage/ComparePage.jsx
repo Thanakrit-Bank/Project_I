@@ -1,17 +1,16 @@
-import { useState, React } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
-import './comparePage.css'
-import { BarsOutlined, 
-  AppstoreOutlined, 
+import React, {useState} from 'react';
+import {  AppstoreOutlined, 
   GlobalOutlined, 
-  DesktopOutlined, 
   SettingFilled,
-  DatabaseOutlined 
+  DatabaseOutlined,
+  BarsOutlined,
+  CalendarOutlined,
+  LogoutOutlined 
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
-import TimeSeries from '../showData/TimeSeries';
+import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
+import { DatePicker } from 'antd';
 
 const { Sider } = Layout;
 
@@ -26,80 +25,78 @@ function getItem(label, key, icon, children) {
 
 }
 
-const settingSelection = () => {
-  fetch("D:\\Project\\Mix_Project\\Project_I\\project2\\src\\data\\dataSelection.json")
-  .then(respone => respone.json())
-  }
-
+const settingSelection = dataSetting
 const {province, country, data_provider, type_index, type_value, index_name, SPI_name} = settingSelection
+console.log(country);
 
-// const countryList = [country.map((cName, index) => getItem(cName, index))]
-console.log(settingSelection);
+const countryList = country.map((cName) => {
+    return getItem(cName, cName)
+})
+
+const provinceList = province.map((cName) => {
+    return getItem(cName, cName)
+})
+
+const selectDataMenu = data_provider.map((providerName => {
+    return getItem(providerName, providerName, null, type_value.map(valueName => {
+        return getItem(valueName, valueName, null, type_index.map(indexName => {
+            if(indexName === "SPI"){
+                return getItem(indexName, indexName, null, SPI_name.map(spiname => {
+                    return getItem(spiname, spiname)
+                }))
+            }else {
+                return getItem(indexName, indexName, null, index_name.map(spiname => {
+                    return getItem(spiname, spiname)
+                }))
+            }
+        }))
+    }))
+}))
+
+const datePicker = () => {
+    return  console.log('test');
+}
+
 const items = [
-  // getItem(<SelectDate />),
   getItem('Select Area', null, <GlobalOutlined />, [
-    getItem('Country', 'subCountry', null, [
-      getItem('test', 'test'),
-      getItem('test', 'test')
-
-    ]),
-    getItem('Thailand', 'subThai', null, [
-      getItem('City', 'subCity', null, [
-        getItem('test', 'test'),
-        getItem('test', 'test')
-      ]),
-    ]),
+    getItem('Country', 'subCountry', null, countryList),
+    getItem('Thailand', 'subThai', null, provinceList),
   ]),
-  getItem('Select Data Type', null, <DatabaseOutlined />, [
-    getItem('Ecearth', 'subEc', null, [
-        getItem('Indices', 'subEc_indices', null, [
-            getItem('RCP 4.5', 'subEc_indices_RCP4.5', null, [
-              getItem('test', 'test'),
-              getItem('test', 'test')
-            ]),
-            getItem('RCP 8.5', 'subEc_indices_RCP8.5', null, [
-              getItem('test', 'test'),
-              getItem('test', 'test')
-            ]), 
-        ]),
-        getItem('SPI', 'subEc_spi', null, [
-          getItem('Hist', 'subEc_spi_hist', null, [
-            getItem('test', 'test'),
-            getItem('test', 'test')
-          ]),
-          getItem('RCP 4.5', 'subEc_spi_RCP4.5', null, [
-            getItem('test', 'test'),
-            getItem('test', 'test')
-          ]),
-          getItem('RCP 8.5', 'subEc_spi_RCP8.5', null, [
-            getItem('test', 'test'),
-            getItem('test', 'test')
-          ]), 
-        ])
-    ]),
-  ]),
-  getItem('Compare Mode', <Link to="/ComparePage" />, <AppstoreOutlined />),
-  getItem('Setting', null, <SettingFilled />)
+  { type: 'divider' },
+  getItem('Select Data Type', null, <DatabaseOutlined />, selectDataMenu),
+  { type: 'divider' },
+  getItem('select date range', null, <CalendarOutlined />),
+  { type: 'divider' },
+  getItem(<Link to="/singlePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
+  { type: 'divider' },
+  getItem('Setting', null, <SettingFilled />),
+  { type: 'divider' },
+  getItem('Logout', null, <LogoutOutlined />)
 ];
 
 const ComparePage = () => {
+
   const [collapsed, setCollapsed] = useState(false);
+
   return (
-      <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true} zoomControl={false} className="map-container">
-          
-          <TileLayer
-              url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+
+      <Layout style={{ minHeight: '100vh'}}>
+        <Sider className='sider'
+          trigger={<BarsOutlined />} 
+          collapsible 
+          collapsed={collapsed} 
+          onCollapse={(value) => setCollapsed(value)} 
+          collapsedWidth={0} 
+        >
+          <Menu 
+            theme="dark" 
+            defaultSelectedKeys={['1']} 
+            mode="vertical" 
+            items={items} 
           />
-          
-          <Layout style={{ minHeight: '100vh'}}>
-              <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className='sider'>
-                  <Menu 
-                  theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
-              </Sider>
-              <TimeSeries />
-          </Layout>
-                    
-      </MapContainer>    
+        </Sider>
+      </Layout>
+  
   )
 }
 

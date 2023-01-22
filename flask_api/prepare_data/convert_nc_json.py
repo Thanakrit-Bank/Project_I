@@ -5,7 +5,8 @@ from shapely.geometry import Point, MultiPolygon
 from shapely.geometry.polygon import Polygon
 from datetime import date, timedelta, datetime
 import sys
-sys.path.insert(0, r'D:\Project\Mix_Project\Project_I\flask_api')
+# C:\Users\Administrator\Desktop\Project_I\flask_api
+sys.path.insert(0, r'C:\Users\Administrator\Desktop\Project_I\flask_api')
 from get_province import GettingArea
 shp_instance = GettingArea()
 
@@ -148,8 +149,8 @@ def convert_nc_json(province, index, location_index, index_type):
                 data_form["fetures"].append(grid)
     return data_form
 
-province_load = open(r'province.json')
-SEA_load = open(r'southeast-asia_.json')
+province_load = open(r'province.json', encoding='utf-8')
+SEA_load = open(r'southeast-asia_.json', encoding='utf-8')
 data_province = json.load(province_load)
 data_SEA = json.load(SEA_load)
 # load_config = open(r"D:\Project\Mix_Project\Project_I\flask_api\config.json")

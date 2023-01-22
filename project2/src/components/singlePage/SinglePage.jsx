@@ -9,8 +9,11 @@ import SideMenu from '../selectionInput/SideMenu';
 
 
 const SinglePage = () => {
+  const center = [13.2955977,102.2090103]
+  const zoom = 6
+
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true} zoomControl={false} className="map-container">
+    <MapContainer center={center} zoom={zoom} scrollWheelZoom={true} zoomControl={false} className="map-container">
         
         <TileLayer
             url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'

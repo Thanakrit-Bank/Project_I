@@ -4,7 +4,8 @@ import {  AppstoreOutlined,
   SettingFilled,
   DatabaseOutlined,
   BarsOutlined,
-  CalendarOutlined 
+  CalendarOutlined,
+  LogoutOutlined 
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import dataSetting from '../../data/dataSelection'
@@ -63,11 +64,16 @@ const SideMenu = () => {
         getItem('Country', 'subCountry', null, countryList),
         getItem('Thailand', 'subThai', null, provinceList),
       ]),
+      { type: 'divider' },
       getItem('Select Data Type', null, <DatabaseOutlined />, selectDataMenu),
+      { type: 'divider' },
       getItem('select date range', null, <CalendarOutlined />),
-      getItem('Compare Mode', <Link to="/ComparePage" />, <AppstoreOutlined />),
+      { type: 'divider' },
+      getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
+      { type: 'divider' },
       getItem('Setting', null, <SettingFilled />),
-      getItem('Logout', null, <SettingFilled />)
+      { type: 'divider' },
+      getItem('Logout', null, <LogoutOutlined />)
     ];
     
     return (
