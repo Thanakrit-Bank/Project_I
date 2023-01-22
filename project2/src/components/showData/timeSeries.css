@@ -1,0 +1,8 @@
+#bottomLeft {
+    position: relative;
+    top: 75vh;
+}
+  
+.graph {
+    z-index: 1000;
+}

@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import SinglePage from './components/singlePage/SinglePage';
+import ComparePage from './components/comparePage/ComparePage';
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <SinglePage />
+      <Router>
+        <Routes>
+          <Route path='/' element= {<SinglePage/>}/>
+          <Route path='/ComparePage' element={<ComparePage/>} />
+        </Routes>
+      </Router>
   </React.StrictMode>
 );
 

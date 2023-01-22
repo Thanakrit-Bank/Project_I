@@ -2,8 +2,17 @@ import { useState, React } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import './singlePage.css'
-import { FileOutlined, GlobalOutlined, UserOutlined, DesktopOutlined, TeamOutlined,SettingFilled } from '@ant-design/icons';
-import {  Layout, Menu } from 'antd';
+import { BarsOutlined, 
+  AppstoreOutlined, 
+  GlobalOutlined, 
+  DesktopOutlined, 
+  SettingFilled,
+  DatabaseOutlined 
+} from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
+import TimeSeries from '../showData/TimeSeries';
+import ComparePage from '../comparePage/ComparePage';
+import { Link } from 'react-router-dom';
 
 const { Sider } = Layout;
 
@@ -23,38 +32,73 @@ const settingSelection = () => {
   .then(respone => respone.json())
   }
 
-const {province, country, data_provider, type_index, type_value, index_name, SPI_name} = settingSelection
+  const {province, country, data_provider, type_index, type_value, index_name, SPI_name} = settingSelection
 
-// const countryList = [country.map((cName, index) => getItem(cName, index))]
+  // const countryList = [country.map((cName, index) => getItem(cName, index))]
+
 console.log(settingSelection);
 const items = [
-  getItem('Select Area', 'subArea', <GlobalOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
+  getItem('Select Area', null, <GlobalOutlined />, [
+    getItem('Country', 'subCountry', null, [
+      getItem(country, '1')
+    ]),
+    getItem('Thailand', 'subThai', null, [
+      getItem('City', 'subCity', null, [
+        getItem('test', 'test'),
+        getItem('test', 'test')
+      ]),
+    ]),
   ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />),
+  getItem('Select Data Type', null, <DatabaseOutlined />, [
+    getItem('Ecearth', 'subEc', null, [
+        getItem('Indices', 'subEc_indices', null, [
+            getItem('RCP 4.5', 'subEc_indices_RCP4.5', null, [
+              getItem('test', 'test'),
+              getItem('test', 'test')
+            ]),
+            getItem('RCP 8.5', 'subEc_indices_RCP8.5', null, [
+              getItem('test', 'test'),
+              getItem('test', 'test')
+            ]), 
+        ]),
+        getItem('SPI', 'subEc_spi', null, [
+          getItem('Hist', 'subEc_spi_hist', null, [
+            getItem('test', 'test'),
+            getItem('test', 'test')
+          ]),
+          getItem('RCP 4.5', 'subEc_spi_RCP4.5', null, [
+            getItem('test', 'test'),
+            getItem('test', 'test')
+          ]),
+          getItem('RCP 8.5', 'subEc_spi_RCP8.5', null, [
+            getItem('test', 'test'),
+            getItem('test', 'test')
+          ]), 
+        ])
+    ]),
+  ]),
+  getItem('Compare Mode', <Link to="/ComparePage" />, <AppstoreOutlined />),
+  getItem('Setting', null, <SettingFilled />)
 ];
 
 const SinglePage = () => {
     const [collapsed, setCollapsed] = useState(false);
     return (
         <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true} zoomControl={false} className="map-container">
+            
             <TileLayer
                 url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
             />
-            <Layout style={{ minHeight: '100vh' }}>
-                <Sider trigger={<SettingFilled/>} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className='sider'>
-                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
-                </Sider>
-            </Layout>
             
-        </MapContainer>
-    
-    
+            <Layout style={{ minHeight: '100vh'}}>
+                <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className='sider'>
+                    <Menu 
+                    theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+                </Sider>
+                <TimeSeries />
+            </Layout>
+                      
+        </MapContainer>    
   )
 }
 
