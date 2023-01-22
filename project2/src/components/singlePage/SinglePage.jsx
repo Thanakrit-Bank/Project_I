@@ -5,7 +5,6 @@ import './singlePage.css'
 import { BarsOutlined, 
   AppstoreOutlined, 
   GlobalOutlined, 
-  DesktopOutlined, 
   SettingFilled,
   DatabaseOutlined 
 } from '@ant-design/icons';
@@ -13,6 +12,9 @@ import { Layout, Menu } from 'antd';
 import TimeSeries from '../showData/TimeSeries';
 import ComparePage from '../comparePage/ComparePage';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import "../../data/dataSelection.json" 
+
 
 const { Sider } = Layout;
 
@@ -28,13 +30,17 @@ function getItem(label, key, icon, children) {
 }
 
 const settingSelection = () => {
-  fetch("D:\\Project\\Mix_Project\\Project_I\\project2\\src\\data\\dataSelection.json")
+  fetch("dataSelection.json")
   .then(respone => respone.json())
   }
 
   const {province, country, data_provider, type_index, type_value, index_name, SPI_name} = settingSelection
 
   // const countryList = [country.map((cName, index) => getItem(cName, index))]
+
+const logout = () => {
+  localStorage.removeItem('token')
+}
 
 console.log(settingSelection);
 const items = [
@@ -78,28 +84,35 @@ const items = [
     ]),
   ]),
   getItem('Compare Mode', <Link to="/ComparePage" />, <AppstoreOutlined />),
-  getItem('Setting', null, <SettingFilled />)
+  getItem('Setting', null, <SettingFilled />),
+  getItem('Logout', null, <SettingFilled onClick={logout}/>)
 ];
 
 const SinglePage = () => {
+
     const [collapsed, setCollapsed] = useState(false);
+    if (localStorage.getItem('token') === "asdflk3basdfefkjhcsaedklh")
     return (
-        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true} zoomControl={false} className="map-container">
-            
-            <TileLayer
-                url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
-            />
-            
-            <Layout style={{ minHeight: '100vh'}}>
-                <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className='sider'>
-                    <Menu 
-                    theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
-                </Sider>
-                <TimeSeries />
-            </Layout>
-                      
-        </MapContainer>    
-  )
+      <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true} zoomControl={false} className="map-container">
+          
+          <TileLayer
+              url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+          />
+          
+          <Layout style={{ minHeight: '100vh'}}>
+              <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className='sider'>
+                  <Menu 
+                  theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+              </Sider>
+              <TimeSeries />
+          </Layout>
+                    
+      </MapContainer>    
+    )
+    else {
+      return <div>loading</div>
+    }
+   
 }
 
 export default SinglePage

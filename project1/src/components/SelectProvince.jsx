@@ -14,7 +14,8 @@ const all_P =
 'Sa Kaeo', 'Sakon Nakhon', 'Samut Prakan', 'Samut Sakhon', 'Samut Songkhram', 'Saraburi', 'Satun', 'Si Sa Ket', 'Sing Buri', 'Songkhla', 'Sukhothai', 'Suphan Buri', 'Surat Thani', 'Surin', 
 'Tak', 'Trang', 'Trat', 
 'Ubon Ratchathani', 'Udon Thani', 'Uthai Thani', 'Uttaradit', 
-'Yala', 'Yasothon', 'Cambodia', 'Malaysia', 'Brunei', 'Indonesia'
+'Yala', 'Yasothon', 'Brunei', 'Cambodia', 'Malaysia', 'Indonesia', 'Laos', 'Myanmar'
+, 'Philippines', 'Thailand', 'Timor-Leste', 'Vietnam'
 ]
 
 function SelectProvince(props) {

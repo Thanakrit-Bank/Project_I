@@ -1,5 +1,6 @@
 import React from 'react'
-import legendData from  './../data/dataLegend'  
+// import legendData from  './../data/dataLegend'  
+import legendData from  './../data/demolegend'  
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function SelectData(props) {

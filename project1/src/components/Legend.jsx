@@ -1,85 +1,28 @@
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
-import legendData from  './../data/dataLegend'  
+import legendData from  './../data/demolegend'  
 
 const Legend = (props) => {
 
   const mapInstance = useMap();
 
-  var data = legendData.indices_bak.rcp45_PRCPTOT
-  // Indices_bak
-  if (props.dataIndex === 'rcp85_TMEANmean' || props.dataIndex ===  'rcp45_TMEANmean' ){
-    data = legendData.indices_bak.rcp85_TMEANmean
-  } else if (props.dataIndex === 'rcp85_PRCPTOT' || props.dataIndex ===  'rcp45_PRCPTOT' ){
-    data = legendData.indices_bak.rcp85_PRCPTOT
-  } 
-  
-  // Indices
-  else if (props.dataIndex === 'rcp85_CDD' || props.dataIndex ===  'rcp45_CDD' ){
-    data = legendData.indices.rcp85_CDD
-  } else if (props.dataIndex === 'rcp85_CSDI' || props.dataIndex ===  'rcp45_CSDI' ){
-    data = legendData.indices.rcp85_CSDI
-  } else if (props.dataIndex === 'rcp85_CWD' || props.dataIndex ===  'rcp45_CWD' ){
-    data = legendData.indices.rcp85_CWD
-  } else if (props.dataIndex === 'rcp85_DTR' || props.dataIndex ===  'rcp45_DTR' ){
-    data = legendData.indices.rcp85_DTR
-  } else if (props.dataIndex === 'rcp85_FD0' || props.dataIndex ===  'rcp45_FD0' ){
-    data = legendData.indices.rcp85_FD0
-  } else if (props.dataIndex === 'rcp85_FD16' || props.dataIndex ===  'rcp45_FD16' ){
-    data = legendData.indices.rcp85_FD16
-  } else if (props.dataIndex === 'rcp85_ID0' || props.dataIndex ===  'rcp45_ID0' ){
-    data = legendData.indices.rcp85_ID0
-  } else if (props.dataIndex === 'rcp85_PRCPTOT' || props.dataIndex ===  'rcp45_PRCPTOT' ){
-    data = legendData.indices.rcp85_PRCPTOT
-  } else if (props.dataIndex === 'rcp85_R10mm' || props.dataIndex ===  'rcp45_R10mm' ){
-    data = legendData.indices.rcp85_R10mm
-  } else if (props.dataIndex === 'rcp85_R20mm' || props.dataIndex ===  'rcp45_R20mm' ){
-    data = legendData.indices.rcp85_R20mm
-  } else if (props.dataIndex === 'rcp85_R25mm' || props.dataIndex ===  'rcp45_R25mm' ){
-    data = legendData.indices.rcp85_R25mm
-  } else if (props.dataIndex === 'rcp85_R95p' || props.dataIndex ===  'rcp45_R95p' ){
-    data = legendData.indices.rcp85_R95p
-  } else if (props.dataIndex === 'rcp85_R99p' || props.dataIndex ===  'rcp45_R99p' ){
-    data = legendData.indices.rcp85_R99p
-  } else if (props.dataIndex === 'rcp85_RX1day' || props.dataIndex ===  'rcp45_RX1day' ){
-    data = legendData.indices.rcp85_RX1day
-  } else if (props.dataIndex === 'rcp85_RX5day' || props.dataIndex ===  'rcp45_RX5day' ){
-    data = legendData.indices.rcp85_RX5day
-  } else if (props.dataIndex === 'rcp85_SDII' || props.dataIndex ===  'rcp45_SDII' ){
-    data = legendData.indices.rcp85_SDII
-  } else if (props.dataIndex === 'rcp85_SU25' || props.dataIndex ===  'rcp45_SU25' ){
-    data = legendData.indices.rcp85_SU25
-  } else if (props.dataIndex === 'rcp85_SU35' || props.dataIndex ===  'rcp45_SU35' ){
-    data = legendData.indices.rcp85_SU35
-  } else if (props.dataIndex === 'rcp85_TMAXmean' || props.dataIndex ===  'rcp45_TMAXmean' ){
-    data = legendData.indices.rcp85_TMAXmean
-  } else if (props.dataIndex === 'rcp85_TMEANmean' || props.dataIndex ===  'rcp45_TMEANmean' ){
-    data = legendData.indices.rcp85_TMEANmean
-  } else if (props.dataIndex === 'rcp85_TMINmean' || props.dataIndex ===  'rcp45_TMINmean' ){
-    data = legendData.indices.rcp85_TMINmean
-  } else if (props.dataIndex === 'rcp85_TN10P' || props.dataIndex ===  'rcp45_TN10P' ){
-    data = legendData.indices.rcp85_TN10P
-  } else if (props.dataIndex === 'rcp85_TN90P' || props.dataIndex ===  'rcp45_TN90P' ){
-    data = legendData.indices.rcp85_TN90P
-  } else if (props.dataIndex === 'rcp85_TNn' || props.dataIndex ===  'rcp45_TNn' ){
-    data = legendData.indices.rcp85_TNn
-  } else if (props.dataIndex === 'rcp85_TNx' || props.dataIndex ===  'rcp45_TNx' ){
-    data = legendData.indices.rcp85_TNx
-  } else if (props.dataIndex === 'rcp85_TR20' || props.dataIndex ===  'rcp45_TR20' ){
-    data = legendData.indices.rcp85_TR20
-  } else if (props.dataIndex === 'rcp85_TR25' || props.dataIndex ===  'rcp45_TR25' ){
-    data = legendData.indices.rcp85_TR25
-  } else if (props.dataIndex === 'rcp85_TX10P' || props.dataIndex ===  'rcp45_TX10P' ){
-    data = legendData.indices.rcp85_TX10P
-  } else if (props.dataIndex === 'rcp85_TX90P' || props.dataIndex ===  'rcp45_TX90P' ){
-    data = legendData.indices.rcp85_TX90P
-  } else if (props.dataIndex === 'rcp85_TXn' || props.dataIndex ===  'rcp45_TXn' ){
-    data = legendData.indices.rcp85_TXn
-  } else if (props.dataIndex === 'rcp85_TXx' || props.dataIndex ===  'rcp45_TXx' ){
-    data = legendData.indices.rcp85_TXx
-  } else if (props.dataIndex === 'rcp85_WSDI' || props.dataIndex ===  'rcp45_WSDI' ){
-    data = legendData.indices.rcp85_WSDI
+  var data = legendData.indices.ecearth_rcp85_TMEANmean
+
+  if (props.dataIndex === 'ecearth_rcp85_CDD' || props.dataIndex ===  'ecearth_rcp45_CDD' ){
+      data = legendData.indices.ecearth_rcp85_CDD
+  } else if (props.dataIndex === 'ecearth_rcp85_CSDI' || props.dataIndex ===  'ecearth_rcp45_CSDI' ){
+      data = legendData.indices.ecearth_rcp85_CSDI
+  } else if (props.dataIndex === 'ecearth_rcp85_CWD' || props.dataIndex ===  'ecearth_rcp45_CWD' ){
+      data = legendData.indices.ecearth_rcp85_CWD
+  } else if (props.dataIndex === 'ecearth_rcp85_PRCPTOT' || props.dataIndex ===  'ecearth_rcp45_PRCPTOT' ){
+      data = legendData.indices.ecearth_rcp85_PRCPTOT
+  } else if (props.dataIndex === 'ecearth_rcp85_R10mm' || props.dataIndex ===  'ecearth_rcp45_R10mm' ){
+      data = legendData.indices.ecearth_rcp85_R10mm
+  } else if (props.dataIndex === 'ecearth_rcp85_RX1day' || props.dataIndex ===  'ecearth_rcp45_RX1day' ){
+      data = legendData.indices.ecearth_rcp85_RX1day
+  } else if (props.dataIndex === 'ecearth_rcp85_TMEANmean' || props.dataIndex ===  'ecearth_rcp45_TMEANmean' ){
+      data = legendData.indices.ecearth_rcp85_TMEANmean
   }
 
   // SPI
@@ -175,7 +118,7 @@ const Legend = (props) => {
   
       return () => legend.remove();
 
-    } else if (textSplit[0].substring(0, 3) === 'rcp') {
+    } else if (textSplit[1].substring(0, 3) === 'rcp') {
       const getColor = d => {
         return d > data.min + 8*interval
           ? color[0]

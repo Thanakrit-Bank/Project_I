@@ -1,6 +1,6 @@
 import { GeoJSON, Popup, FeatureGroup } from 'react-leaflet' 
 import React, { useState, useEffect } from 'react'
-import legendData from  './../data/dataLegend'  
+import legendData from  './../data/demolegend'  
 import * as turf from '@turf/turf'
 
 function GridData(props) {
@@ -9,80 +9,24 @@ function GridData(props) {
     const url_grid = 'http://127.0.0.1:5000/get_index/'.concat(props.dataIndex,'&',props.pName,'&',props.date,'&',props.index_folder)
     const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
     
-    var dataIndex = legendData.indices_bak.rcp45_PRCPTOT
-    // Indices_bak
-    if (props.dataIndex === 'rcp85_TMEANmean' || props.dataIndex ===  'rcp45_TMEANmean' ){
-        dataIndex = legendData.indices_bak.rcp85_TMEANmean
-    } else if (props.dataIndex === 'rcp85_PRCPTOT' || props.dataIndex ===  'rcp45_PRCPTOT' ){
-        dataIndex = legendData.indices_bak.rcp85_PRCPTOT
-    }        
-    
-    // Indices
-    else if (props.dataIndex === 'rcp85_CDD' || props.dataIndex ===  'rcp45_CDD' ){
-        dataIndex = legendData.indices.rcp85_CDD
-    } else if (props.dataIndex === 'rcp85_CSDI' || props.dataIndex ===  'rcp45_CSDI' ){
-        dataIndex = legendData.indices.rcp85_CSDI
-    } else if (props.dataIndex === 'rcp85_CWD' || props.dataIndex ===  'rcp45_CWD' ){
-        dataIndex = legendData.indices.rcp85_CWD
-    } else if (props.dataIndex === 'rcp85_DTR' || props.dataIndex ===  'rcp45_DTR' ){
-        dataIndex = legendData.indices.rcp85_DTR
-    } else if (props.dataIndex === 'rcp85_FD0' || props.dataIndex ===  'rcp45_FD0' ){
-        dataIndex = legendData.indices.rcp85_FD0
-    } else if (props.dataIndex === 'rcp85_FD16' || props.dataIndex ===  'rcp45_FD16' ){
-        dataIndex = legendData.indices.rcp85_FD16
-    } else if (props.dataIndex === 'rcp85_ID0' || props.dataIndex ===  'rcp45_ID0' ){
-        dataIndex = legendData.indices.rcp85_ID0
-    } else if (props.dataIndex === 'rcp85_PRCPTOT' || props.dataIndex ===  'rcp45_PRCPTOT' ){
-        dataIndex = legendData.indices.rcp85_PRCPTOT
-    } else if (props.dataIndex === 'rcp85_R10mm' || props.dataIndex ===  'rcp45_R10mm' ){
-        dataIndex = legendData.indices.rcp85_R10mm
-    } else if (props.dataIndex === 'rcp85_R20mm' || props.dataIndex ===  'rcp45_R20mm' ){
-        dataIndex = legendData.indices.rcp85_R20mm
-    } else if (props.dataIndex === 'rcp85_R25mm' || props.dataIndex ===  'rcp45_R25mm' ){
-        dataIndex = legendData.indices.rcp85_R25mm
-    } else if (props.dataIndex === 'rcp85_R95p' || props.dataIndex ===  'rcp45_R95p' ){
-        dataIndex = legendData.indices.rcp85_R95p
-    } else if (props.dataIndex === 'rcp85_R99p' || props.dataIndex ===  'rcp45_R99p' ){
-        dataIndex = legendData.indices.rcp85_R99p
-    } else if (props.dataIndex === 'rcp85_RX1day' || props.dataIndex ===  'rcp45_RX1day' ){
-        dataIndex = legendData.indices.rcp85_RX1day
-    } else if (props.dataIndex === 'rcp85_RX5day' || props.dataIndex ===  'rcp45_RX5day' ){
-        dataIndex = legendData.indices.rcp85_RX5day
-    } else if (props.dataIndex === 'rcp85_SDII' || props.dataIndex ===  'rcp45_SDII' ){
-        dataIndex = legendData.indices.rcp85_SDII
-    } else if (props.dataIndex === 'rcp85_SU25' || props.dataIndex ===  'rcp45_SU25' ){
-        dataIndex = legendData.indices.rcp85_SU25
-    } else if (props.dataIndex === 'rcp85_SU35' || props.dataIndex ===  'rcp45_SU35' ){
-        dataIndex = legendData.indices.rcp85_SU35
-    } else if (props.dataIndex === 'rcp85_TMAXmean' || props.dataIndex ===  'rcp45_TMAXmean' ){
-        dataIndex = legendData.indices.rcp85_TMAXmean
-    } else if (props.dataIndex === 'rcp85_TMEANmean' || props.dataIndex ===  'rcp45_TMEANmean' ){
-        dataIndex = legendData.indices.rcp85_TMEANmean
-    } else if (props.dataIndex === 'rcp85_TMINmean' || props.dataIndex ===  'rcp45_TMINmean' ){
-        dataIndex = legendData.indices.rcp85_TMINmean
-    } else if (props.dataIndex === 'rcp85_TN10P' || props.dataIndex ===  'rcp45_TN10P' ){
-        dataIndex = legendData.indices.rcp85_TN10P
-    } else if (props.dataIndex === 'rcp85_TN90P' || props.dataIndex ===  'rcp45_TN90P' ){
-        dataIndex = legendData.indices.rcp85_TN90P
-    } else if (props.dataIndex === 'rcp85_TNn' || props.dataIndex ===  'rcp45_TNn' ){
-        dataIndex = legendData.indices.rcp85_TNn
-    } else if (props.dataIndex === 'rcp85_TNx' || props.dataIndex ===  'rcp45_TNx' ){
-        dataIndex = legendData.indices.rcp85_TNx
-    } else if (props.dataIndex === 'rcp85_TR20' || props.dataIndex ===  'rcp45_TR20' ){
-        dataIndex = legendData.indices.rcp85_TR20
-    } else if (props.dataIndex === 'rcp85_TR25' || props.dataIndex ===  'rcp45_TR25' ){
-        dataIndex = legendData.indices.rcp85_TR25
-    } else if (props.dataIndex === 'rcp85_TX10P' || props.dataIndex ===  'rcp45_TX10P' ){
-        dataIndex = legendData.indices.rcp85_TX10P
-    } else if (props.dataIndex === 'rcp85_TX90P' || props.dataIndex ===  'rcp45_TX90P' ){
-        dataIndex = legendData.indices.rcp85_TX90P
-    } else if (props.dataIndex === 'rcp85_TXn' || props.dataIndex ===  'rcp45_TXn' ){
-        dataIndex = legendData.indices.rcp85_TXn
-    } else if (props.dataIndex === 'rcp85_TXx' || props.dataIndex ===  'rcp45_TXx' ){
-        dataIndex = legendData.indices.rcp85_TXx
-    } else if (props.dataIndex === 'rcp85_WSDI' || props.dataIndex ===  'rcp45_WSDI' ){
-        dataIndex = legendData.indices.rcp85_WSDI
+    var dataIndex = legendData.indices.ecearth_rcp85_TMEANmean
+
+    if (props.dataIndex === 'ecearth_rcp85_CDD' || props.dataIndex ===  'ecearth_rcp45_CDD' ){
+        dataIndex = legendData.indices.ecearth_rcp85_CDD
+    } else if (props.dataIndex === 'ecearth_rcp85_CSDI' || props.dataIndex ===  'ecearth_rcp45_CSDI' ){
+        dataIndex = legendData.indices.ecearth_rcp85_CSDI
+    } else if (props.dataIndex === 'ecearth_rcp85_CWD' || props.dataIndex ===  'ecearth_rcp45_CWD' ){
+        dataIndex = legendData.indices.ecearth_rcp85_CWD
+    } else if (props.dataIndex === 'ecearth_rcp85_PRCPTOT' || props.dataIndex ===  'ecearth_rcp45_PRCPTOT' ){
+        dataIndex = legendData.indices.ecearth_rcp85_PRCPTOT
+    } else if (props.dataIndex === 'ecearth_rcp85_R10mm' || props.dataIndex ===  'ecearth_rcp45_R10mm' ){
+        dataIndex = legendData.indices.ecearth_rcp85_R10mm
+    } else if (props.dataIndex === 'ecearth_rcp85_RX1day' || props.dataIndex ===  'ecearth_rcp45_RX1day' ){
+        dataIndex = legendData.indices.ecearth_rcp85_RX1day
+    } else if (props.dataIndex === 'ecearth_rcp85_TMEANmean' || props.dataIndex ===  'ecearth_rcp45_TMEANmean' ){
+        dataIndex = legendData.indices.ecearth_rcp85_TMEANmean
     }
+   
 
     // SPI
     else if (props.dataIndex === 'ensemble85_spi_m1' || props.dataIndex ===  'ensemble45_spi_m1' ){
@@ -180,7 +124,7 @@ function GridData(props) {
             }else if(data.properties.index < dataIndex.min + 8*interval){
                 myStyleGrid.fillColor = color[0]
             }else {
-                myStyleGrid.fillColor = color[9]
+                myStyleGrid.fillColor = color[0]
             }
 
             try {

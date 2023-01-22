@@ -1,8 +1,25 @@
-#bottomLeft {
+/* #bottomLeft {
     position: relative;
     top: 75vh;
-}
+} */
   
 .graph {
+    position: absolute;
     z-index: 1000;
+    margin: 0;
+    padding: 0;
+    top: 75vh;
+    left: -20px;
+}
+
+@media screen and (max-height: 900px) {
+    .graph{
+        top: 70vh;
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .graph{
+        top: 65vh;
+    }
 }
