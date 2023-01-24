@@ -1,4 +1,11 @@
 const demoLegend = {
+    "_SPI":{
+        'ecearth45_spi_m1': {
+            'max': 32,
+            'min': 0.1,
+            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"]
+        }
+    },
     "indices":{
         'ecearth_rcp85_TMEANmean': {
             'max': 32,

@@ -4,9 +4,10 @@ from netCDF4 import Dataset
 from shapely.geometry import Point, MultiPolygon
 from shapely.geometry.polygon import Polygon
 from datetime import date, timedelta, datetime
-import sys
-# C:\Users\Administrator\Desktop\Project_I\flask_api
-sys.path.insert(0, r'C:\Users\Administrator\Desktop\Project_I\flask_api')
+# import sys
+# # C:\Users\Administrator\Desktop\Project_I\flask_api
+# # D:\Project\Mix_Project\Project_I\flask_api
+# sys.path.insert(0, r"D:\Project\Mix_Project\Project_I\flask_api")
 from get_province import GettingArea
 shp_instance = GettingArea()
 

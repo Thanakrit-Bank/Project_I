@@ -104,4 +104,4 @@ const unitData = {
     
 }
 
-export default dataLegend
+export default unitData
