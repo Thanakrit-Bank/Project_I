@@ -14,11 +14,11 @@ const dataSelection = {
                 "Yala", "Yasothon"],
     "country" : ["Brunei Darussalam", "Cambodia", "Malaysia", "Indonesia", "Laos (Lao People’s Democratic Republic)", "Myanmar",
                "Philippines", "Thailand", "Timor-Leste", "Vietnam"],
-    "data_provider" : ["ecearth", "hadgem2", "ensemble", "mpi"],
-    "type_index" : ["SPI", "indices"],
+    "data_provider" : ["Ecearth", "Hadgem2", "Ensemble", "MPI"],
+    "type_index" : ["SPI", "Indices"],
     "type_value" : ["RCP4.5", "RCP8.5"],
     "index_name" : ["CDD", "ID0", "TXn", "TMINmean", "WSDI", "RX5day", "R99p", "CWD", "TR25", "SU35", "PRCPTOT", "TR20", "TMAXmean", "R20mm", "TMEANmean", "FD16", "RX1day", "TX10P", "SU25", "TNx", "FD0", "TXx", "DTR", "TX90P", "TN90P", "R10mm", "TN10P", "SDII", "TNn", "R95p", "R25mm", "CSDI"],
-    "SPI_name" : ["m3", "m6", "m60", "m12", "m36", "m1", "m9", "m24", "m48"]
+    "SPI_name" : ["1 month", "3 month", "6  month", "9  month", "12  month", "24  month", "36  month", "48  month", "60  month"]
 }
 
 export default dataSelection

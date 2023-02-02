@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { Link } from 'react-router-dom';
 
-const Setting = () => {
+const SettingCompare = () => {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [bounds, setBounds] = useState({
@@ -92,4 +92,4 @@ const Setting = () => {
     </>
   );
 };
-export default Setting;
+export default SettingCompare;

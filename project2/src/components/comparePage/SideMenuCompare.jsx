@@ -10,12 +10,12 @@ import {  AppstoreOutlined,
 import { Layout, Menu } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
-import Setting from './Setting';
+import SettingCompare from './SettingCompare';
 import { DatePicker } from 'antd';
 
 const { RangePicker } = DatePicker;
 
-const SideMenu = () => {
+const SideMenuCompare = () => {
 
     const [collapsed, setCollapsed] = useState(false);
     const { Sider } = Layout;
@@ -70,9 +70,9 @@ const SideMenu = () => {
       { type: 'divider' },
       getItem('Select Date Range', null, <CalendarOutlined />),
       { type: 'divider' },
-      getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
+      getItem(<Link to="/SinglePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
       { type: 'divider' },
-      getItem(<Setting />, null, <SettingFilled />),
+      getItem(<SettingCompare />, null, <SettingFilled />),
       { type: 'divider' },
       getItem('Logout', null, <LogoutOutlined />)
     ];
@@ -84,4 +84,4 @@ const SideMenu = () => {
     )
 }
 
-export default SideMenu
+export default SideMenuCompare

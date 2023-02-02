@@ -1,102 +1,88 @@
-import React, {useState} from 'react';
-import {  AppstoreOutlined, 
-  GlobalOutlined, 
-  SettingFilled,
-  DatabaseOutlined,
-  BarsOutlined,
-  CalendarOutlined,
-  LogoutOutlined 
-} from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
-import dataSetting from '../../data/dataSelection'
-import { Link } from 'react-router-dom';
-import { DatePicker } from 'antd';
+import React from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
+import './comparePage.css'
+import { Layout } from 'antd';
+import TimeSeries from '../showData/TimeSeries';
+import "../../data/dataSelection" 
+import SideMenuCompare from '../comparePage/SideMenuCompare';
+import Legend from '../showData/Legend';
+import Grid from '../showData/Grid';
 
-const { Sider } = Layout;
-
-function getItem(label, key, icon, children) {
-
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-
-}
-
-const settingSelection = dataSetting
-const {province, country, data_provider, type_index, type_value, index_name, SPI_name} = settingSelection
-console.log(country);
-
-const countryList = country.map((cName) => {
-    return getItem(cName, cName)
-})
-
-const provinceList = province.map((cName) => {
-    return getItem(cName, cName)
-})
-
-const selectDataMenu = data_provider.map((providerName => {
-    return getItem(providerName, providerName, null, type_value.map(valueName => {
-        return getItem(valueName, valueName, null, type_index.map(indexName => {
-            if(indexName === "SPI"){
-                return getItem(indexName, indexName, null, SPI_name.map(spiname => {
-                    return getItem(spiname, spiname)
-                }))
-            }else {
-                return getItem(indexName, indexName, null, index_name.map(spiname => {
-                    return getItem(spiname, spiname)
-                }))
-            }
-        }))
-    }))
-}))
-
-const datePicker = () => {
-    return  console.log('test');
-}
-
-const items = [
-  getItem('Select Area', null, <GlobalOutlined />, [
-    getItem('Country', 'subCountry', null, countryList),
-    getItem('Thailand', 'subThai', null, provinceList),
-  ]),
-  { type: 'divider' },
-  getItem('Select Data Type', null, <DatabaseOutlined />, selectDataMenu),
-  { type: 'divider' },
-  getItem('select date range', null, <CalendarOutlined />),
-  { type: 'divider' },
-  getItem(<Link to="/singlePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
-  { type: 'divider' },
-  getItem('Setting', null, <SettingFilled />),
-  { type: 'divider' },
-  getItem('Logout', null, <LogoutOutlined />)
-];
 
 const ComparePage = () => {
-
-  const [collapsed, setCollapsed] = useState(false);
+  const center = [13.2955977,102.2090103]
+  const zoom = 6
 
   return (
-
-      <Layout style={{ minHeight: '100vh'}}>
-        <Sider className='sider'
-          trigger={<BarsOutlined />} 
-          collapsible 
-          collapsed={collapsed} 
-          onCollapse={(value) => setCollapsed(value)} 
-          collapsedWidth={0} 
+    <div className='grid-container'>
+      <div className='grid-item'>
+        <MapContainer 
+          center={center} 
+          zoom={zoom} 
+          scrollWheelZoom={true} 
+          zoomControl={false} 
+          className="map-container-compare"
         >
-          <Menu 
-            theme="dark" 
-            defaultSelectedKeys={['1']} 
-            mode="vertical" 
-            items={items} 
-          />
-        </Sider>
-      </Layout>
+ 
+            <TileLayer
+                url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+            /> 
+
+            <Layout style={{textAlign: "left", minHeight: '100vh'}}>
+                <SideMenuCompare/>
+                <TimeSeries />
+                <Grid />
+                {/* <Legend /> */}
+            </Layout>
+                      
+        </MapContainer>
+      </div>  
+
+      <div className='grid-item'>
+        <MapContainer 
+          center={center} 
+          zoom={zoom} 
+          scrollWheelZoom={true} 
+          zoomControl={false} 
+          className="map-container-compare"
+        >
   
+            <TileLayer
+                url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+            />
+  
+            <Layout>
+                <TimeSeries />
+                <Grid />
+                {/* <Legend /> */}
+            </Layout>
+                      
+        </MapContainer>
+      </div>
+
+      <div className='grid-item'>
+        <MapContainer 
+          center={center} 
+          zoom={zoom} 
+          scrollWheelZoom={true} 
+          zoomControl={false} 
+          className="map-container-compare"
+        >
+  
+            <TileLayer
+                url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+            />
+   
+            <Layout>
+                <TimeSeries />
+                <Grid />
+                {/* <Legend /> */}
+            </Layout>
+                      
+        </MapContainer>
+      </div>     
+    </div>  
   )
 }
 

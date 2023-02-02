@@ -10,7 +10,7 @@ root.render(
   // <React.StrictMode>
       <Router>
         <Routes>
-          <Route path='/singlePage' element= {<SinglePage/>}/>
+          <Route path='/SinglePage' element= {<SinglePage/>}/>
           <Route path='/ComparePage' element={<ComparePage/>} />
           <Route index path='/Login' element={<Login/>} />
         </Routes>
