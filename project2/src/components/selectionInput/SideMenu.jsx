@@ -11,9 +11,6 @@ import { Layout, Menu } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
 import Setting from './Setting';
-import { DatePicker } from 'antd';
-
-const { RangePicker } = DatePicker;
 
 const SideMenu = () => {
 
@@ -30,7 +27,6 @@ const SideMenu = () => {
     }
     const settingSelection = dataSetting
     const {province, country, data_provider, type_index, type_value, index_name, SPI_name} = settingSelection
-    console.log(country);
     
     const countryList = country.map((cName) => {
         return getItem(cName, cName)
@@ -42,44 +38,44 @@ const SideMenu = () => {
 
     const selectDataMenu = data_provider.map((providerName => {
         return getItem(providerName, providerName, null, type_value.map(valueName => {
-            return getItem(valueName, valueName, null, type_index.map(indexName => {
+            return getItem(valueName, providerName.concat("@",valueName,"@"), null, type_index.map(indexName => {
                 if(indexName === "SPI"){
-                    return getItem(indexName, indexName, null, SPI_name.map(spiname => {
-                        return getItem(spiname, spiname)
+                    return getItem(indexName, providerName.concat("@",valueName,"@",indexName,"@"), null, SPI_name.map(spiname => {
+                        return getItem(spiname, providerName.concat("@",valueName,"@",indexName,"@",spiname.trim()))
                     }))
                 }else {
-                    return getItem(indexName, indexName, null, index_name.map(spiname => {
-                        return getItem(spiname, spiname)
+                    return getItem(indexName, providerName.concat("@",valueName,"@",indexName,"@"), null, index_name.map(spiname => {
+                        return getItem(spiname, providerName.concat("@",valueName,"@",indexName,"@",spiname.trim()))
                     }))
                 }
             }))
         }))
     }))
 
-    const datePicker = (() => {
-        return  console.log('test');
-    })
-
     const items = [
-      getItem('Select Area', null, <GlobalOutlined />, [
+      getItem('Select Area', 'area', <GlobalOutlined />, [
         getItem('Country', 'subCountry', null, countryList),
         getItem('Thailand', 'subThai', null, provinceList),
       ]),
       { type: 'divider' },
-      getItem('Select Data Type', null, <DatabaseOutlined />, selectDataMenu),
+      getItem('Select Data Type', 'dataType', <DatabaseOutlined />, selectDataMenu),
       { type: 'divider' },
-      getItem('Select Date Range', null, <CalendarOutlined />),
+      getItem('Select Date Range', 'dateRange', <CalendarOutlined />),
       { type: 'divider' },
       getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
       { type: 'divider' },
-      getItem(<Setting />, null, <SettingFilled />),
+      getItem(<Setting />, 'setting', <SettingFilled />),
       { type: 'divider' },
-      getItem('Logout', null, <LogoutOutlined />)
+      getItem('Logout', 'logout', <LogoutOutlined />)
     ];
+
+    const onClick = (e) => {
+        console.log('click', e.keyPath[0]);
+    }
     
     return (
         <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className='sider'>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items}/>
+            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items} onClick={onClick}/>
         </Sider> 
     )
 }

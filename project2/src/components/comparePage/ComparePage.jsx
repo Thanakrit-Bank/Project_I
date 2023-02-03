@@ -6,7 +6,6 @@ import { Layout } from 'antd';
 import TimeSeries from '../showData/TimeSeries';
 import "../../data/dataSelection" 
 import SideMenuCompare from '../comparePage/SideMenuCompare';
-import Legend from '../showData/Legend';
 import Grid from '../showData/Grid';
 
 

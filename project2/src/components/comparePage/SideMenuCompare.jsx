@@ -11,9 +11,7 @@ import { Layout, Menu } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
 import SettingCompare from './SettingCompare';
-import { DatePicker } from 'antd';
 
-const { RangePicker } = DatePicker;
 
 const SideMenuCompare = () => {
 
@@ -55,10 +53,6 @@ const SideMenuCompare = () => {
             }))
         }))
     }))
-
-    const datePicker = (() => {
-        return  console.log('test');
-    })
 
     const items = [
       getItem('Select Area', null, <GlobalOutlined />, [
