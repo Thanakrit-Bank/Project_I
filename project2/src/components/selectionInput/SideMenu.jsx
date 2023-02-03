@@ -11,10 +11,11 @@ import { Layout, Menu } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
 import Setting from './Setting';
+import './sideMenu.css'
 
 const SideMenu = () => {
 
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
     const { Sider } = Layout;
   
     function getItem(label, key, icon, children) {
@@ -53,14 +54,14 @@ const SideMenu = () => {
     }))
 
     const items_1 = [
-        getItem('Select Area', null, <GlobalOutlined />, [
+        getItem('Select Area', 'area', <GlobalOutlined />, [
             getItem('Country', 'subCountry', null, countryList),
             getItem('Thailand', 'subThai', null, provinceList),
         ]),
         { type: 'divider' },
-        getItem('Select Data Type', null, <DatabaseOutlined />, selectDataMenu),
+        getItem('Select Data Type', 'dataType', <DatabaseOutlined />, selectDataMenu),
         { type: 'divider' },
-        getItem('Select Date Range', null, <CalendarOutlined />),
+        getItem('Select Date Range', 'dateRange', <CalendarOutlined />),
         // { type: 'divider' },
         // getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
         // { type: 'divider' },
@@ -82,9 +83,11 @@ const SideMenu = () => {
     }
     
     return (
-        <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className='sider'>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_1} onClick={onClick}/>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_2} onClick={onClick} style={{position: 'absolute', bottom: '0'}}/>
+        <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className="sider">
+                <div className="menu-container">
+                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_1} onClick={onClick}/>
+                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_2} onClick={onClick}/>
+                </div>
         </Sider> 
     )
 }

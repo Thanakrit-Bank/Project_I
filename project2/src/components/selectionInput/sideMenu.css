@@ -1,0 +1,15 @@
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.sider {
+    position: absolute;
+    z-index: 1000;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+    height: 100vh;
+}
