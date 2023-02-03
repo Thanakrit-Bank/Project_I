@@ -67,7 +67,7 @@ const SettingCompare = () => {
             onBlur={() => {}}
             // end
           >
-            Draggable Modal
+            Setting
           </div>
         }
         open={open}
@@ -84,10 +84,8 @@ const SettingCompare = () => {
         )}
       >
         <p>
-          Just don&apos;t learn physics at school and your life will be full of magic and miracles.
+          Test
         </p>
-        <br />
-        <p>Day before yesterday I saw a rabbit, and yesterday a deer, and today, you.</p>
       </Modal>
     </>
   );

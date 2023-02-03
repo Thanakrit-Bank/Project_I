@@ -52,21 +52,29 @@ const SideMenu = () => {
         }))
     }))
 
-    const items = [
-      getItem('Select Area', 'area', <GlobalOutlined />, [
-        getItem('Country', 'subCountry', null, countryList),
-        getItem('Thailand', 'subThai', null, provinceList),
-      ]),
-      { type: 'divider' },
-      getItem('Select Data Type', 'dataType', <DatabaseOutlined />, selectDataMenu),
-      { type: 'divider' },
-      getItem('Select Date Range', 'dateRange', <CalendarOutlined />),
-      { type: 'divider' },
-      getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
-      { type: 'divider' },
-      getItem(<Setting />, 'setting', <SettingFilled />),
-      { type: 'divider' },
-      getItem('Logout', 'logout', <LogoutOutlined />)
+    const items_1 = [
+        getItem('Select Area', null, <GlobalOutlined />, [
+            getItem('Country', 'subCountry', null, countryList),
+            getItem('Thailand', 'subThai', null, provinceList),
+        ]),
+        { type: 'divider' },
+        getItem('Select Data Type', null, <DatabaseOutlined />, selectDataMenu),
+        { type: 'divider' },
+        getItem('Select Date Range', null, <CalendarOutlined />),
+        // { type: 'divider' },
+        // getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
+        // { type: 'divider' },
+        // getItem(<Setting />, null, <SettingFilled />),
+        // { type: 'divider' },
+        // getItem('Logout', null, <LogoutOutlined />)
+    ];
+
+    const items_2 = [
+        getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
+        { type: 'divider' },
+        getItem(<Setting />, null, <SettingFilled />),
+        { type: 'divider' },
+        getItem('Logout', null, <LogoutOutlined />)
     ];
 
     const onClick = (e) => {
@@ -75,7 +83,8 @@ const SideMenu = () => {
     
     return (
         <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className='sider'>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items} onClick={onClick}/>
+            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_1} onClick={onClick}/>
+            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_2} onClick={onClick} style={{position: 'absolute', bottom: '0'}}/>
         </Sider> 
     )
 }

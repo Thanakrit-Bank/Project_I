@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useNavigate } from 'react-router-dom'
@@ -47,7 +47,7 @@ const Login = () => {
                   })
                 .then((value => {
                 localStorage.setItem("token", result.token) // use for uathen each page 
-                navigate("/singlePage")
+                navigate("/SinglePage")
                 }))
             } else {
                 MySwal.fire({
@@ -60,26 +60,49 @@ const Login = () => {
         }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>username:
-            <input 
-                type="text" 
-                name="username" 
-                value={inputs.username || ""} 
-                onChange={handleChange}
-            />
-            </label>
-            <label>password:
-                <input 
-                type="password" 
-                name="password" 
-                value={inputs.password || ""} 
-                onChange={handleChange}
-                />
-                </label>
-                <input type="submit" />
-        </form>
-  )
+        <div class="background">
+            <div>
+                <div class="shape" />
+                <div class="shape" />
+            </div>
+
+            <form onSubmit={handleSubmit}>
+
+                    <h3>Login</h3>
+
+                    <label for="username">Username
+                        <input 
+                            type="text" 
+                            name="username" 
+                            value={inputs.username || ""} 
+                            onChange={handleChange}
+                            id="username"
+                            placeholder="Enter username"
+                        />
+                    </label>
+   
+                    <label for="password">Password
+                        <input 
+                            type="password" 
+                            name="password" 
+                            value={inputs.password || ""} 
+                            onChange={handleChange}
+                            id="password"
+                            placeholder="Enter password"
+                        />
+                    </label>      
+
+                    <button type="submit">
+                        Log In
+                    </button>
+
+                    <div style={{margin: 10, textAlign: "center"}}>
+                        OR
+                    </div>
+                    
+            </form>            
+        </div>
+    )
 }
 
 export default Login

@@ -18,12 +18,13 @@ const SideMenuCompare = () => {
     const [collapsed, setCollapsed] = useState(false);
     const { Sider } = Layout;
   
-    function getItem(label, key, icon, children) {
+    function getItem(label, key, icon, children, type) {
       return {
         key,
         icon,
         children,
         label,
+        type
       };
     }
     const settingSelection = dataSetting
@@ -54,26 +55,60 @@ const SideMenuCompare = () => {
         }))
     }))
 
-    const items = [
-      getItem('Select Area', null, <GlobalOutlined />, [
-        getItem('Country', 'subCountry', null, countryList),
-        getItem('Thailand', 'subThai', null, provinceList),
-      ]),
-      { type: 'divider' },
-      getItem('Select Data Type', null, <DatabaseOutlined />, selectDataMenu),
-      { type: 'divider' },
-      getItem('Select Date Range', null, <CalendarOutlined />),
-      { type: 'divider' },
-      getItem(<Link to="/SinglePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
-      { type: 'divider' },
-      getItem(<SettingCompare />, null, <SettingFilled />),
-      { type: 'divider' },
-      getItem('Logout', null, <LogoutOutlined />)
+    const items_1 = [
+        getItem('Left Map', 'left', null, [
+            getItem('Select Area', 'selectAreaLeft', <GlobalOutlined />, [
+                getItem('Country', 'subCountryLeft', null, countryList),
+                getItem('Thailand', 'subThaiLeft', null, provinceList)
+            ]),
+            { type: 'divider' }, 
+            getItem('Select Data Type', 'selectDataLeft', <DatabaseOutlined />, selectDataMenu),
+            { type: 'divider' },
+            getItem('Select Date Range', 'selectDateLeft', <CalendarOutlined />),
+        ], 'group'),
+
+        getItem('Center Map', 'center', null, [
+            getItem('Select Area', 'selectAreaCenter', <GlobalOutlined />, [
+                getItem('Country', 'subCountryCenter', null, countryList),
+                getItem('Thailand', 'subThaiCenter', null, provinceList)
+            ]),
+            { type: 'divider' }, 
+            getItem('Select Data Type', 'selectDataCenter', <DatabaseOutlined />, selectDataMenu),
+            { type: 'divider' },
+            getItem('Select Date Range', 'selectDateCenter', <CalendarOutlined />),
+        ], 'group'),
+
+        getItem('Right Map', 'right', null, [
+            getItem('Select Area', 'selectAreaRight', <GlobalOutlined />, [
+                getItem('Country', 'subCountryRight', null, countryList),
+                getItem('Thailand', 'subThaiRight', null, provinceList)
+            ]),
+            { type: 'divider' }, 
+            getItem('Select Data Type', 'selectDataRight', <DatabaseOutlined />, selectDataMenu),
+            { type: 'divider' },
+            getItem('Select Date Range', 'selectDateRight', <CalendarOutlined />),
+        ], 'group'),
+
+        // { type: 'divider' },
+        // getItem(<Link to="/SinglePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
+        // { type: 'divider' },
+        // getItem(<SettingCompare />, null, <SettingFilled />),
+        // { type: 'divider' },
+        // getItem('Logout', null, <LogoutOutlined />)
+    ];
+
+    const items_2 = [
+        getItem(<Link to="/SinglePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
+        { type: 'divider' },
+        getItem(<SettingCompare />, null, <SettingFilled />),
+        { type: 'divider' },
+        getItem('Logout', null, <LogoutOutlined />)
     ];
     
     return (
         <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className='sider'>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items}/>
+            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_1}/>
+            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_2} style={{position: 'absolute', bottom: '0'}}/>
         </Sider> 
     )
 }
