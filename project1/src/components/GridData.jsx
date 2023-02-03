@@ -6,8 +6,8 @@ import * as turf from '@turf/turf'
 function GridData(props) {
     const [data, setData] = useState([])
     
-    const url_grid = 'http://127.0.0.1:5000/get_index/'.concat(props.dataIndex,'&',props.pName,'&',props.date,'&',props.index_folder)
-    const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
+    const url_grid = 'http://127.0.0.1:8000/get_index/'.concat(props.dataIndex,'&',props.pName,'&',props.date,'&',props.index_folder)
+    // const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
     
     var dataIndex = legendData.indices.ecearth_rcp85_TMEANmean
 
@@ -53,37 +53,48 @@ function GridData(props) {
     const interval = (dataIndex.max - dataIndex.min)/8
     
     useEffect(()=>{
+        const reqOptions ={
+                  method:"GET", 
+                  headers:{"x-access-token": "test"},
+                }
         setData([])
-        fetchData(url_grid, url_shp)
+        // fetchData(url_grid)
+        fetch(url_grid, {
+            method:"GET", 
+            headers:{'x-access-token': 'test'},
+          })
+        .then(r => r.json())
+        .then(data => setData(data))
+        .catch(error => console.log(error.message))
         console.log(url_grid);
     },[props.pName, props.dataIndex, props.date])
 
-    function fetchData(url_grid,url_shp) {
-        const reqOptions ={
-          method:"get", 
-          headers:{"x-access-token": "test"},
-        }
+    // function fetchData(url_grid) {
+    //     const reqOptions ={
+    //     //   method:"GET", 
+    //       headers:{"x-access-token": "test"},
+    //     }
         
-        let request_grid = fetch(url_grid, reqOptions);
-        console.log('feching');
-        request_grid
-        .then(r => r.json())
-        .then(data => {
-            setData(data)
-        }, (error) => {
-            console.error(error);
-        });
+    //     let request_grid = fetch(url_grid, reqOptions);
+    //     console.log('feching');
+    //     request_grid
+    //     .then(r => r.json())
+    //     .then(data => {
+    //         setData(data)
+    //     }, (error) => {
+    //         console.error(error);
+    //     });
 
-        // let request_shp = fetch(url_shp, reqOptions);
-        // console.log('feching');
-        // request_shp
-        // .then(r => r.json())
-        // .then(data => {
-        //     setShp(data)
-        // }, (error) => {
-        //     console.error(error);
-        // });
-      }
+    //     // let request_shp = fetch(url_shp, reqOptions);
+    //     // console.log('feching');
+    //     // request_shp
+    //     // .then(r => r.json())
+    //     // .then(data => {
+    //     //     setShp(data)
+    //     // }, (error) => {
+    //     //     console.error(error);
+    //     // });
+    //   }
 
     const setCenter = (coordinate) => {
         props.SetViewOnChange(coordinate)
