@@ -27,7 +27,7 @@ const SinglePage = () => {
   }
   const dateChange = (date) => {
     setSelectDate(date)
-    console.log(selectDate)
+    console.log(date)
   }
 
   const getTimeSeriesData = (data) => {
@@ -52,7 +52,7 @@ const SinglePage = () => {
             <TimeSeries data={timeSeriesData}/>
         </Layout>
 
-        <Grid area={selectArea} setTimeSeriesData = {getTimeSeriesData}/>
+        <Grid area={selectArea} data={selectData} date={selectDate} setTimeSeriesData = {getTimeSeriesData}/>
         {/* <Legend /> */}
 
     </MapContainer>    

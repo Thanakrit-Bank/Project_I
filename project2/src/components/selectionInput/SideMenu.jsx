@@ -37,7 +37,7 @@ const SideMenu = (props) => {
     })
 
     const provinceList = province.map((cName) => {
-        return getItem(cName, cName)
+        return getItem(cName, cName.replace(' ', '_'))
     })
 
     const selectDataMenu = data_provider.map((providerName => {
@@ -92,7 +92,7 @@ const SideMenu = (props) => {
         else if (e.keyPath[e.keyPath.length - 1] === 'dataType'){
             props.dataChange(e.keyPath[0])
         }
-        else if (e.keyPath[e.keyPath.length - 1] === 'dateRange'){
+        else if (e.keyPath[e.keyPath.length - 1] === 'dateRange' && e.keyPath[0] !== 'dateRange'){
             props.dateChange(e.keyPath[0])
         }
     }

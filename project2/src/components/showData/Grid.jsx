@@ -52,6 +52,26 @@ const Grid = (props) => {
     
     const interval = (dataindex.max - dataindex.min)/8
     
+    const url = "http://127.0.0.1:8000/get_index"
+    const area = props.area
+    const dateInput = props.date
+    const dataNameArray = props.data.split('@')
+    let dataProvider = dataNameArray[0]
+    let typeValue = dataNameArray[1]
+    const typeIdex = dataNameArray[2]
+    const indexName = dataNameArray[3]
+    // ecearth@RCP4.5@indices@CDD
+    // ecearth@RCP4.5@SPI@12  month
+    if(typeValue === 'RCP4.5'){
+        typeValue = 'rcp45'
+    }else {
+        typeValue = 'rcp85'
+    }
+
+    if (dataProvider === 'ensemble'){
+        dataProvider = 'mpi'
+    }
+    const urlRequest = url.concat('/',dataProvider,'_',typeValue,'_', indexName, '&', area.split(' ')[0], '&', dateInput, '&', typeIdex)
     useEffect(()=>{
         const reqOptions ={
                   method:"GET", 
@@ -59,12 +79,14 @@ const Grid = (props) => {
                 }
         setData([])
         // fetchData(url_grid)
-        fetch('http://127.0.0.1:8000/get_index/ecearth_rcp45_CDD&Thailand&Sun Jan 01 2006 00:00:00 GMT+0700,Sat Dec 01 2007 00:00:00 GMT+0700&indices', reqOptions)
+        fetch(urlRequest, reqOptions)
         .then(r => r.json())
         .then(data => setData(data))
         .catch(error => console.log(error.message))
+
+        console.log(urlRequest)
         // console.log(url_grid);
-    },[props.area])
+    },[props.area, props.data, props.date])
 
     const setCenter = (coordinate) => {
         // props.SetViewOnChange(coordinate)
