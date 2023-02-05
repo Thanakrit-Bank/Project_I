@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {  AppstoreOutlined, 
   GlobalOutlined, 
   SettingFilled,
@@ -12,14 +12,14 @@ import { Link } from 'react-router-dom';
 import Setting from './Setting';
 import './sideMenu.css'
 import { deleteToken } from '../authentication/Auth';
-import { DatePicker } from 'antd';
+import SelectDate from './SelectDate';
 
-const { RangePicker } = DatePicker;
 
 const SideMenu = (props) => {
 
     const [collapsed, setCollapsed] = useState(true);
     const { Sider } = Layout;
+    const [picker, setPicker]  = useState('year')
 
     function getItem(label, key, icon, children) {
       return {
@@ -65,24 +65,22 @@ const SideMenu = (props) => {
         getItem('Select Data Type', 'dataType', <DatabaseOutlined />, selectDataMenu),
         { type: 'divider' },
         getItem(
-            <RangePicker 
-                className='rangepicker' 
-                size="small"
-                onChange={(val) => console.log(val.toString())}
-            /> 
+            <SelectDate date={props.date} picker={picker} dateChange={props.dateChange}/> 
         , 'dateRange'),
     ];
 
     const items_2 = [
         getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
         { type: 'divider' },
-        getItem(<Setting />, null, <SettingFilled />),
+        getItem(<Setting graphType={props.graphType} setGraphType={props.setGraphType} />, null, <SettingFilled />),
         { type: 'divider' },
         getItem(<Link to="/">Logout</Link>, 'logout', <LogoutOutlined />)
     ];
 
     const onClick = (e) => {
-        // console.log('click', e.keyPath[-1]);
+        const dataNameArray = props.data.split('@')
+        let typeIdex = dataNameArray[2]
+        console.log('click', e.keyPath);
         if (e.keyPath[0] === 'logout'){
             deleteToken()
         }
@@ -91,10 +89,13 @@ const SideMenu = (props) => {
         }
         else if (e.keyPath[e.keyPath.length - 1] === 'dataType'){
             props.dataChange(e.keyPath[0])
+            if (typeIdex === "SPI"){
+                setPicker('year')
+            }else {
+                setPicker('month')
+            }
         }
-        else if (e.keyPath[e.keyPath.length - 1] === 'dateRange' && e.keyPath[0] !== 'dateRange'){
-            props.dateChange(e.keyPath[0])
-        }
+        
     }
 
     return (

@@ -14,11 +14,11 @@ const SinglePage = () => {
   const zoom = 6
 
   const [dataIndex, setDataIndex] = useState('CDD')
-
   const [timeSeriesData, setTimeSeriesData] = useState([])
   const [selectArea, setSelectArea] = useState("Thailand")
   const [selectData, setSelectData] = useState("ecearth@RCP4.5@indices@CDD")
   const [selectDate, setSelectDate] = useState("2006")
+  const [graphType, setGraphType] = useState('Linechart')
 
   const areaChange = (area) => {
     setSelectArea(area)
@@ -26,11 +26,13 @@ const SinglePage = () => {
   }
   const dataChange = (data) => {
     setSelectData(data)
+    const indexName = selectData.split('@')[selectData.split('@').length - 1]
+    setDataIndex(indexName)
     console.log(selectData)
   }
   const dateChange = (date) => {
     setSelectDate(date)
-    console.log(date)
+    console.log('single page',date)
   }
 
   const getTimeSeriesData = (data) => {
@@ -51,8 +53,8 @@ const SinglePage = () => {
         />
         
         <Layout style={{ minHeight: '100vh'}}>
-            <SideMenu areaChange={areaChange} dataChange={dataChange} dateChange={dateChange} area={selectArea} data={selectData} date={selectDate}/>
-            <TimeSeries data={timeSeriesData}/>
+            <SideMenu areaChange={areaChange} dataChange={dataChange} dateChange={dateChange} area={selectArea} data={selectData} date={selectDate} graphType={graphType} setGraphType={setGraphType}/>
+            <TimeSeries data={timeSeriesData} type={graphType}/>
         </Layout>
 
         <Grid area={selectArea} data={selectData} date={selectDate} setTimeSeriesData = {getTimeSeriesData}/>

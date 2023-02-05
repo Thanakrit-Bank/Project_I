@@ -1,4 +1,4 @@
-import { Modal } from 'antd';
+import { Modal, Radio } from 'antd';
 import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { Link } from 'react-router-dom';
@@ -6,9 +6,10 @@ import { Slider } from 'antd';
 import { Checkbox } from "antd";
 import './setting.css'
 
-const Setting = () => {
+const Setting = (props) => {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [value1, setValue1] = useState(1);
   const [bounds, setBounds] = useState({
     left: 0,
     top: 0,
@@ -32,8 +33,13 @@ const Setting = () => {
     setOpen(false);
   };
 
-  const onChange = (e) => {
-    console.log(`checked = ${e.target.checked}`);
+  const onChange1 = (e) => {
+    console.log('radio checked', e.target.value);
+    setValue1(e.target.value);
+  };
+  const graphChange = (e) => {
+    console.log('radio checked', e.target.value);
+    props.setGraphType(e.target.value);
   };
 
   const onStart = (_event, uiData) => {
@@ -93,20 +99,16 @@ const Setting = () => {
         <br/>
         <p className="topic">Graph</p>
         <p className="sub-topic">
-          Type: <Checkbox className="checkbox" onChange={onChange}>
-            <h5>Line Chart</h5>
-          </Checkbox>
-          <Checkbox className="checkbox" onChange={onChange}>
-            <h5>Histogram</h5>
-          </Checkbox>
+          Type: <Radio.Group onChange={graphChange} value={props.graphType}>
+                  <Radio value="Linechart">Linechart</Radio>
+                  <Radio value="Histrogram">Histrogram</Radio>
+                </Radio.Group>
         </p>
         <p className="sub-topic">
-          Data: <Checkbox className="checkbox" onChange={onChange}>
-            <h5>Year</h5>
-          </Checkbox>
-          <Checkbox className="checkbox" onChange={onChange}>
-            <h5>Month</h5>
-          </Checkbox>
+          Data: <Radio.Group onChange={onChange1} value={value1}>
+                  <Radio value={1}>Seasonal</Radio>
+                  <Radio value={2}>Overall</Radio>
+                </Radio.Group>
         </p>
         <br/>
         <p className="topic">Opacity</p>

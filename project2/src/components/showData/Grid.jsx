@@ -9,7 +9,6 @@ const Grid = (props) => {
     // const url_grid = 'http://127.0.0.1:8000/get_index/'.concat(props.dataindex,'&',props.pName,'&',props.date,'&',props.index_folder)
     // const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
     
-    var dataindex = dataIndex.indices.CDD 
 
     // if (props.dataindex === 'ecearth_rcp85_CDD' || props.dataindex ===  'ecearth_rcp45_CDD' ){
     //     dataindex = legendData.indices.ecearth_rcp85_CDD
@@ -48,9 +47,7 @@ const Grid = (props) => {
     // } else if (props.dataindex === 'ensemble85_spi_m60' || props.dataindex ===  'ensemble45_spi_m60' ){
     //     dataindex = legendData.spi.ensemble85_spi_m60
     // }
-    var color = dataindex.color
     
-    const interval = (dataindex.max - dataindex.min)/8
     
     const url = "http://127.0.0.1:8000/get_index"
     const area = props.area
@@ -58,10 +55,20 @@ const Grid = (props) => {
     const dataNameArray = props.data.split('@')
     let dataProvider = dataNameArray[0]
     let typeValue = dataNameArray[1]
-    const typeIdex = dataNameArray[2]
+    let typeIdex = dataNameArray[2]
     const indexName = dataNameArray[3]
     // ecearth@RCP4.5@indices@CDD
     // ecearth@RCP4.5@SPI@12  month
+
+    var dataindex = dataIndex[typeIdex][indexName]
+    
+    if (typeIdex === 'SPI'){
+        dataindex = dataIndex[typeIdex]['spi']
+    }
+    var color = dataindex.color
+    
+    const interval = (dataindex.max - dataindex.min)/8
+
     if(typeValue === 'RCP4.5'){
         typeValue = 'rcp45'
     }else {
@@ -71,7 +78,20 @@ const Grid = (props) => {
     if (dataProvider === 'ensemble'){
         dataProvider = 'mpi'
     }
-    const urlRequest = url.concat('/',dataProvider,'_',typeValue,'_', indexName, '&', area.split(' ')[0], '&', dateInput, '&', typeIdex)
+
+
+    let urlRequest = url.concat('/',dataProvider,'_',typeValue,'_', indexName, '&', area.split(' ')[0], '&', dateInput, '&', typeIdex)
+
+    if (typeIdex === 'SPI'){
+        typeIdex = '_SPI'
+        if (typeValue === 'RCP4.5'){
+            typeValue = '45'
+        }else {
+            typeValue = '85'
+        }
+        urlRequest = url.concat('/',dataProvider,typeValue,'_', 'spi', '_m', indexName.split(' ')[0], '&', area.split(' ')[0], '&', dateInput, '&', typeIdex)
+    }
+
     useEffect(()=>{
         const reqOptions ={
                   method:"GET", 
