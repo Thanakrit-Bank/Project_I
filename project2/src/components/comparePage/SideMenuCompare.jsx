@@ -11,6 +11,7 @@ import { Layout, Menu } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
 import SettingCompare from './SettingCompare';
+import './sideMenuCompare.css'
 
 
 const SideMenuCompare = () => {
@@ -104,11 +105,17 @@ const SideMenuCompare = () => {
         { type: 'divider' },
         getItem('Logout', null, <LogoutOutlined />)
     ];
+
+    const onClick = (e) => {
+        console.log('click', e.keyPath[0]);
+    }
     
     return (
-        <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className='sider'>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_1}/>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_2} style={{position: 'absolute', bottom: '0'}}/>
+        <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className="sider">
+                <div className="menu-container">
+                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_1} onClick={onClick}/>
+                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_2} onClick={onClick}/>
+                </div>
         </Sider> 
     )
 }

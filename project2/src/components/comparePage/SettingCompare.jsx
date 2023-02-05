@@ -2,6 +2,9 @@ import { Modal } from 'antd';
 import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { Link } from 'react-router-dom';
+import { Slider } from 'antd';
+import { Checkbox } from "antd";
+import './settingCompare.css'
 
 const SettingCompare = () => {
   const [open, setOpen] = useState(false);
@@ -27,6 +30,10 @@ const SettingCompare = () => {
   const handleCancel = (e) => {
     console.log(e);
     setOpen(false);
+  };
+
+  const onChange = (e) => {
+    console.log(`checked = ${e.target.checked}`);
   };
   
   const onStart = (_event, uiData) => {
@@ -67,7 +74,7 @@ const SettingCompare = () => {
             onBlur={() => {}}
             // end
           >
-            Setting
+            <h3>Setting</h3>
           </div>
         }
         open={open}
@@ -83,9 +90,79 @@ const SettingCompare = () => {
           </Draggable>
         )}
       >
-        <p>
-          Test
+        <p >Left Map</p>
+        {/* Left Map */}
+        <br/>
+        <p className="topic">Graph</p>
+        <p className="sub-topic">
+          Type: <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Line Chart</h5>
+          </Checkbox>
+          <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Histogram</h5>
+          </Checkbox>
         </p>
+        <p className="sub-topic">
+          Data: <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Year</h5>
+          </Checkbox>
+          <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Month</h5>
+          </Checkbox>
+        </p>
+        <br/>
+        <p className="topic">Opacity</p>
+        <Slider min={0} max={10} />
+        <p>------------------------------------------------------------------------------------</p>
+
+        {/* Center Map */}
+        <p >Center Map</p>
+        <br/>
+        <p className="topic">Graph</p>
+        <p className="sub-topic">
+          Type: <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Line Chart</h5>
+          </Checkbox>
+          <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Histogram</h5>
+          </Checkbox>
+        </p>
+        <p className="sub-topic">
+          Data: <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Year</h5>
+          </Checkbox>
+          <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Month</h5>
+          </Checkbox>
+        </p>
+        <br/>
+        <p className="topic">Opacity</p>
+        <Slider min={0} max={10} />
+        <p>------------------------------------------------------------------------------------</p>
+
+        {/* Right Map */}
+        <p >Right Map</p>
+        <br/>
+        <p className="topic">Graph</p>
+        <p className="sub-topic">
+          Type: <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Line Chart</h5>
+          </Checkbox>
+          <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Histogram</h5>
+          </Checkbox>
+        </p>
+        <p className="sub-topic">
+          Data: <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Year</h5>
+          </Checkbox>
+          <Checkbox className="checkbox" onChange={onChange}>
+            <h5>Month</h5>
+          </Checkbox>
+        </p>
+        <br/>
+        <p className="topic">Opacity</p>
+        <Slider min={0} max={10} />
       </Modal>
     </>
   );

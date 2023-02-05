@@ -92,11 +92,11 @@ const Login = () => {
                         />
                     </label>      
 
-                    <button type="submit">
+                    <button className='button' type="submit">
                         Log In
                     </button>
 
-                    <button type="submit">
+                    <button className='button' type="submit">
                         Register
                     </button>
             </form>            

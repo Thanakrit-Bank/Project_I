@@ -10,10 +10,10 @@
     z-index: 0;
 }
 
-.sider {
+/* .sider {
     position: absolute;
     z-index: 1000;
-}
+} */
 
 .grid-container {
     display: grid;

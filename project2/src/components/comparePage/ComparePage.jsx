@@ -30,9 +30,6 @@ const ComparePage = () => {
 
             <Layout style={{textAlign: "left", minHeight: '100vh'}}>
                 <SideMenuCompare/>
-                <TimeSeries />
-                <Grid />
-                {/* <Legend /> */}
             </Layout>
                       
         </MapContainer>
@@ -52,9 +49,7 @@ const ComparePage = () => {
             />
   
             <Layout>
-                <TimeSeries />
-                <Grid />
-                {/* <Legend /> */}
+
             </Layout>
                       
         </MapContainer>
@@ -74,9 +69,7 @@ const ComparePage = () => {
             />
    
             <Layout>
-                <TimeSeries />
-                <Grid />
-                {/* <Legend /> */}
+
             </Layout>
                       
         </MapContainer>
