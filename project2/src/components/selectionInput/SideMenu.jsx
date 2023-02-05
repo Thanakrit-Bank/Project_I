@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {  AppstoreOutlined, 
   GlobalOutlined, 
   SettingFilled,
   DatabaseOutlined,
   BarsOutlined,
-  CalendarOutlined,
   LogoutOutlined 
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
@@ -12,12 +11,16 @@ import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
 import Setting from './Setting';
 import './sideMenu.css'
+import { deleteToken } from '../authentication/Auth';
+import { DatePicker } from 'antd';
 
-const SideMenu = () => {
+const { RangePicker } = DatePicker;
+
+const SideMenu = (props) => {
 
     const [collapsed, setCollapsed] = useState(true);
     const { Sider } = Layout;
-  
+
     function getItem(label, key, icon, children) {
       return {
         key,
@@ -61,13 +64,13 @@ const SideMenu = () => {
         { type: 'divider' },
         getItem('Select Data Type', 'dataType', <DatabaseOutlined />, selectDataMenu),
         { type: 'divider' },
-        getItem('Select Date Range', 'dateRange', <CalendarOutlined />),
-        // { type: 'divider' },
-        // getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
-        // { type: 'divider' },
-        // getItem(<Setting />, null, <SettingFilled />),
-        // { type: 'divider' },
-        // getItem('Logout', null, <LogoutOutlined />)
+        getItem(
+            <RangePicker 
+                className='rangepicker' 
+                size="small"
+                onChange={(val) => console.log(val.toString())}
+            /> 
+        , 'dateRange'),
     ];
 
     const items_2 = [
@@ -75,13 +78,25 @@ const SideMenu = () => {
         { type: 'divider' },
         getItem(<Setting />, null, <SettingFilled />),
         { type: 'divider' },
-        getItem('Logout', null, <LogoutOutlined />)
+        getItem(<Link to="/">Logout</Link>, 'logout', <LogoutOutlined />)
     ];
 
     const onClick = (e) => {
-        console.log('click', e.keyPath[0]);
+        // console.log('click', e.keyPath[-1]);
+        if (e.keyPath[0] === 'logout'){
+            deleteToken()
+        }
+        else if (e.keyPath[e.keyPath.length - 1] === 'area'){
+            props.areaChange(e.keyPath[0])
+        }
+        else if (e.keyPath[e.keyPath.length - 1] === 'dataType'){
+            props.dataChange(e.keyPath[0])
+        }
+        else if (e.keyPath[e.keyPath.length - 1] === 'dateRange'){
+            props.dateChange(e.keyPath[0])
+        }
     }
-    
+
     return (
         <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className="sider">
                 <div className="menu-container">

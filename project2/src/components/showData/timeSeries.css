@@ -14,12 +14,12 @@
 
 @media screen and (max-height: 900px) {
     .graph{
-        top: 70vh;
+        top: 68vh;
     }
 }
 
 @media screen and (max-height: 750px) {
     .graph{
-        top: 65vh;
+        top: 63vh;
     }
 }

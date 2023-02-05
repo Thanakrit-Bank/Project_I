@@ -3,6 +3,7 @@ import { useState} from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useNavigate } from 'react-router-dom'
+import { setToken } from './Auth'
 import './login.css'
 
 const Login = () => {
@@ -11,7 +12,7 @@ const Login = () => {
     const navigate = useNavigate()
 
     const [inputs, setInputs] = useState({});
-    
+
     const handleChange = (event) => {
         const name = event.target.name
         const value = event.target.value
@@ -36,17 +37,16 @@ const Login = () => {
         redirect: 'follow'
         };
 
-        fetch("http://127.0.0.1:5000/login", requestOptions)
+        fetch("http://127.0.0.1:8000/login", requestOptions)
         .then(response => response.json())
         .then(result => {
-            console.log(result)
-            if (result.status === "OK"){
+            if (result.status === "OK" && result.token){
                 MySwal.fire({
                     html: <i>{result.message}</i>,
                     icon: 'success'
                   })
-                .then((value => {
-                localStorage.setItem("token", result.token) // use for uathen each page 
+                .then((() => {
+                    setToken(result.token) // use for uathen each page 
                 navigate("/SinglePage")
                 }))
             } else {
@@ -58,19 +58,19 @@ const Login = () => {
         })
         .catch(error => console.log('error', error));
         }
-
+    
     return (
-        <div class="background">
+        <div className="background">
             <div>
-                <div class="shape" />
-                <div class="shape" />
+                <div className="shape" />
+                <div className="shape" />
             </div>
 
             <form onSubmit={handleSubmit}>
 
                     <h3>Login</h3>
 
-                    <label for="username">Username
+                    <label >Username
                         <input 
                             type="text" 
                             name="username" 
@@ -81,7 +81,7 @@ const Login = () => {
                         />
                     </label>
    
-                    <label for="password">Password
+                    <label >Password
                         <input 
                             type="password" 
                             name="password" 
@@ -96,10 +96,9 @@ const Login = () => {
                         Log In
                     </button>
 
-                    <div style={{margin: 10, textAlign: "center"}}>
-                        OR
-                    </div>
-                    
+                    <button type="submit">
+                        Register
+                    </button>
             </form>            
         </div>
     )

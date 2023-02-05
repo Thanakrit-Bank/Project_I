@@ -4,15 +4,35 @@ import SinglePage from './components/singlePage/SinglePage';
 import ComparePage from './components/comparePage/ComparePage';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from './components/authentication/Login';
+import { RequireToken } from './components/authentication/Auth';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
       <Router>
         <Routes>
-          <Route path='/SinglePage' element= {<SinglePage/>}/>
-          <Route path='/ComparePage' element={<ComparePage/>} />
-          <Route index path='/Login' element={<Login/>} />
+          <Route 
+            path='/' 
+            element={
+                <Login/>
+            } 
+          />
+          <Route 
+            path='/SinglePage' 
+            element={
+              <RequireToken>
+                <SinglePage/>
+              </RequireToken>
+            } 
+          />
+          <Route 
+            path='/ComparePage' 
+            element={
+              <RequireToken>
+                <ComparePage/>
+              </RequireToken>
+            } 
+          />
         </Routes>
       </Router>
   // </React.StrictMode>
