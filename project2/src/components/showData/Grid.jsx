@@ -9,7 +9,6 @@ const Grid = (props) => {
     // const url_grid = 'http://127.0.0.1:8000/get_index/'.concat(props.dataindex,'&',props.pName,'&',props.date,'&',props.index_folder)
     // const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
     
-
     // if (props.dataindex === 'ecearth_rcp85_CDD' || props.dataindex ===  'ecearth_rcp45_CDD' ){
     //     dataindex = legendData.indices.ecearth_rcp85_CDD
     // } else if (props.dataindex === 'ecearth_rcp85_CSDI' || props.dataindex ===  'ecearth_rcp45_CSDI' ){
@@ -25,7 +24,6 @@ const Grid = (props) => {
     // } else if (props.dataindex === 'ecearth_rcp85_TMEANmean' || props.dataindex ===  'ecearth_rcp45_TMEANmean' ){
     //     dataindex = legendData.indices.ecearth_rcp85_TMEANmean
     // }
-   
 
     // // SPI
     // else if (props.dataindex === 'ensemble85_spi_m1' || props.dataindex ===  'ensemble45_spi_m1' ){
@@ -46,8 +44,7 @@ const Grid = (props) => {
     //     dataindex = legendData.spi.ensemble85_spi_m48
     // } else if (props.dataindex === 'ensemble85_spi_m60' || props.dataindex ===  'ensemble45_spi_m60' ){
     //     dataindex = legendData.spi.ensemble85_spi_m60
-    // }
-    
+    // }  
     
     const url = "http://127.0.0.1:8000/get_index"
     const area = props.area
