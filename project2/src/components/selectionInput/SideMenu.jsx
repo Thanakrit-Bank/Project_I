@@ -1,18 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import {  AppstoreOutlined, 
   GlobalOutlined, 
   SettingFilled,
   DatabaseOutlined,
   BarsOutlined,
-  LogoutOutlined 
-} from '@ant-design/icons';
+  LogoutOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
 import Setting from './Setting';
-import './sideMenu.css'
 import { deleteToken } from '../authentication/Auth';
 import SelectDate from './SelectDate';
+import './sideMenu.css'
 
 
 const SideMenu = (props) => {

@@ -1,5 +1,13 @@
 import React from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Legend, Bar } from 'recharts';
+import { LineChart, 
+    Line, 
+    XAxis, 
+    YAxis, 
+    CartesianGrid, 
+    Tooltip, 
+    BarChart, 
+    Legend, 
+    Bar } from 'recharts';
 import './timeSeries.css'
 
 const TimeSeries = (props) => {

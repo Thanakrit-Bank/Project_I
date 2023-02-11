@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { Link } from 'react-router-dom';
 import { Slider } from 'antd';
-import { Checkbox } from "antd";
+import { InputNumber } from 'antd';
 import './setting.css'
 
 const Setting = (props) => {
@@ -96,7 +96,7 @@ const Setting = (props) => {
           </Draggable>
         )}
       >
-        <br/>
+        <br />
         <p className="topic">Graph</p>
         <p className="sub-topic">
           Type: <Radio.Group onChange={graphChange} value={props.graphType}>
@@ -110,9 +110,26 @@ const Setting = (props) => {
                   <Radio value={2}>Overall</Radio>
                 </Radio.Group>
         </p>
-        <br/>
-        <p className="topic">Opacity</p>
+        <br />
+        <p className="topic">Grid opacity</p>
         <Slider min={0} max={10} />
+        <br />
+        <p className="topic">Legend</p>
+        <br />
+        <InputNumber
+          prefix="Max:"
+          style={{width: '49%'}}
+        />
+        <> </>
+        <InputNumber
+          prefix="Min:"
+          style={{width: '49%'}}
+        />
+        {/* <InputNumber
+          addonBefore={<UserOutlined />}
+          prefix="￥"
+          style={{width: '100%',}}
+        /> */}
       </Modal>
     </>
   );

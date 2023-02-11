@@ -76,6 +76,11 @@ const SideMenuCompare = (props) => {
                 
             , 'dateRange1'),
         ], 'group'),
+        { type: 'divider' },
+        { type: 'divider' },
+        { type: 'divider' },
+        { type: 'divider' },
+        { type: 'divider' },
 
         getItem('Center Map', 'center', null, [
             getItem('Select Area', 'area2', <GlobalOutlined />, [
@@ -89,6 +94,11 @@ const SideMenuCompare = (props) => {
                 <SelectDate date={props.date} picker={picker2} dateChange={props.dateChange}/> 
             , 'dateRange2'),
         ], 'group'),
+        { type: 'divider' },
+        { type: 'divider' },
+        { type: 'divider' },
+        { type: 'divider' },
+        { type: 'divider' },
 
         getItem('Right Map', 'right', null, [
             getItem('Select Area', 'area3', <GlobalOutlined />, [
@@ -107,9 +117,9 @@ const SideMenuCompare = (props) => {
     const items_2 = [
         getItem(<Link to="/SinglePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
         { type: 'divider' },
-        getItem(<SettingCompare />, null, <SettingFilled />),
+        getItem(<SettingCompare graphType={props.graphType} setGraphType={props.setGraphType} />, null, <SettingFilled />),
         { type: 'divider' },
-        getItem('Logout', null, <LogoutOutlined />)
+        getItem(<Link to="/">Logout</Link>, 'logout', <LogoutOutlined />)
     ];
 
     const onClick = (e) => {

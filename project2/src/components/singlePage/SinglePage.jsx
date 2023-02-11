@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
-import './singlePage.css'
+import React, { useState } from 'react';
+import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 import { Layout } from 'antd';
 import TimeSeries from '../showData/TimeSeries';
-import "../../data/dataSelection" 
 import SideMenu from '../selectionInput/SideMenu';
 import Grid from '../showData/Grid';
 import Legend from '../showData/Legend';
+import 'leaflet/dist/leaflet.css'
+import "../../data/dataSelection" 
+import './singlePage.css'
 
 const SinglePage = () => {
   const center = [13.2955977,102.2090103]
@@ -39,6 +39,16 @@ const SinglePage = () => {
     setTimeSeriesData(data)
   }
 
+  function SetViewOnChange(coords) {
+    const map = useMap();
+    if (selectArea === 'Thailand'){
+        map.setView([13.2955977,102.2090103], 6);
+    }else{
+        map.setView([coords[1], coords[0]], 8);
+    }
+    return null;
+  }
+
   return (
     <MapContainer 
       center={center} 
@@ -57,7 +67,7 @@ const SinglePage = () => {
             <TimeSeries data={timeSeriesData} type={graphType}/>
         </Layout>
 
-        <Grid area={selectArea} data={selectData} date={selectDate} setTimeSeriesData = {getTimeSeriesData}/>
+        <Grid area={selectArea} data={selectData} date={selectDate} SetViewOnChange={SetViewOnChange} setTimeSeriesData = {getTimeSeriesData}/>
         <Legend dataIndex = {dataIndex}/>
 
     </MapContainer>    

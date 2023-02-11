@@ -112,7 +112,7 @@ const getTimeSeriesData3 = (data) => {
                 url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
             />
             
-            <Layout style={{ minHeight: '100vh'}}>
+            <Layout style={{textAlign: "left", minHeight: '100vh'}}>
                 <SideMenuCompare className="sider" areaChange={areaChange1} dataChange={dataChange1} dateChange={dateChange1} area={selectArea1} data={selectData1} date={selectDate1} graphType={graphType1} setGraphType={setGraphType1}/>
                 <TimeSeries data={timeSeriesData1} type={graphType1}/>
             </Layout>

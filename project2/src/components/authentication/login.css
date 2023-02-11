@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #262626;
+    background-color: #000033;
 }
 
 .background {
@@ -31,8 +31,8 @@ body {
         #1845ad,
         #23a2f6
     );
-    left: -80px;
-    top: -80px;
+    left: -115px;
+    top: -135px;
 }
 
 .shape:last-child {
@@ -41,8 +41,8 @@ body {
         #ff512f,
         #f09819
     );
-    right: -30px;
-    bottom: -80px;
+    right: -115px;
+    bottom: -135px;
 }
 
 form {
