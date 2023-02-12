@@ -119,7 +119,7 @@ const SideMenuCompare = (props) => {
             getItem('Select Data Type', 'dataType1', <DatabaseOutlined />, selectDataMenuLeft),
             { type: 'divider' },
             getItem(
-                <SelectDate date={props.date[0]} picker={picker1} dateChange={props.dateChange[0]}/> 
+                <SelectDate date={props.date1} picker={picker1} dateChange={props.dateChange1}/> 
                 
             , 'dateRange1'),
         ], 'group'),
@@ -138,7 +138,7 @@ const SideMenuCompare = (props) => {
             getItem('Select Data Type', 'dataType2', <DatabaseOutlined />, selectDataMenuCenter),
             { type: 'divider' },
             getItem(
-                <SelectDate date={props.date[1]} picker={picker2} dateChange={props.dateChange[1]}/> 
+                <SelectDate date={props.date2} picker={picker2} dateChange={props.dateChange2}/> 
             , 'dateRange2'),
         ], 'group'),
         { type: 'divider' },
@@ -156,7 +156,7 @@ const SideMenuCompare = (props) => {
             getItem('Select Data Type', 'dataType3', <DatabaseOutlined />, selectDataMenuRight),
             { type: 'divider' },
             getItem(
-                <SelectDate date={props.date[2]} picker={picker3} dateChange={props.dateChange[2]}/> 
+                <SelectDate date={props.date3} picker={picker3} dateChange={props.dateChange3}/> 
             , 'dateRange3'),
         ], 'group'),
     ];
@@ -170,54 +170,47 @@ const SideMenuCompare = (props) => {
     ];
 
     const onClick = (e) => {
-        console.log(props.data);
-        console.log('click', e.keyPath);
+        console.log(e.keyPath);
         if (e.keyPath[0] === 'logout'){
             deleteToken()
         }
-        else if (e.keyPath[0] === 'left'){
-            const dataNameArray = props.data[0].split('@')
-            let typeIdex = dataNameArray[2]
-            if (e.keyPath[e.keyPath.length - 1] === 'area'){
-                props.areaChange[0](e.keyPath[0])
-            }
-            else if (e.keyPath[e.keyPath.length - 1] === 'dataType'){
-                props.dataChange[0](e.keyPath[0])
-                if (typeIdex === "SPI"){
-                    setPicker1('year')
-                }else {
-                    setPicker1('month')
-                }
+        const dataNameArray1 = props.data1.split('@')
+        let typeIdex1 = dataNameArray1[2]
+        if (e.keyPath[e.keyPath.length - 1] === 'area1'){
+            props.areaChange1(e.keyPath[0])
+        }
+        else if (e.keyPath[e.keyPath.length - 1] === 'dataType1'){
+            props.dataChange1(e.keyPath[0])
+            if (typeIdex1 === "SPI"){
+                setPicker1('year')
+            }else {
+                setPicker1('month')
             }
         }
-        else if (e.keyPath[0] === 'center'){
-            const dataNameArray = props.data[1].split('@')
-            let typeIdex = dataNameArray[2]
-            if (e.keyPath[e.keyPath.length - 1] === 'area'){
-                props.areaChange[1](e.keyPath[0])
-            }
-            else if (e.keyPath[e.keyPath.length - 1] === 'dataType'){
-                props.dataChange[1](e.keyPath[0])
-                if (typeIdex === "SPI"){
-                    setPicker1('year')
-                }else {
-                    setPicker1('month')
-                }
+        const dataNameArray2 = props.data2.split('@')
+        let typeIdex2 = dataNameArray2[2]
+        if (e.keyPath[e.keyPath.length - 1] === 'area2'){
+            props.areaChange2(e.keyPath[0])
+        }
+        else if (e.keyPath[e.keyPath.length - 1] === 'dataType2'){
+            props.dataChange2(e.keyPath[0])
+            if (typeIdex2 === "SPI"){
+                setPicker1('year')
+            }else {
+                setPicker1('month')
             }
         }
-        else if (e.keyPath[0] === 'right'){
-            const dataNameArray = props.data[2].split('@')
-            let typeIdex = dataNameArray[2]
-            if (e.keyPath[e.keyPath.length - 1] === 'area'){
-                props.areaChange[2](e.keyPath[0])
-            }
-            else if (e.keyPath[e.keyPath.length - 1] === 'dataType'){
-                props.dataChange[2](e.keyPath[0])
-                if (typeIdex === "SPI"){
-                    setPicker1('year')
-                }else {
-                    setPicker1('month')
-                }
+        const dataNameArray3 = props.data3.split('@')
+        let typeIdex3 = dataNameArray3[2]
+        if (e.keyPath[e.keyPath.length - 1] === 'area3'){
+            props.areaChange3(e.keyPath[0])
+        }
+        else if (e.keyPath[e.keyPath.length - 1] === 'dataType3'){
+            props.dataChange3(e.keyPath[0])
+            if (typeIdex3 === "SPI"){
+                setPicker1('year')
+            }else {
+                setPicker1('month')
             }
         }
     }

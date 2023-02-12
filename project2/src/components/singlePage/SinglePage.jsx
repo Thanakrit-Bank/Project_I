@@ -15,10 +15,12 @@ const SinglePage = () => {
 
   const [dataIndex, setDataIndex] = useState('CDD')
   const [timeSeriesData, setTimeSeriesData] = useState([])
+  const [seasonalData ,setSeasonalData] = useState([])
   const [selectArea, setSelectArea] = useState("Thailand")
   const [selectData, setSelectData] = useState("ecearth@RCP4.5@indices@CDD")
   const [selectDate, setSelectDate] = useState("2006")
   const [graphType, setGraphType] = useState('Linechart')
+  const [dataType, setDataType] = useState('seasonal')
 
   const areaChange = (area) => {
     setSelectArea(area)
@@ -32,11 +34,14 @@ const SinglePage = () => {
   }
   const dateChange = (date) => {
     setSelectDate(date)
-    console.log('single page',date)
   }
 
   const getTimeSeriesData = (data) => {
     setTimeSeriesData(data)
+  }
+
+  const getSeasonalData = (data) => {
+    setSeasonalData(data)
   }
 
   function SetViewOnChange(coords) {
@@ -63,11 +68,22 @@ const SinglePage = () => {
         />
         
         <Layout style={{ minHeight: '100vh'}}>
-            <SideMenu areaChange={areaChange} dataChange={dataChange} dateChange={dateChange} area={selectArea} data={selectData} date={selectDate} graphType={graphType} setGraphType={setGraphType}/>
-            <TimeSeries data={timeSeriesData} type={graphType}/>
+            <SideMenu 
+              areaChange={areaChange} 
+              dataChange={dataChange} 
+              dateChange={dateChange} 
+              area={selectArea} 
+              data={selectData} 
+              date={selectDate} 
+              graphType={graphType} 
+              setGraphType={setGraphType}
+              dataType={dataType}
+              setDataType={setDataType}
+            />
+            <TimeSeries data={timeSeriesData} data2={seasonalData} type={graphType} dataType={dataType}/>
         </Layout>
 
-        <Grid area={selectArea} data={selectData} date={selectDate} SetViewOnChange={SetViewOnChange} setTimeSeriesData = {getTimeSeriesData}/>
+        <Grid area={selectArea} data={selectData} date={selectDate} SetViewOnChange={SetViewOnChange} setTimeSeriesData = {getTimeSeriesData} setSeasonalData={getSeasonalData}/>
         <Legend dataIndex = {dataIndex}/>
 
     </MapContainer>    

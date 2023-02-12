@@ -58,7 +58,6 @@ const Grid = (props) => {
                   headers:{"x-access-token": "test"},
                 }
         setData([])
-        // fetchData(url_grid)
         console.log(urlRequest);
         fetch(urlRequest, reqOptions)
         .then(r => r.json())
@@ -83,8 +82,10 @@ const Grid = (props) => {
             }
 
             if (data.properties.time_index){
-                setCenter(data.geometry.coordinates[0][0])
+                // setCenter(data.geometry.coordinates[0][0])
+                props.SetViewOnChange(data.geometry.coordinates[0][0])
                 props.setTimeSeriesData(data.properties.time_series)
+                props.setSeasonalData(data.properties.seasonal)
             }
 
             if(data.properties.index < dataindex.min){

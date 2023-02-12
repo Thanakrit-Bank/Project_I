@@ -33,12 +33,11 @@ const Setting = (props) => {
     setOpen(false);
   };
 
-  const onChange1 = (e) => {
-    console.log('radio checked', e.target.value);
-    setValue1(e.target.value);
+  const dataChange = (e) => {
+    props.setDataType(e.target.value);
   };
+
   const graphChange = (e) => {
-    console.log('radio checked', e.target.value);
     props.setGraphType(e.target.value);
   };
 
@@ -105,9 +104,9 @@ const Setting = (props) => {
                 </Radio.Group>
         </p>
         <p className="sub-topic">
-          Data: <Radio.Group onChange={onChange1} value={value1}>
-                  <Radio value={1}>Seasonal</Radio>
-                  <Radio value={2}>Overall</Radio>
+          Data: <Radio.Group onChange={dataChange} value={props.dataType}>
+                  <Radio value="Overvall">Overall</Radio>
+                  <Radio value="Seasonal">Seasonal</Radio>
                 </Radio.Group>
         </p>
         <br />
