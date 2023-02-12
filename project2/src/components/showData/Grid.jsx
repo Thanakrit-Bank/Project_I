@@ -4,47 +4,10 @@ import * as turf from '@turf/turf'
 import dataIndex from '../../data/dataLegend'
 
 const Grid = (props) => {
+
+    
     const [data, setData] = useState([])
     
-    // const url_grid = 'http://127.0.0.1:8000/get_index/'.concat(props.dataindex,'&',props.pName,'&',props.date,'&',props.index_folder)
-    // const url_shp = 'http://127.0.0.1:5000/get_province/'.concat(props.pName)
-    
-    // if (props.dataindex === 'ecearth_rcp85_CDD' || props.dataindex ===  'ecearth_rcp45_CDD' ){
-    //     dataindex = legendData.indices.ecearth_rcp85_CDD
-    // } else if (props.dataindex === 'ecearth_rcp85_CSDI' || props.dataindex ===  'ecearth_rcp45_CSDI' ){
-    //     dataindex = legendData.indices.ecearth_rcp85_CSDI
-    // } else if (props.dataindex === 'ecearth_rcp85_CWD' || props.dataindex ===  'ecearth_rcp45_CWD' ){
-    //     dataindex = legendData.indices.ecearth_rcp85_CWD
-    // } else if (props.dataindex === 'ecearth_rcp85_PRCPTOT' || props.dataindex ===  'ecearth_rcp45_PRCPTOT' ){
-    //     dataindex = legendData.indices.ecearth_rcp85_PRCPTOT
-    // } else if (props.dataindex === 'ecearth_rcp85_R10mm' || props.dataindex ===  'ecearth_rcp45_R10mm' ){
-    //     dataindex = legendData.indices.ecearth_rcp85_R10mm
-    // } else if (props.dataindex === 'ecearth_rcp85_RX1day' || props.dataindex ===  'ecearth_rcp45_RX1day' ){
-    //     dataindex = legendData.indices.ecearth_rcp85_RX1day
-    // } else if (props.dataindex === 'ecearth_rcp85_TMEANmean' || props.dataindex ===  'ecearth_rcp45_TMEANmean' ){
-    //     dataindex = legendData.indices.ecearth_rcp85_TMEANmean
-    // }
-
-    // // SPI
-    // else if (props.dataindex === 'ensemble85_spi_m1' || props.dataindex ===  'ensemble45_spi_m1' ){
-    //     dataindex = legendData.spi.ensemble85_spi_m1
-    // } else if (props.dataindex === 'ensemble85_spi_m3' || props.dataindex ===  'ensemble45_spi_m3' ){
-    //     dataindex = legendData.spi.ensemble85_spi_m3
-    // } else if (props.dataindex === 'ensemble85_spi_m6' || props.dataindex ===  'ensemble45_spi_m6' ){
-    //     dataindex = legendData.spi.ensemble85_spi_m6
-    // } else if (props.dataindex === 'ensemble85_spi_m9' || props.dataindex ===  'ensemble45_spi_m9' ){
-    //     dataindex = legendData.spi.ensemble85_spi_m9
-    // } else if (props.dataindex === 'ensemble85_spi_m12' || props.dataindex ===  'ensemble45_spi_m12' ){
-    //     dataindex = legendData.spi.ensemble85_spi_m12
-    // } else if (props.dataindex === 'ensemble85_spi_m24' || props.dataindex ===  'ensemble45_spi_m24' ){
-    //     dataindex = legendData.spi.ensemble85_spi_m24
-    // } else if (props.dataindex === 'ensemble85_spi_m36' || props.dataindex ===  'ensemble45_spi_m36' ){
-    //     dataindex = legendData.spi.ensemble85_spi_m36
-    // } else if (props.dataindex === 'ensemble85_spi_m48' || props.dataindex ===  'ensemble45_spi_m48' ){
-    //     dataindex = legendData.spi.ensemble85_spi_m48
-    // } else if (props.dataindex === 'ensemble85_spi_m60' || props.dataindex ===  'ensemble45_spi_m60' ){
-    //     dataindex = legendData.spi.ensemble85_spi_m60
-    // }  
     
     const url = "http://127.0.0.1:8000/get_index"
     const area = props.area
@@ -96,13 +59,11 @@ const Grid = (props) => {
                 }
         setData([])
         // fetchData(url_grid)
+        console.log(urlRequest);
         fetch(urlRequest, reqOptions)
         .then(r => r.json())
         .then(data => setData(data))
         .catch(error => console.log(error.message))
-
-        console.log(urlRequest)
-        // console.log(url_grid);
     },[props.area, props.data, props.date])
 
     const setCenter = (coordinate) => {

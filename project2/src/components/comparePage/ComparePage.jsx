@@ -113,7 +113,7 @@ const getTimeSeriesData3 = (data) => {
             />
             
             <Layout style={{textAlign: "left", minHeight: '100vh'}}>
-                <SideMenuCompare className="sider" areaChange={areaChange1} dataChange={dataChange1} dateChange={dateChange1} area={selectArea1} data={selectData1} date={selectDate1} graphType={graphType1} setGraphType={setGraphType1}/>
+                <SideMenuCompare className="sider" areaChange={[areaChange1,areaChange2,areaChange3]} dataChange={[dataChange1, dataChange2, dataChange3]} dateChange={[dateChange1, dateChange2, dateChange3]} area={[selectArea1,selectArea2, selectArea3]} data={[selectData1,selectData2, selectData3]} date={[selectDate1,selectDate2,selectDate3]} graphType={[graphType1,graphType2,graphType3]} setGraphType={[setGraphType1,setGraphType2,setGraphType3]}/>
                 <TimeSeries data={timeSeriesData1} type={graphType1}/>
             </Layout>
 

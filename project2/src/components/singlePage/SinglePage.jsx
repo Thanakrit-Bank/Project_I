@@ -28,7 +28,7 @@ const SinglePage = () => {
     setSelectData(data)
     const indexName = selectData.split('@')[selectData.split('@').length - 1]
     setDataIndex(indexName)
-    console.log(selectData)
+    // console.log(selectData)
   }
   const dateChange = (date) => {
     setSelectDate(date)

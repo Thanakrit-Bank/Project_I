@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {  AppstoreOutlined, 
   GlobalOutlined, 
   SettingFilled,
@@ -55,7 +55,7 @@ const SideMenu = (props) => {
         }))
     }))
 
-    const items_1 = [
+    var items_1 = [
         getItem('Select Area', 'area', <GlobalOutlined />, [
             getItem('Country', 'subCountry', null, countryList),
             getItem('Thailand', 'subThai', null, provinceList),
@@ -77,9 +77,9 @@ const SideMenu = (props) => {
     ];
 
     const onClick = (e) => {
-        const dataNameArray = props.data.split('@')
+        var dataNameArray = props.data.split('@')
         let typeIdex = dataNameArray[2]
-        console.log('click', e.keyPath);
+        // console.log('click', e.keyPath);
         if (e.keyPath[0] === 'logout'){
             deleteToken()
         }
@@ -89,14 +89,19 @@ const SideMenu = (props) => {
         else if (e.keyPath[e.keyPath.length - 1] === 'dataType'){
             props.dataChange(e.keyPath[0])
             if (typeIdex === "SPI"){
-                setPicker('year')
-            }else {
                 setPicker('month')
+            }else {
+                setPicker('year')
             }
+            
         }
-        
     }
 
+    useEffect(() => {
+        console.log(picker);
+    }, [picker])
+
+    
     return (
         <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className="sider">
                 <div className="menu-container">
