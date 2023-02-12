@@ -20,7 +20,7 @@ const SinglePage = () => {
   const [selectData, setSelectData] = useState("ecearth@RCP4.5@indices@CDD")
   const [selectDate, setSelectDate] = useState("2006")
   const [graphType, setGraphType] = useState('Linechart')
-  const [dataType, setDataType] = useState('seasonal')
+  const [dataType, setDataType] = useState('Overall')
 
   const areaChange = (area) => {
     setSelectArea(area)

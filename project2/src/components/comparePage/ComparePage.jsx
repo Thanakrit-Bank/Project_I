@@ -19,7 +19,7 @@ const ComparePage = () => {
   const [selectArea1, setSelectArea1] = useState("Thailand")
   const [selectData1, setSelectData1] = useState("ecearth@RCP4.5@indices@CDD")
   const [selectDate1, setSelectDate1] = useState("2006")
-  const [dataType1, setDataType1] = useState('seasonal')
+  const [dataType1, setDataType1] = useState('Overall')
   const [graphType1, setGraphType1] = useState('Linechart')
 
   const areaChange1 = (area) => {
@@ -60,7 +60,7 @@ const ComparePage = () => {
   const [selectArea2, setSelectArea2] = useState("Thailand")
   const [selectData2, setSelectData2] = useState("ecearth@RCP4.5@indices@CDD")
   const [selectDate2, setSelectDate2] = useState("2006")
-  const [dataType2, setDataType2] = useState('seasonal')
+  const [dataType2, setDataType2] = useState('Overall')
   const [graphType2, setGraphType2] = useState('Linechart')
 
   const areaChange2 = (area) => {
@@ -102,7 +102,7 @@ const ComparePage = () => {
   const [selectArea3, setSelectArea3] = useState("Thailand")
   const [selectData3, setSelectData3] = useState("ecearth@RCP4.5@indices@CDD")
   const [selectDate3, setSelectDate3] = useState("2006")
-  const [dataType3, setDataType3] = useState('seasonal')
+  const [dataType3, setDataType3] = useState('Overall')
   const [graphType3, setGraphType3] = useState('Linechart')
 
   const areaChange3 = (area) => {

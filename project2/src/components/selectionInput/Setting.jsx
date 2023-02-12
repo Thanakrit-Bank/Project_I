@@ -9,7 +9,6 @@ import './setting.css'
 const Setting = (props) => {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  const [value1, setValue1] = useState(1);
   const [bounds, setBounds] = useState({
     left: 0,
     top: 0,
@@ -33,9 +32,14 @@ const Setting = (props) => {
     setOpen(false);
   };
 
-  const dataChange = (e) => {
-    props.setDataType(e.target.value);
+  const dataChange = ({ target: { value } }) => {
+    props.setDataType(value);
   };
+
+  // const onChange4 = ({ target: { value } }) => {
+  //   console.log('radio4 checked', value);
+  //   setValue4(value);
+  // };
 
   const graphChange = (e) => {
     props.setGraphType(e.target.value);
@@ -98,14 +102,14 @@ const Setting = (props) => {
         <br />
         <p className="topic">Graph</p>
         <p className="sub-topic">
-          Type: <Radio.Group onChange={graphChange} value={props.graphType}>
+          Type: <Radio.Group onChange={graphChange} value={props.graphType} optionType='button'>
                   <Radio value="Linechart">Linechart</Radio>
                   <Radio value="Histrogram">Histrogram</Radio>
                 </Radio.Group>
         </p>
         <p className="sub-topic">
-          Data: <Radio.Group onChange={dataChange} value={props.dataType}>
-                  <Radio value="Overvall">Overall</Radio>
+          Data: <Radio.Group onChange={dataChange} value={props.dataType} optionType='button'>
+                  <Radio value="Overall">Overall</Radio>
                   <Radio value="Seasonal">Seasonal</Radio>
                 </Radio.Group>
         </p>
