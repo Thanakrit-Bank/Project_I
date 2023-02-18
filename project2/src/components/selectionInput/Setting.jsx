@@ -2,8 +2,7 @@ import { Modal, Radio } from 'antd';
 import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { Link } from 'react-router-dom';
-import { Slider } from 'antd';
-import { InputNumber } from 'antd';
+import { Col, InputNumber, Row, Slider } from 'antd';
 import './setting.css'
 
 const Setting = (props) => {
@@ -44,6 +43,21 @@ const Setting = (props) => {
   const graphChange = (e) => {
     props.setGraphType(e.target.value);
   };
+
+  const [inputValue, setInputValue] = useState(1);
+  const opecityChange = (newValue) => {
+    setInputValue(newValue);
+    props.opacityChange(newValue)
+    console.log(props.gridOpacity);
+  };
+
+  const legendMinChange =(e) => {
+    props.legendMinChange(e)
+  }
+
+  const legendMaxChange =(e) => {
+    props.legendMaxChange(e)
+  }
 
   const onStart = (_event, uiData) => {
     const { clientWidth, clientHeight } = window.document.documentElement;
@@ -115,24 +129,43 @@ const Setting = (props) => {
         </p>
         <br />
         <p className="topic">Grid opacity</p>
-        <Slider min={0} max={10} />
+        <Row>
+          <Col span={12}>
+            <Slider
+              min={1}
+              max={10}
+              onChange={opecityChange}
+              value={typeof inputValue === 'number' ? inputValue : 7}
+            />
+          </Col>
+          <Col span={4}>
+            <InputNumber
+              min={1}
+              max={10}
+              style={{
+                margin: '0 16px',
+              }}
+              value={inputValue}
+              onChange={opecityChange}
+            />
+          </Col>
+        </Row>
         <br />
         <p className="topic">Legend</p>
         <br />
         <InputNumber
-          prefix="Max:"
+          prefix="Min:"
           style={{width: '49%'}}
+          onChange={legendMinChange}
+          defaultValue={props.legendMin}
         />
         <> </>
         <InputNumber
-          prefix="Min:"
+          prefix="Max:"
           style={{width: '49%'}}
+          onChange={legendMaxChange}
+          defaultValue={props.legendMax}
         />
-        {/* <InputNumber
-          addonBefore={<UserOutlined />}
-          prefix="￥"
-          style={{width: '100%',}}
-        /> */}
       </Modal>
     </>
   );

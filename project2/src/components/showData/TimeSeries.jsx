@@ -41,7 +41,7 @@ const TimeSeries = (props) => {
                 <CartesianGrid stroke="black" fill='#555' fillOpacity={0.7}/>
                 <Line type="monotone" dataKey={value} stroke="red" dot={false}/>
                 <XAxis dataKey={key} stroke="black"/>
-                <YAxis stroke="black"/>
+                <YAxis stroke="black" />
                 <Tooltip />
             </LineChart>
             )
@@ -49,7 +49,7 @@ const TimeSeries = (props) => {
     else {
         return (
             <BarChart width={450} height={250} data={data} className='graph'>
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid stroke="black" fill='#555' fillOpacity={0.7}/>
                 <XAxis dataKey={key} />
                 <YAxis />
                 <Tooltip />

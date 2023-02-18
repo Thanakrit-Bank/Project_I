@@ -21,13 +21,17 @@ const Grid = (props) => {
     // ecearth@RCP4.5@SPI@12  month
 
     var dataindex = dataIndex[typeIdex][indexName]
+    var max = props.legendMax
+    var min = props.legendMin
+    console.log('gridpage',max);
+    console.log('gridpage',min);
     
     if (typeIdex === 'SPI'){
         dataindex = dataIndex[typeIdex]['spi']
     }
     var color = dataindex.color
     
-    const interval = (dataindex.max - dataindex.min)/8
+    const interval = (max - min)/8
 
     if(typeValue === 'RCP4.5'){
         typeValue = 'rcp45'
@@ -63,12 +67,7 @@ const Grid = (props) => {
         .then(r => r.json())
         .then(data => setData(data))
         .catch(error => console.log(error.message))
-    },[props.area, props.data, props.date])
-
-    const setCenter = (coordinate) => {
-        // props.SetViewOnChange(coordinate)
-        // console.log(coordinate)
-    }
+    },[props.area, props.data, props.date, props.gridOpacity, props.legendMax, props.legendMin, urlRequest])
 
     return (
     <FeatureGroup>
@@ -76,7 +75,7 @@ const Grid = (props) => {
             var myStyleGrid = {
                 color: "white",
                 weight: 0,
-                fillOpacity: 0.9,
+                fillOpacity: props.gridOpacity/10,
                 fillColor: 'white',
                 borderColor: 'black'
             }
@@ -88,23 +87,23 @@ const Grid = (props) => {
                 props.setSeasonalData(data.properties.seasonal)
             }
 
-            if(data.properties.index < dataindex.min){
+            if(data.properties.index < min){
                 myStyleGrid.fillColor = color[8]
-            }else if(data.properties.index < dataindex.min + interval){
+            }else if(data.properties.index < min + interval){
                 myStyleGrid.fillColor = color[7]
-            }else if(data.properties.index < dataindex.min + 2*interval){
+            }else if(data.properties.index < min + 2*interval){
                 myStyleGrid.fillColor = color[6]
-            }else if(data.properties.index < dataindex.min + 3*interval){
+            }else if(data.properties.index < min + 3*interval){
                 myStyleGrid.fillColor = color[5]
-            }else if(data.properties.index < dataindex.min + 4*interval){
+            }else if(data.properties.index < min + 4*interval){
                 myStyleGrid.fillColor = color[4]
-            }else if(data.properties.index < dataindex.min + 5*interval){
+            }else if(data.properties.index < min + 5*interval){
                 myStyleGrid.fillColor = color[3]
-            }else if(data.properties.index < dataindex.min + 6*interval){
+            }else if(data.properties.index < min + 6*interval){
                 myStyleGrid.fillColor = color[2]
-            }else if(data.properties.index < dataindex.min + 7*interval){
+            }else if(data.properties.index < min + 7*interval){
                 myStyleGrid.fillColor = color[1]
-            }else if(data.properties.index < dataindex.min + 8*interval){
+            }else if(data.properties.index < min + 8*interval){
                 myStyleGrid.fillColor = color[0]
             }else {
                 myStyleGrid.fillColor = color[0]

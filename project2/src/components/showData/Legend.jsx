@@ -80,34 +80,37 @@ const Legend = (props) => {
     data = dataIndex.SPI.spi
   }
 
-  var color = data.color
-
-  const interval = (data.max - data.min)/8
+  
   // const textSplit = props.dataIndex.split('')
     
   useEffect(() => {
+    var color = data.color
+    var max = props.legendMax
+    var min = props.legendMin
+
+    const interval = (max - min)/8
     // get color depending on population density value
 
     // if (textSplit[2] === 'SPI') {
     if (dataIndex.SPI.props === dataIndex.SPI.spi) {
       const getColor = d => {
-        return d > data.min + 9*interval
+        return d > min + 9*interval
           ? color[0]
-          : d > data.min + 8*interval
+          : d > min + 8*interval
           ? color[1]
-          : d > data.min + 7*interval
+          : d > min + 7*interval
           ? color[2]
-          : d > data.min + 6*interval
+          : d > min + 6*interval
           ? color[3]
-          : d > data.min + 5*interval
+          : d > min + 5*interval
           ? color[4]
-          : d > data.min + 4*interval
+          : d > min + 4*interval
           ? color[5]
-          : d > data.min + 3*interval
+          : d > min + 3*interval
           ? color[6]
-          : d > data.min + 2*interval
+          : d > min + 2*interval
           ? color[7]
-          : d > data.min
+          : d > min
           ? color[8]
           : color[9]
       };
@@ -118,15 +121,15 @@ const Legend = (props) => {
         const div = L.DomUtil.create("div", "info legend");
         const grades = 
         [
-          data.min + 8*interval,
-          data.min + 7*interval, 
-          data.min + 6*interval, 
-          data.min + 5*interval, 
-          data.min + 4*interval, 
-          data.min + 3*interval, 
-          data.min + 2*interval, 
-          data.min + interval,
-          data.min
+          min + 8*interval,
+          min + 7*interval, 
+          min + 6*interval, 
+          min + 5*interval, 
+          min + 4*interval, 
+          min + 3*interval, 
+          min + 2*interval, 
+          min + interval,
+          min
         ];
   
         let labels = [];
@@ -156,25 +159,25 @@ const Legend = (props) => {
       return () => legend.remove();
 
     // } else if (textSplit[2],substring(0,3) === 'indices') {
-    } else if (dataIndex.indices.props === dataIndex.indices.props) {
+    } else if (dataIndex.indices.props === dataIndex.indices.indices) {
       const getColor = d => {
-        return d > data.min + 8*interval
+        return d > min + 8*interval
           ? color[0]
-          : d > data.min + 7*interval
+          : d > min + 7*interval
           ? color[1]
-          : d > data.min + 6*interval
+          : d > min + 6*interval
           ? color[2]
-          : d > data.min + 5*interval
+          : d > min + 5*interval
           ? color[3]
-          : d > data.min + 4*interval
+          : d > min + 4*interval
           ? color[4]
-          : d > data.min + 3*interval
+          : d > min + 3*interval
           ? color[5]
-          : d > data.min + 2*interval
+          : d > min + 2*interval
           ? color[6]
-          : d > data.min + interval
+          : d > min + interval
           ? color[7]
-          : d > data.min
+          : d > min
           ? color[8]
           : color[9]
       };
@@ -185,15 +188,15 @@ const Legend = (props) => {
         const div = L.DomUtil.create("div", "info legend");
         const grades = 
         [
-          data.min + 8*interval,
-          data.min + 7*interval, 
-          data.min + 6*interval, 
-          data.min + 5*interval, 
-          data.min + 4*interval, 
-          data.min + 3*interval, 
-          data.min + 2*interval, 
-          data.min + interval,
-          data.min
+          min + 8*interval,
+          min + 7*interval, 
+          min + 6*interval, 
+          min + 5*interval, 
+          min + 4*interval, 
+          min + 3*interval, 
+          min + 2*interval, 
+          min + interval,
+          min
         ];
   
         let labels = [];
@@ -226,7 +229,7 @@ const Legend = (props) => {
   
       return () => legend.remove();
     }
-  }, [props.dataIndex]);
+  }, [props.dataIndex, props.legendMax,props.legendMin, data.color, mapInstance]);
 };
 
 export default Legend;

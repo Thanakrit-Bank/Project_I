@@ -196,7 +196,7 @@ const dataIndex = {
     "SPI":{
         'spi':{
             'max': 1,
-            'min': 0,
+            'min': -1,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
             'unit': ""
         }

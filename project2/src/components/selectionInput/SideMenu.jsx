@@ -71,7 +71,18 @@ const SideMenu = (props) => {
     const items_2 = [
         getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
         { type: 'divider' },
-        getItem(<Setting graphType={props.graphType} setGraphType={props.setGraphType} dataType={props.dataType} setDataType={props.setDataType} />, null, <SettingFilled />),
+        getItem(<Setting 
+                    graphType={props.graphType} 
+                    setGraphType={props.setGraphType} 
+                    dataType={props.dataType} 
+                    setDataType={props.setDataType}
+                    opacityChange={props.opacityChange} 
+                    gridOpacity={props.gridOpacity}
+                    legendMaxChange={props.legendMaxChange}
+                    legendMinChange={props.legendMinChange}
+                    legenMax={props.legendMax}
+                    legenMin={props.legendMin}
+                />, null, <SettingFilled />),
         { type: 'divider' },
         getItem(<Link to="/">Logout</Link>, 'logout', <LogoutOutlined />)
     ];
