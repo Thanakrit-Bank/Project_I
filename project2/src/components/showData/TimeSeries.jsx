@@ -1,4 +1,3 @@
-import { propertiesContainsFilter } from '@turf/turf';
 import React, { useEffect, useState } from 'react'
 import { LineChart, 
     Line, 
@@ -18,17 +17,14 @@ const TimeSeries = (props) => {
     const  [key, setKey] = useState('')
     const  [value, setValue] = useState('') 
     useEffect(() => {
-        console.log(props.dataType);
         if (props.dataType === 'Overall'){
             setKey('date')
             setValue('index')
             setData(props.data)
-            console.log('overall : ',data);
         }else {
             setKey('month')
             setValue('value')
             setData(props.data2)
-            console.log('seasonal : ',data);
         }
     },[props.dataType, props.data, props.data2])
 

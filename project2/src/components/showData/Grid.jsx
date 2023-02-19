@@ -21,16 +21,24 @@ const Grid = (props) => {
     // ecearth@RCP4.5@SPI@12  month
 
     var dataindex = dataIndex[typeIdex][indexName]
-    var max = props.legendMax
-    var min = props.legendMin
-    console.log('gridpage',max);
-    console.log('gridpage',min);
+    // var max = props.legendMax
+    // var min = props.legendMin
+    
     
     if (typeIdex === 'SPI'){
         dataindex = dataIndex[typeIdex]['spi']
     }
     var color = dataindex.color
+    var max = dataindex.max
+    var min = dataindex.min
     
+    if (props.legendMax !== '' && props.legendMin !== ''){
+        max = props.legendMax
+        min = props.legendMin
+    }
+
+    console.log('datalegend gridpage : ', min, max);
+    console.log('props gridpage : ',props.legendMin, props.legendMax);
     const interval = (max - min)/8
 
     if(typeValue === 'RCP4.5'){
@@ -81,7 +89,6 @@ const Grid = (props) => {
             }
 
             if (data.properties.time_index){
-                // setCenter(data.geometry.coordinates[0][0])
                 props.SetViewOnChange(data.geometry.coordinates[0][0])
                 props.setTimeSeriesData(data.properties.time_series)
                 props.setSeasonalData(data.properties.seasonal)

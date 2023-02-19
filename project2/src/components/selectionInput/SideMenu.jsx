@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {  AppstoreOutlined, 
   GlobalOutlined, 
   SettingFilled,
@@ -107,11 +107,6 @@ const SideMenu = (props) => {
             
         }
     }
-
-    useEffect(() => {
-        console.log(picker);
-    }, [picker])
-
     
     return (
         <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className="sider">

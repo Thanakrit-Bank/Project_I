@@ -22,12 +22,10 @@ const Setting = (props) => {
   };
 
   const handleOk = (e) => {
-    console.log(e);
     setOpen(false);
   };
 
   const handleCancel = (e) => {
-    console.log(e);
     setOpen(false);
   };
 

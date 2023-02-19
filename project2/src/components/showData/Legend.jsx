@@ -76,22 +76,28 @@ const Legend = (props) => {
     data = dataIndex.indices.WSDI
   }
   // SPI
-  else if (props.dataIndex === 'spi' ) {
+  else if (props.dataIndex.split(' ')[1] === 'month' ) {
     data = dataIndex.SPI.spi
   }
 
+  // get color depending on population density value
+  var color = data.color
+  var max = data.max
+  var min = data.min
   
-  // const textSplit = props.dataIndex.split('')
+  if (props.legendMax !== '' && props.legendMin !== ''){
+      max = props.legendMax
+      min = props.legendMin
+  }
+  console.log('data_index legendPage: ', props.dataIndex);
+  console.log('data legendPage: ', min, max);
+  console.log('props legendPage: ', props.legendMin, props.legendMax);
+
+
+  const interval = (max - min)/8
     
   useEffect(() => {
-    var color = data.color
-    var max = props.legendMax
-    var min = props.legendMin
-
-    const interval = (max - min)/8
-    // get color depending on population density value
-
-    // if (textSplit[2] === 'SPI') {
+    
     if (dataIndex.SPI.props === dataIndex.SPI.spi) {
       const getColor = d => {
         return d > min + 9*interval
@@ -229,7 +235,7 @@ const Legend = (props) => {
   
       return () => legend.remove();
     }
-  }, [props.dataIndex, props.legendMax,props.legendMin, data.color, mapInstance]);
+  }, [props.dataIndex, props.legendMax,props.legendMin, data.color, mapInstance, color, interval, min]);
 };
 
 export default Legend;

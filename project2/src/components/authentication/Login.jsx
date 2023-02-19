@@ -96,9 +96,6 @@ const Login = () => {
                         Log In
                     </button>
 
-                    <button className='button' type="submit">
-                        Register
-                    </button>
             </form>            
         </div>
     )
