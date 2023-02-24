@@ -52,10 +52,10 @@ const SinglePage = () => {
 
   function SetViewOnChange(coords) {
     const map = useMap();
-    if (selectArea === 'Thailand'){
-        map.setView([13.2955977,102.2090103], 6);
+    if (["Brunei Darussalam", "Cambodia", "Malaysia", "Indonesia", "Lao People's Democratic Republic", "Myanmar","Philippines", "Thailand", "Timor-Leste", "Vietnam", "Singapore"].includes(selectArea)){
+        map.setView([coords[1], coords[0]], 6);
     }else{
-        map.setView([coords[1], coords[0]], 4);
+        map.setView([coords[1], coords[0]], 8);
     }
     return null;
   }
