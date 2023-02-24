@@ -7,76 +7,76 @@ import './legend.css'
 const Legend = (props) => {
 
   const mapInstance = useMap();
-
+  console.log(props.dataIndexName);
   var data = dataIndex.indices.CDD 
   // Indices
-  if (props.dataIndex === 'CDD'){
+  if (props.dataIndexName === 'CDD'){
     data = dataIndex.indices.CDD
-  } else if (props.dataIndex === 'CSDI' ) {
+  } else if (props.dataIndexName === 'CSDI' ) {
     data = dataIndex.indices.CSDI
-  } else if (props.dataIndex === 'CWD' ) {
+  } else if (props.dataIndexName === 'CWD' ) {
     data = dataIndex.indices.CWD
-  } else if (props.dataIndex === 'DTR' ) {
+  } else if (props.dataIndexName === 'DTR' ) {
     data = dataIndex.indices.DTR
-  } else if (props.dataIndex === 'FD0' ) {
+  } else if (props.dataIndexName === 'FD0' ) {
     data = dataIndex.indices.FD0
-  } else if (props.dataIndex === 'FD16' ) {
+  } else if (props.dataIndexName === 'FD16' ) {
     data = dataIndex.indices.FD16
-  } else if (props.dataIndex === 'ID0' ) {
+  } else if (props.dataIndexName === 'ID0' ) {
     data = dataIndex.indices.ID0
-  } else if (props.dataIndex === 'PRCPTOT' ) {
+  } else if (props.dataIndexName === 'PRCPTOT' ) {
     data = dataIndex.indices.PRCPTOT
-  } else if (props.dataIndex === 'R10mm' ) {
+  } else if (props.dataIndexName === 'R10mm' ) {
     data = dataIndex.indices.R10mm
-  } else if (props.dataIndex === 'R20mm' ) {
+  } else if (props.dataIndexName === 'R20mm' ) {
     data = dataIndex.indices.R20mm
-  } else if (props.dataIndex === 'R25mm' ) {
+  } else if (props.dataIndexName === 'R25mm' ) {
     data = dataIndex.indices.R25mm
-  } else if (props.dataIndex === 'R95p' ) {
+  } else if (props.dataIndexName === 'R95p' ) {
     data = dataIndex.indices.R95p
-  } else if (props.dataIndex === 'R99p' ) {
+  } else if (props.dataIndexName === 'R99p' ) {
     data = dataIndex.indices.R99p
-  } else if (props.dataIndex === 'RX1day' ) {
+  } else if (props.dataIndexName === 'RX1day' ) {
     data = dataIndex.indices.RX1day
-  } else if (props.dataIndex === 'RX5day' ) {
+  } else if (props.dataIndexName === 'RX5day' ) {
     data = dataIndex.indices.RX5day
-  } else if (props.dataIndex === 'SDII' ) {
+  } else if (props.dataIndexName === 'SDII' ) {
     data = dataIndex.indices.SDII
-  } else if (props.dataIndex === 'SU25' ) {
+  } else if (props.dataIndexName === 'SU25' ) {
     data = dataIndex.indices.SU25
-  } else if (props.dataIndex === 'SU35' ) {
+  } else if (props.dataIndexName === 'SU35' ) {
     data = dataIndex.indices.SU35
-  } else if (props.dataIndex === 'TMAXmean' ) {
+  } else if (props.dataIndexName === 'TMAXmean' ) {
     data = dataIndex.indices.TMAXmean
-  } else if (props.dataIndex === 'TMEANmean' ) {
+  } else if (props.dataIndexName === 'TMEANmean' ) {
     data = dataIndex.indices.TMEANmean
-  } else if (props.dataIndex === 'TMINmean' ) {
+  } else if (props.dataIndexName === 'TMINmean' ) {
     data = dataIndex.indices.TMINmean
-  } else if (props.dataIndex === 'TN10P' ) {
+  } else if (props.dataIndexName === 'TN10P' ) {
     data = dataIndex.indices.TN10P
-  } else if (props.dataIndex === 'TN90P' ) {
+  } else if (props.dataIndexName === 'TN90P' ) {
     data = dataIndex.indices.TN90P
-  } else if (props.dataIndex === 'TNn' ) {
+  } else if (props.dataIndexName === 'TNn' ) {
     data = dataIndex.indices.TNn
-  } else if (props.dataIndex === 'TNx' ) {
+  } else if (props.dataIndexName === 'TNx' ) {
     data = dataIndex.indices.TNx
-  } else if (props.dataIndex === 'TR20' ) {
+  } else if (props.dataIndexName === 'TR20' ) {
     data = dataIndex.indices.TR20
-  } else if (props.dataIndex === 'TR25' ) {
+  } else if (props.dataIndexName === 'TR25' ) {
     data = dataIndex.indices.TR25
-  } else if (props.dataIndex === 'TX10P' ) {
+  } else if (props.dataIndexName === 'TX10P' ) {
     data = dataIndex.indices.TX10P
-  } else if (props.dataIndex === 'TX90P' ) {
+  } else if (props.dataIndexName === 'TX90P' ) {
     data = dataIndex.indices.TX90P
-  } else if (props.dataIndex === 'TXn' ) {
+  } else if (props.dataIndexName === 'TXn' ) {
     data = dataIndex.indices.TXn
-  } else if (props.dataIndex === 'TXx' ) {
+  } else if (props.dataIndexName === 'TXx' ) {
     data = dataIndex.indices.TXx
-  } else if (props.dataIndex === 'WSDI' ) {
+  } else if (props.dataIndexName === 'WSDI' ) {
     data = dataIndex.indices.WSDI
   }
   // SPI
-  else if (props.dataIndex.split(' ')[1] === 'month' ) {
+  else if (props.dataIndexName.split(' ')[1] === 'month' ) {
     data = dataIndex.SPI.spi
   }
 
@@ -89,16 +89,16 @@ const Legend = (props) => {
       max = props.legendMax
       min = props.legendMin
   }
-  console.log('data_index legendPage: ', props.dataIndex);
-  console.log('data legendPage: ', min, max);
-  console.log('props legendPage: ', props.legendMin, props.legendMax);
+  // console.log('data_index legendPage: ', props.dataIndex);
+  // console.log('data legendPage: ', min, max);
+  // console.log('props legendPage: ', props.legendMin, props.legendMax);
 
 
   const interval = (max - min)/8
     
   useEffect(() => {
     
-    if (dataIndex.SPI.props === dataIndex.SPI.spi) {
+    if (props.dataIndexName.split(' ')[1] === 'month') {
       const getColor = d => {
         return d > min + 9*interval
           ? color[0]
@@ -165,7 +165,7 @@ const Legend = (props) => {
       return () => legend.remove();
 
     // } else if (textSplit[2],substring(0,3) === 'indices') {
-    } else if (dataIndex.indices.props === dataIndex.indices.indices) {
+    } else {
       const getColor = d => {
         return d > min + 8*interval
           ? color[0]
@@ -235,7 +235,7 @@ const Legend = (props) => {
   
       return () => legend.remove();
     }
-  }, [props.dataIndex, props.legendMax,props.legendMin, data.color, mapInstance, color, interval, min]);
+  }, [props.dataIndexName, props.legendMax,props.legendMin, data.color, mapInstance, color, interval, min]);
 };
 
 export default Legend;

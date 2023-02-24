@@ -30,10 +30,13 @@ const SinglePage = () => {
   const areaChange = (area) => {
     setSelectArea(area)
   }
+  var indexName = ''
   const dataChange = (data) => {
     setSelectData(data)
-    const indexName = selectData.split('@')[selectData.split('@').length - 1]
+    indexName = data.split('@')[selectData.split('@').length - 1]
     setDataIndex(indexName)
+    console.log('indexName: ', indexName);
+    console.log('dataIndex: ',dataIndex);
   }
   const dateChange = (date) => {
     setSelectDate(date)
@@ -52,7 +55,7 @@ const SinglePage = () => {
     if (selectArea === 'Thailand'){
         map.setView([13.2955977,102.2090103], 6);
     }else{
-        map.setView([coords[1], coords[0]], 8);
+        map.setView([coords[1], coords[0]], 4);
     }
     return null;
   }
@@ -116,7 +119,7 @@ const SinglePage = () => {
           legendMin={legendMin}
         />
         <Legend 
-          dataIndex = {dataIndex}
+          dataIndexName = {dataIndex}
           legendMax={legendMax}
           legendMin={legendMin}
         />

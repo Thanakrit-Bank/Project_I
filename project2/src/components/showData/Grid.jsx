@@ -37,8 +37,8 @@ const Grid = (props) => {
         min = props.legendMin
     }
 
-    console.log('datalegend gridpage : ', min, max);
-    console.log('props gridpage : ',props.legendMin, props.legendMax);
+    // console.log('datalegend gridpage : ', min, max);
+    // console.log('props gridpage : ',props.legendMin, props.legendMax);
     const interval = (max - min)/8
 
     if(typeValue === 'RCP4.5'){

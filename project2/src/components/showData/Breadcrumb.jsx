@@ -26,11 +26,9 @@ const Breadcrumb = (props) => {
             let temp2 = date.split(' ').slice(7,9)
             fdate = temp1[0].concat(' ', temp1[1])
             ldate = temp2[0].concat(' ', temp2[1])
-            console.log('try');
         } catch (error) {
             fdate = date.split(' ')[3]
             ldate = date.split(' ')[8]
-            console.log('catch :', error, date);
         }
     }
     return (

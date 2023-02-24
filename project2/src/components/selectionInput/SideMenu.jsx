@@ -64,7 +64,7 @@ const SideMenu = (props) => {
         getItem('Select Data Type', 'dataType', <DatabaseOutlined />, selectDataMenu),
         { type: 'divider' },
         getItem(
-            <SelectDate date={props.date} picker={picker} dateChange={props.dateChange}/> 
+            <SelectDate date={props.date} picker={picker} dateChange={props.dateChange} /> 
         , 'dateRange'),
     ];
 
@@ -88,7 +88,8 @@ const SideMenu = (props) => {
     ];
 
     const onClick = (e) => {
-        var dataNameArray = props.data.split('@')
+        // var dataNameArray = props.data.split('@')
+        var dataNameArray = e.keyPath[0].split('@')
         let typeIdex = dataNameArray[2]
         // console.log('click', e.keyPath);
         if (e.keyPath[0] === 'logout'){
@@ -104,7 +105,6 @@ const SideMenu = (props) => {
             }else {
                 setPicker('year')
             }
-            
         }
     }
     
