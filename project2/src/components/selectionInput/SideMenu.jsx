@@ -57,6 +57,7 @@ const SideMenu = (props) => {
 
     var items_1 = [
         getItem('Select Area', 'area', <GlobalOutlined />, [
+            // getItem('Southeast Asia', 'subSEA', null, null),
             getItem('Country', 'subCountry', null, countryList),
             getItem('Thailand', 'subThai', null, provinceList),
         ]),

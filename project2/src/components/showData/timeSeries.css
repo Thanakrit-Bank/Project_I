@@ -12,13 +12,13 @@
     left: -20px;
 }
 
-@media screen and (max-height: 900px) {
+@media screen and (max-height: 1080px) {
     .graph{
         top: 68vh;
     }
 }
 
-@media screen and (max-height: 750px) {
+@media screen and (max-height: 720px) {
     .graph{
         top: 63vh;
     }

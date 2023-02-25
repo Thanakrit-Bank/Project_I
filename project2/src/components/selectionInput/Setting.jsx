@@ -2,7 +2,7 @@ import { Modal, Radio } from 'antd';
 import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import { Link } from 'react-router-dom';
-import { Col, InputNumber, Row, Slider } from 'antd';
+import { Button, Col, InputNumber, Row, Slider } from 'antd';
 import './setting.css'
 
 const Setting = (props) => {
@@ -42,7 +42,10 @@ const Setting = (props) => {
     props.setGraphType(e.target.value);
   };
 
-  const [inputValue, setInputValue] = useState(1);
+  const [legendMinValue, setlegendMinValue] = useState();
+  const [legendMaxValue, setlegendMaxValue] = useState();
+  const [opacityValue, setOpacityValue] = useState();
+  const [inputValue, setInputValue] = useState(7);
   const opecityChange = (newValue) => {
     setInputValue(newValue);
     props.opacityChange(newValue)
@@ -101,6 +104,32 @@ const Setting = (props) => {
         open={open}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={[
+          <Button 
+            danger
+            type="default"
+            onClick={() => {
+              setlegendMinValue(legendMinChange());
+              setlegendMaxValue(legendMaxChange());
+              setOpacityValue(opecityChange());
+            }}
+          >
+            Reset
+          </Button>,
+          <Button 
+            key="back" 
+            onClick={handleCancel}
+          >
+            Cancel
+          </Button>,
+          <Button 
+            key="submit" 
+            type="primary"  
+            onClick={handleOk}
+          >
+            Confirm
+          </Button>
+        ]}
         modalRender={(modal) => (
           <Draggable
             disabled={disabled}
@@ -143,7 +172,7 @@ const Setting = (props) => {
               style={{
                 margin: '0 16px',
               }}
-              value={inputValue}
+              value={opacityValue}
               onChange={opecityChange}
             />
           </Col>
@@ -152,17 +181,19 @@ const Setting = (props) => {
         <p className="topic">Legend</p>
         <br />
         <InputNumber
+          prefix="Max:"
+          style={{width: '49%'}}
+          onChange={legendMaxChange}
+          defaultValue={props.legendMax}  
+          value={legendMaxValue}        
+        />
+        <> </>
+        <InputNumber
           prefix="Min:"
           style={{width: '49%'}}
           onChange={legendMinChange}
           defaultValue={props.legendMin}
-        />
-        <> </>
-        <InputNumber
-          prefix="Max:"
-          style={{width: '49%'}}
-          onChange={legendMaxChange}
-          defaultValue={props.legendMax}
+          value={legendMinValue} 
         />
       </Modal>
     </>

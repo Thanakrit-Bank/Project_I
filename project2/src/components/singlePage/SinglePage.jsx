@@ -9,6 +9,7 @@ import 'leaflet/dist/leaflet.css'
 import "../../data/dataSelection" 
 import './singlePage.css'
 import Breadcrumb from '../showData/Breadcrumb';
+import About from '../showData/About';
 
 const SinglePage = () => {
 
@@ -125,6 +126,7 @@ const SinglePage = () => {
         />
 
         <Breadcrumb selectArea={selectArea} selectData={selectData} selectDate={selectDate}/>
+        <About />
     </MapContainer>    
   )
 }
