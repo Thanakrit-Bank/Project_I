@@ -1,5 +1,6 @@
 import React from 'react'
 import './breadcrumb.css'
+
 const Breadcrumb = (props) => {
 
     const dataNameArray = props.selectData.split('@')
@@ -12,10 +13,10 @@ const Breadcrumb = (props) => {
     let fdate = ''
     let ldate = ''
 
-    if (typeIdex === 'indices'){
+    if (typeIdex === 'indices') {
         fdate = date.split(' ')[3]
         ldate = date.split(' ')[8]
-    }else if (date === "2006"){
+    } else if (date === "2006") {
         fdate = '2006'
         ldate = '2006'
     }
@@ -40,4 +41,4 @@ const Breadcrumb = (props) => {
   )
 }
 
-export default Breadcrumb
+export default Breadcrumb;

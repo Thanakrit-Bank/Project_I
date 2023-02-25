@@ -1,6 +1,6 @@
-import { FloatButton, Modal } from 'antd';
+import { Modal } from 'antd';
 import { useState } from 'react';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 import './about.css'
 
 const About = () => {
@@ -21,15 +21,10 @@ const About = () => {
 
   return (
     <>
-        <FloatButton
-            icon={<QuestionCircleOutlined />}
-            type="default"
-            onClick={showModal}
-            className='about'
-        />
-        <Modal title="About" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-            <p>Some contents...</p>
-        </Modal>
+      <Link onClick={showModal}>About</Link>
+      <Modal title="About" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+          <p>Some contents...</p>
+      </Modal>
     </>
   );
 };

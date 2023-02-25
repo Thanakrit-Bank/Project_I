@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import {  AppstoreOutlined, 
   GlobalOutlined, 
-  SettingFilled,
+  QuestionCircleOutlined ,
   DatabaseOutlined,
   BarsOutlined,
   LogoutOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
-import Setting from './Setting';
+import About from '../showData/About'
 import { deleteToken } from '../authentication/Auth';
 import SelectDate from './SelectDate';
 import './sideMenu.css'
@@ -70,20 +70,10 @@ const SideMenu = (props) => {
     ];
 
     const items_2 = [
+        // getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
         getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
         { type: 'divider' },
-        getItem(<Setting 
-                    graphType={props.graphType} 
-                    setGraphType={props.setGraphType} 
-                    dataType={props.dataType} 
-                    setDataType={props.setDataType}
-                    opacityChange={props.opacityChange} 
-                    gridOpacity={props.gridOpacity}
-                    legendMaxChange={props.legendMaxChange}
-                    legendMinChange={props.legendMinChange}
-                    legenMax={props.legendMax}
-                    legenMin={props.legendMin}
-                />, null, <SettingFilled />),
+        getItem(<About />, null, <QuestionCircleOutlined  />),
         { type: 'divider' },
         getItem(<Link to="/">Logout</Link>, 'logout', <LogoutOutlined />)
     ];
@@ -119,4 +109,4 @@ const SideMenu = (props) => {
     )
 }
 
-export default SideMenu
+export default SideMenu;

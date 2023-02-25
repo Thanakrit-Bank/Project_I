@@ -1,8 +1,8 @@
 import { Modal, Radio } from 'antd';
 import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
-import { Link } from 'react-router-dom';
-import { Button, Col, InputNumber, Row, Slider } from 'antd';
+import { SettingFilled } from '@ant-design/icons';
+import { FloatButton, Button, Col, InputNumber, Row, Slider } from 'antd';
 import './setting.css'
 
 const Setting = (props) => {
@@ -33,11 +33,6 @@ const Setting = (props) => {
     props.setDataType(value);
   };
 
-  // const onChange4 = ({ target: { value } }) => {
-  //   console.log('radio4 checked', value);
-  //   setValue4(value);
-  // };
-
   const graphChange = (e) => {
     props.setGraphType(e.target.value);
   };
@@ -46,6 +41,7 @@ const Setting = (props) => {
   const [legendMaxValue, setlegendMaxValue] = useState();
   const [opacityValue, setOpacityValue] = useState();
   const [inputValue, setInputValue] = useState(7);
+  
   const opecityChange = (newValue) => {
     setInputValue(newValue);
     props.opacityChange(newValue)
@@ -76,7 +72,12 @@ const Setting = (props) => {
 
   return (
     <>
-      <Link onClick={showModal}>Setting</Link>
+      <FloatButton
+            icon={<SettingFilled />}
+            type="default"
+            onClick={showModal}
+            className='setting'
+      />
       <Modal
         title={
           <div

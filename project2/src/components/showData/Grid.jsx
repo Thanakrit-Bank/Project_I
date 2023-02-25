@@ -1,14 +1,12 @@
 import React, { useState, useEffect} from 'react'
 import { GeoJSON, Popup, FeatureGroup } from 'react-leaflet' 
-import * as turf from '@turf/turf'
 import dataIndex from '../../data/dataLegend'
+import * as turf from '@turf/turf'
 
 const Grid = (props) => {
-
-    
+   
     const [data, setData] = useState([])
-    
-    
+        
     const url = "http://127.0.0.1:8000/get_index"
     // const url = "https://fastapi-project-378900.et.r.appspot.com//get_index"
     const area = props.area
@@ -24,16 +22,15 @@ const Grid = (props) => {
     var dataindex = dataIndex[typeIdex][indexName]
     // var max = props.legendMax
     // var min = props.legendMin
-    
-    
-    if (typeIdex === 'SPI'){
+       
+    if (typeIdex === 'SPI') {
         dataindex = dataIndex[typeIdex]['spi']
     }
     var color = dataindex.color
     var max = dataindex.max
     var min = dataindex.min
     
-    if (props.legendMax !== '' && props.legendMin !== ''){
+    if (props.legendMax !== '' && props.legendMin !== '') {
         max = props.legendMax
         min = props.legendMin
     }
@@ -42,24 +39,23 @@ const Grid = (props) => {
     // console.log('props gridpage : ',props.legendMin, props.legendMax);
     const interval = (max - min)/8
 
-    if(typeValue === 'RCP4.5'){
+    if (typeValue === 'RCP4.5') {
         typeValue = 'rcp45'
-    }else {
+    } else {
         typeValue = 'rcp85'
     }
 
-    if (dataProvider === 'ensemble'){
+    if (dataProvider === 'ensemble') {
         dataProvider = 'mpi'
     }
 
-
     let urlRequest = url.concat('/',dataProvider,'_',typeValue,'_', indexName, '&', area.split(' ')[0], '&', dateInput, '&', typeIdex)
 
-    if (typeIdex === 'SPI'){
+    if (typeIdex === 'SPI') {
         typeIdex = '_SPI'
-        if (typeValue === 'RCP4.5'){
+        if (typeValue === 'RCP4.5') {
             typeValue = '45'
-        }else {
+        } else {
             typeValue = '85'
         }
         urlRequest = url.concat('/',dataProvider,typeValue,'_', 'spi', '_m', indexName.split(' ')[0], '&', area.split(' ')[0], '&', dateInput, '&', typeIdex)
@@ -79,61 +75,61 @@ const Grid = (props) => {
     },[props.area, props.data, props.date, props.gridOpacity, props.legendMax, props.legendMin, urlRequest])
 
     return (
-    <FeatureGroup>
-        {data.map(data => {
-            var myStyleGrid = {
-                color: "white",
-                weight: 0,
-                fillOpacity: props.gridOpacity/10,
-                fillColor: 'white',
-                borderColor: 'black'
-            }
+        <FeatureGroup>
+            {data.map(data => {
+                var myStyleGrid = {
+                    color: "white",
+                    weight: 0,
+                    fillOpacity: props.gridOpacity/10,
+                    fillColor: 'white',
+                    borderColor: 'black'
+                }
 
-            if (data.properties.time_index){
-                props.SetViewOnChange(data.geometry.coordinates[0][0])
-                props.setTimeSeriesData(data.properties.time_series)
-                props.setSeasonalData(data.properties.seasonal)
-            }
+                if (data.properties.time_index){
+                    props.SetViewOnChange(data.geometry.coordinates[0][0])
+                    props.setTimeSeriesData(data.properties.time_series)
+                    props.setSeasonalData(data.properties.seasonal)
+                }
 
-            if(data.properties.index < min){
-                myStyleGrid.fillColor = color[8]
-            }else if(data.properties.index < min + interval){
-                myStyleGrid.fillColor = color[7]
-            }else if(data.properties.index < min + 2*interval){
-                myStyleGrid.fillColor = color[6]
-            }else if(data.properties.index < min + 3*interval){
-                myStyleGrid.fillColor = color[5]
-            }else if(data.properties.index < min + 4*interval){
-                myStyleGrid.fillColor = color[4]
-            }else if(data.properties.index < min + 5*interval){
-                myStyleGrid.fillColor = color[3]
-            }else if(data.properties.index < min + 6*interval){
-                myStyleGrid.fillColor = color[2]
-            }else if(data.properties.index < min + 7*interval){
-                myStyleGrid.fillColor = color[1]
-            }else if(data.properties.index < min + 8*interval){
-                myStyleGrid.fillColor = color[0]
-            }else {
-                myStyleGrid.fillColor = color[0]
-            }
+                if(data.properties.index < min){
+                    myStyleGrid.fillColor = color[8]
+                }else if(data.properties.index < min + interval){
+                    myStyleGrid.fillColor = color[7]
+                }else if(data.properties.index < min + 2*interval){
+                    myStyleGrid.fillColor = color[6]
+                }else if(data.properties.index < min + 3*interval){
+                    myStyleGrid.fillColor = color[5]
+                }else if(data.properties.index < min + 4*interval){
+                    myStyleGrid.fillColor = color[4]
+                }else if(data.properties.index < min + 5*interval){
+                    myStyleGrid.fillColor = color[3]
+                }else if(data.properties.index < min + 6*interval){
+                    myStyleGrid.fillColor = color[2]
+                }else if(data.properties.index < min + 7*interval){
+                    myStyleGrid.fillColor = color[1]
+                }else if(data.properties.index < min + 8*interval){
+                    myStyleGrid.fillColor = color[0]
+                }else {
+                    myStyleGrid.fillColor = color[0]
+                }
 
-            try {
-                var poly1 = turf.polygon(data.geometry.coordinates)
-            } catch  {
-                poly1 = turf.multiPolygon(data.geometry.coordinates)
-            }
+                try {
+                    var poly1 = turf.polygon(data.geometry.coordinates)
+                } catch  {
+                    poly1 = turf.multiPolygon(data.geometry.coordinates)
+                }
 
-            return (
-                <div>
-                    <GeoJSON key={data.properties.grid_id}  data={poly1} style={myStyleGrid}>
-                        <Popup> {Math.round(data.properties.index*1000)/1000} </Popup>
-                    </GeoJSON>
-                </div>
-                )           
-            })
-        }        
-    </FeatureGroup> 
-  )
+                return (
+                    <div>
+                        <GeoJSON key={data.properties.grid_id}  data={poly1} style={myStyleGrid}>
+                            <Popup> {Math.round(data.properties.index*1000)/1000} </Popup>
+                        </GeoJSON>
+                    </div>
+                    )           
+                })
+            }        
+        </FeatureGroup> 
+    )
 }
 
-export default Grid
+export default Grid;

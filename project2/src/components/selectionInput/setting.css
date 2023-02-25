@@ -1,3 +1,10 @@
+.setting {
+  position: absolute;
+  z-index: 1000;
+  top: 90px;
+  right: 10px;
+}
+
 .topic {
   font-size: 16px;
   font-weight: bold;

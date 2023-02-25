@@ -92,8 +92,6 @@ const Legend = (props) => {
   // console.log('data_index legendPage: ', props.dataIndex);
   // console.log('data legendPage: ', min, max);
   // console.log('props legendPage: ', props.legendMin, props.legendMax);
-
-
   const interval = (max - min)/8
     
   useEffect(() => {

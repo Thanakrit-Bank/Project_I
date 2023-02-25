@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {  AppstoreOutlined, 
   GlobalOutlined, 
-  SettingFilled,
+  QuestionCircleOutlined,
   DatabaseOutlined,
   BarsOutlined,
   LogoutOutlined 
@@ -9,13 +9,10 @@ import {  AppstoreOutlined,
 import { Layout, Menu } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
-import SettingCompare from './SettingCompare';
-import './sideMenuCompare.css'
+import About from '../showData/About'
 import SelectDate from './SelectDate';
 import { deleteToken } from '../authentication/Auth';
-
-
-
+import './sideMenuCompare.css'
 
 const SideMenuCompare = (props) => {
 
@@ -164,7 +161,7 @@ const SideMenuCompare = (props) => {
     const items_2 = [
         getItem(<Link to="/SinglePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
         { type: 'divider' },
-        getItem(<SettingCompare graphType={props.graphType} setGraphType={props.setGraphType} />, null, <SettingFilled />),
+        getItem(<About />, null, <QuestionCircleOutlined />),
         { type: 'divider' },
         getItem(<Link to="/">Logout</Link>, 'logout', <LogoutOutlined />)
     ];

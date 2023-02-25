@@ -5,11 +5,11 @@ import TimeSeries from '../showData/TimeSeries';
 import SideMenu from '../selectionInput/SideMenu';
 import Grid from '../showData/Grid';
 import Legend from '../showData/Legend';
-import 'leaflet/dist/leaflet.css'
-import "../../data/dataSelection" 
-import './singlePage.css'
 import Breadcrumb from '../showData/Breadcrumb';
-import About from '../showData/About';
+import Setting from '../selectionInput/Setting';
+import 'leaflet/dist/leaflet.css';
+import "../../data/dataSelection";
+import './singlePage.css';
 
 const SinglePage = () => {
 
@@ -126,9 +126,20 @@ const SinglePage = () => {
         />
 
         <Breadcrumb selectArea={selectArea} selectData={selectData} selectDate={selectDate}/>
-        <About />
+        <Setting 
+          graphType={graphType} 
+          setGraphType={setGraphType} 
+          dataType={dataType} 
+          setDataType={setDataType}
+          opacityChange={opacityChange} 
+          gridOpacity={gridOpacity}
+          legendMaxChange={legendMaxChange}
+          legendMinChange={legendMinChange}
+          legenMax={legendMax}
+          legenMin={legendMin}
+        />
     </MapContainer>    
   )
 }
 
-export default SinglePage
+export default SinglePage;

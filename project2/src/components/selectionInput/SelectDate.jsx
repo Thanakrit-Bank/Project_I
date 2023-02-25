@@ -18,4 +18,4 @@ const SelectDate = (props) => {
     )
 }
 
-export default SelectDate
+export default SelectDate;
