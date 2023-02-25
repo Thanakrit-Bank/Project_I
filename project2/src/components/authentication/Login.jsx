@@ -37,6 +37,7 @@ const Login = () => {
         redirect: 'follow'
         };
 
+        // fetch("https://fastapi-demo-378810.et.r.appspot.com/login", requestOptions)
         fetch("http://127.0.0.1:8000/login", requestOptions)
         .then(response => response.json())
         .then(result => {
