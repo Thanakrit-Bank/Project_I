@@ -70,7 +70,6 @@ const SideMenu = (props) => {
     ];
 
     const items_2 = [
-        // getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
         getItem(<Link to="/ComparePage">Compare Mode</Link>, 'comparePage', <AppstoreOutlined />),
         { type: 'divider' },
         getItem(<About />, null, <QuestionCircleOutlined  />),

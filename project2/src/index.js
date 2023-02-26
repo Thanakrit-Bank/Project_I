@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import SinglePage from './components/singlePage/SinglePage';
 import ComparePage2 from './components/comparePage/ComparePage2';
+import ComparePage3 from './components/comparePage/ComparePage3';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from './components/authentication/Login';
 import { RequireToken } from './components/authentication/Auth';
@@ -30,6 +31,14 @@ root.render(
             element={
               <RequireToken>
                 <ComparePage2/>
+              </RequireToken>
+            } 
+          />
+          <Route 
+            path='/ComparePage-Three' 
+            element={
+              <RequireToken>
+                <ComparePage3/>
               </RequireToken>
             } 
           />

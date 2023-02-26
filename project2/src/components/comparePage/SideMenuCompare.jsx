@@ -4,7 +4,8 @@ import {  AppstoreOutlined,
   QuestionCircleOutlined,
   DatabaseOutlined,
   BarsOutlined,
-  LogoutOutlined 
+  LogoutOutlined,
+  RedoOutlined 
 } from '@ant-design/icons';
 import { Layout, Menu, Switch, Space } from 'antd';
 import dataSetting from '../../data/dataSelection'
@@ -162,6 +163,10 @@ const SideMenuCompare = (props) => {
     const items_1 = [getItem(<Switch checkedChildren="2 Map" unCheckedChildren="3 Map" defaultChecked />)]
 
     const items_2 = [
+        getItem(<Link to="/ComparePage-Three">View 3 map</Link>, 'comparePage', <RedoOutlined />),
+        { type: 'divider' },
+        getItem(<Link to="/ComparePage">View 2 map</Link>, 'comparePage', <RedoOutlined />),
+        { type: 'divider' },
         getItem(<Link to="/SinglePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
         { type: 'divider' },
         getItem(<About />, null, <QuestionCircleOutlined />),
@@ -223,12 +228,12 @@ const SideMenuCompare = (props) => {
                 <div className="menu-container">
                     {/* <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_1} onClick={onClick}/> */}
                     <div className="header">Compare Mode</div>
-                    <Switch 
+                    {/* <Switch 
                         onClick={switchMode}
                         checkedChildren="View 3 Map" 
                         unCheckedChildren="View 2 Map" 
                         defaultUnChecked 
-                        style={{width: '100px', justifyContent: 'center', top: '-200px'}}/>
+                        style={{width: '100px', justifyContent: 'center', top: '-200px'}}/> */}
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_2} onClick={onClick}/>
                 </div>
         </Sider> 

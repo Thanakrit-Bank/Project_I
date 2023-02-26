@@ -39,10 +39,10 @@ const SettingCompare = (props) => {
     props.setGraphType(e.target.value);
   };
 
-  const [legendMinValue, setlegendMinValue] = useState();
-  const [legendMaxValue, setlegendMaxValue] = useState();
-  const [opacityValue, setOpacityValue] = useState();
+  const [legendMinValue, setlegendMinValue] = useState('');
+  const [legendMaxValue, setlegendMaxValue] = useState('');
   const [inputValue, setInputValue] = useState(7);
+  const [disLegend, setDisLegend] = useState(false);
   
   const opecityChange = (newValue) => {
     setInputValue(newValue);
@@ -51,11 +51,23 @@ const SettingCompare = (props) => {
   };
 
   const legendMinChange =(e) => {
+    setlegendMinValue(e);
     props.legendMinChange(e)
+    // if (props.dataIndexName.split(' ')[1] === 'month') {
+    //   setDisLegend(true);
+    // } else {
+    //   setDisLegend(false);
+    // } 
   }
 
   const legendMaxChange =(e) => {
+    setlegendMaxValue(e);
     props.legendMaxChange(e)
+    // if (props.dataIndexName.split(' ')[1] === 'month') {
+    //   setDisLegend(true);
+    // } else {
+    //   setDisLegend(false);
+    // } 
   }
 
   const onStart = (_event, uiData) => {
@@ -184,16 +196,22 @@ const SettingCompare = (props) => {
             danger
             type="default"
             onClick={() => {
-              setlegendMinValue(legendMinChange());
-              setlegendMaxValue(legendMaxChange());
-              setOpacityValue(opecityChange());
+              legendMinChange('');
+              legendMaxChange('');
+              opecityChange(7);
             }}
           >
             Reset
           </Button>,
           <Button 
             key="back" 
-            onClick={handleCancel}
+            // onClick={handleCancel}
+            onClick={() => {
+              legendMinChange('');
+              legendMaxChange('');
+              opecityChange(7);
+              handleCancel();
+            }}
           >
             Cancel
           </Button>,
@@ -248,7 +266,7 @@ const SettingCompare = (props) => {
               style={{
                 margin: '0 16px',
               }}
-              value={opacityValue}
+              value={inputValue}
               onChange={opecityChange}
             />
           </Col>
@@ -257,20 +275,22 @@ const SettingCompare = (props) => {
         <p className="topic">Legend</p>
         <br />
         <InputNumber
-          prefix="Min:"
-          style={{width: '49%'}}
-          onChange={legendMinChange}
-          defaultValue={props.legendMin}
-          value={legendMinValue}
-          min={0} 
-        />
-        <> </>
-        <InputNumber
           prefix="Max:"
           style={{width: '49%'}}
           onChange={legendMaxChange}
           defaultValue={props.legendMax}  
-          value={legendMaxValue}        
+          value={legendMaxValue}
+          // disabled={disLegend}        
+        />
+        <> </>
+        <InputNumber
+          prefix="Min:"
+          style={{width: '49%'}}
+          onChange={legendMinChange}
+          defaultValue={props.legendMin}
+          value={legendMinValue} 
+          min={0}
+          // disabled={disLegend}
         />
       </Modal>
     </>
