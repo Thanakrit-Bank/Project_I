@@ -6,19 +6,22 @@ const Breadcrumb = (props) => {
     const dataNameArray = props.selectData.split('@')
     let dataProvider = dataNameArray[0]
     let typeValue = dataNameArray[1]
-    let typeIdex = dataNameArray[2]
+    let typeIndex = dataNameArray[2]
     const indexName = dataNameArray[3]
     let temp = ''
     let date = props.selectDate
     let fdate = ''
     let ldate = ''
 
-    if (typeIdex === 'indices') {
+    if (typeIndex === 'indices') {
         fdate = date.split(' ')[3]
         ldate = date.split(' ')[8]
     } else if (date === "2006") {
         fdate = '2006'
         ldate = '2006'
+        if (typeIndex !== 'indices'){
+            temp = 'SPI'
+        }
     }
     else {
         temp = 'SPI'

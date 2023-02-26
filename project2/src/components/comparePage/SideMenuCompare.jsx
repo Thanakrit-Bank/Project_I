@@ -6,13 +6,14 @@ import {  AppstoreOutlined,
   BarsOutlined,
   LogoutOutlined 
 } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Switch, Space } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
 import About from '../showData/About'
 import SelectDate from './SelectDate';
 import { deleteToken } from '../authentication/Auth';
 import './sideMenuCompare.css'
+import { center } from '@turf/turf';
 
 const SideMenuCompare = (props) => {
 
@@ -106,57 +107,59 @@ const SideMenuCompare = (props) => {
         }))
     }))
 
-    const items_1 = [
-        getItem('Left Map', 'left', null, [
-            getItem('Select Area', 'area1', <GlobalOutlined />, [
-                getItem('Country', 'subCountry1', null, countryList1),
-                getItem('Thailand', 'subThai1', null, provinceList1),
-            ]),
-            { type: 'divider' },
-            getItem('Select Data Type', 'dataType1', <DatabaseOutlined />, selectDataMenuLeft),
-            { type: 'divider' },
-            getItem(
-                <SelectDate date={props.date1} picker={picker1} dateChange={props.dateChange1}/> 
+    // const items_1 = [
+    //     getItem('Left Map', 'left', null, [
+    //         getItem('Select Area', 'area1', <GlobalOutlined />, [
+    //             getItem('Country', 'subCountry1', null, countryList1),
+    //             getItem('Thailand', 'subThai1', null, provinceList1),
+    //         ]),
+    //         { type: 'divider' },
+    //         getItem('Select Data Type', 'dataType1', <DatabaseOutlined />, selectDataMenuLeft),
+    //         { type: 'divider' },
+    //         getItem(
+    //             <SelectDate date={props.date1} picker={picker1} dateChange={props.dateChange1}/> 
                 
-            , 'dateRange1'),
-        ], 'group'),
-        { type: 'divider' },
-        { type: 'divider' },
-        { type: 'divider' },
-        { type: 'divider' },
-        { type: 'divider' },
+    //         , 'dateRange1'),
+    //     ], 'group'),
+    //     { type: 'divider' },
+    //     { type: 'divider' },
+    //     { type: 'divider' },
+    //     { type: 'divider' },
+    //     { type: 'divider' },
 
-        getItem('Center Map', 'center', null, [
-            getItem('Select Area', 'area2', <GlobalOutlined />, [
-                getItem('Country', 'subCountry2', null, countryList2),
-                getItem('Thailand', 'subThai2', null, provinceList2),
-            ]),
-            { type: 'divider' },
-            getItem('Select Data Type', 'dataType2', <DatabaseOutlined />, selectDataMenuCenter),
-            { type: 'divider' },
-            getItem(
-                <SelectDate date={props.date2} picker={picker2} dateChange={props.dateChange2}/> 
-            , 'dateRange2'),
-        ], 'group'),
-        { type: 'divider' },
-        { type: 'divider' },
-        { type: 'divider' },
-        { type: 'divider' },
-        { type: 'divider' },
+    //     getItem('Center Map', 'center', null, [
+    //         getItem('Select Area', 'area2', <GlobalOutlined />, [
+    //             getItem('Country', 'subCountry2', null, countryList2),
+    //             getItem('Thailand', 'subThai2', null, provinceList2),
+    //         ]),
+    //         { type: 'divider' },
+    //         getItem('Select Data Type', 'dataType2', <DatabaseOutlined />, selectDataMenuCenter),
+    //         { type: 'divider' },
+    //         getItem(
+    //             <SelectDate date={props.date2} picker={picker2} dateChange={props.dateChange2}/> 
+    //         , 'dateRange2'),
+    //     ], 'group'),
+    //     { type: 'divider' },
+    //     { type: 'divider' },
+    //     { type: 'divider' },
+    //     { type: 'divider' },
+    //     { type: 'divider' },
 
-        getItem('Right Map', 'right', null, [
-            getItem('Select Area', 'area3', <GlobalOutlined />, [
-                getItem('Country', 'subCountry3', null, countryList3),
-                getItem('Thailand', 'subThai3', null, provinceList3),
-            ]),
-            { type: 'divider' },
-            getItem('Select Data Type', 'dataType3', <DatabaseOutlined />, selectDataMenuRight),
-            { type: 'divider' },
-            getItem(
-                <SelectDate date={props.date3} picker={picker3} dateChange={props.dateChange3}/> 
-            , 'dateRange3'),
-        ], 'group'),
-    ];
+    //     getItem('Right Map', 'right', null, [
+    //         getItem('Select Area', 'area3', <GlobalOutlined />, [
+    //             getItem('Country', 'subCountry3', null, countryList3),
+    //             getItem('Thailand', 'subThai3', null, provinceList3),
+    //         ]),
+    //         { type: 'divider' },
+    //         getItem('Select Data Type', 'dataType3', <DatabaseOutlined />, selectDataMenuRight),
+    //         { type: 'divider' },
+    //         getItem(
+    //             <SelectDate date={props.date3} picker={picker3} dateChange={props.dateChange3}/> 
+    //         , 'dateRange3'),
+    //     ], 'group'),
+    // ];
+
+    const items_1 = [getItem(<Switch checkedChildren="2 Map" unCheckedChildren="3 Map" defaultChecked />)]
 
     const items_2 = [
         getItem(<Link to="/SinglePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
@@ -211,11 +214,21 @@ const SideMenuCompare = (props) => {
             }
         }
     }
+    const switchMode = (e => { // e return true or false 
+        props.switchMode(e)
+    })
     
     return (
         <Sider trigger={<BarsOutlined />} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={0} className="sider">
                 <div className="menu-container">
-                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_1} onClick={onClick}/>
+                    {/* <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_1} onClick={onClick}/> */}
+                    <div className="header">Compare Mode</div>
+                    <Switch 
+                        onClick={switchMode}
+                        checkedChildren="View 3 Map" 
+                        unCheckedChildren="View 2 Map" 
+                        defaultUnChecked 
+                        style={{width: '100px', justifyContent: 'center', top: '-200px'}}/>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical" items={items_2} onClick={onClick}/>
                 </div>
         </Sider> 

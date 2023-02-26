@@ -6,7 +6,7 @@
 .map-container-compare {
     position: fixed;
     height: 100vh;
-    width: 33.3vw;
+    width: 50vw;
     z-index: 0;
 }
 
@@ -18,7 +18,7 @@
 .grid-container {
     display: grid;
     z-index: 0;
-    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-columns: 50% 50% ;
     /* grid-template-columns: 50% 50% */
     /* grid-template-rows: 200px auto; */
     /* gap: 10px; */
@@ -26,4 +26,33 @@
 
 .grid-item {
     text-align: center;
+}
+
+.map-container-compare1 {
+    position: fixed;
+    height: 100vh;
+    width: 33.3vw;
+    z-index: 0;
+}
+
+/* .sider {
+    position: absolute;
+    z-index: 1000;
+} */
+
+.grid-container1 {
+    display: grid;
+    z-index: 0;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    /* grid-template-columns: 50% 50% */
+    /* grid-template-rows: 200px auto; */
+    /* gap: 10px; */
+}
+
+.grid-item1 {
+    text-align: center;
+}
+
+.side-menu {
+    font-size: 100;
 }

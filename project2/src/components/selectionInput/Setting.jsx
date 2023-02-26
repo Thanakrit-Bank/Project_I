@@ -182,20 +182,20 @@ const Setting = (props) => {
         <p className="topic">Legend</p>
         <br />
         <InputNumber
-          prefix="Max:"
-          style={{width: '49%'}}
-          onChange={legendMaxChange}
-          defaultValue={props.legendMax}  
-          value={legendMaxValue}        
-        />
-        <> </>
-        <InputNumber
           prefix="Min:"
           style={{width: '49%'}}
           onChange={legendMinChange}
           defaultValue={props.legendMin}
           value={legendMinValue} 
           min={0}
+        />
+        <> </>
+        <InputNumber
+          prefix="Max:"
+          style={{width: '49%'}}
+          onChange={legendMaxChange}
+          defaultValue={props.legendMax}  
+          value={legendMaxValue}        
         />
       </Modal>
     </>

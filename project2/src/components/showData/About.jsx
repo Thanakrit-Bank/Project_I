@@ -23,7 +23,7 @@ const About = () => {
     <>
       <Link onClick={showModal}>About</Link>
       <Modal title="About" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-          <p>Some contents...</p>
+          <p>shape file province in thailand : <a href='https://csuwan.weebly.com/360436343623360936603650362736213604--download.html'>click here</a></p>
       </Modal>
     </>
   );

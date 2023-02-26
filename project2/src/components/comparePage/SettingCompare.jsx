@@ -1,9 +1,11 @@
-import { Modal, Radio } from 'antd';
+import { Modal, Radio, Menu } from 'antd';
 import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
-import { SettingFilled } from '@ant-design/icons';
+import { SettingFilled, GlobalOutlined, DatabaseOutlined } from '@ant-design/icons';
 import { FloatButton, Button, Col, InputNumber, Row, Slider } from 'antd';
 import './settingCompare.css'
+import dataSetting from '../../data/dataSelection'
+import SelectDate from './SelectDate';
 
 const SettingCompare = (props) => {
   const [open, setOpen] = useState(false);
@@ -69,6 +71,78 @@ const SettingCompare = (props) => {
       bottom: clientHeight - (targetRect.bottom - uiData.y),
     });
   };
+
+  // ================================================================================
+
+  const [picker1, setPicker1]  = useState('year')
+
+  function getItem(label, key, icon, children, type) {
+    return {
+      key,
+      icon,
+      children,
+      label,
+      type
+    };
+  }
+  const settingSelection = dataSetting
+  const {province, country, data_provider, type_index, type_value, index_name, SPI_name} = settingSelection
+  
+  const countryList1 = country.map((cName) => {
+      return getItem(cName, cName)
+  })
+
+  const provinceList1 = province.map((cName) => {
+      return getItem(cName, cName.replace(' ', '_'))
+  })
+
+  const selectDataMenuLeft = data_provider.map((providerName => {
+    return getItem(providerName, providerName.concat('@', 'left'), null, type_value.map(valueName => {
+        return getItem(valueName, providerName.concat("@",valueName,"@", 'left'), null, type_index.map(indexName => {
+            if(indexName === "SPI"){
+                return getItem(indexName, providerName.concat("@",valueName,"@",indexName,"@", 'left'), null, SPI_name.map(spiname => {
+                    return getItem(spiname, providerName.concat("@",valueName,"@",indexName,"@",spiname.trim()))
+                }))
+            }else {
+                return getItem(indexName, providerName.concat("@",valueName,"@",indexName,"@", 'left'), null, index_name.map(spiname => {
+                    return getItem(spiname, providerName.concat("@",valueName,"@",indexName,"@",spiname.trim()))
+                }))
+            }
+        }))
+    }))
+}))
+
+  const items_1 = [
+        
+            getItem('Select Area', 'area1', <GlobalOutlined />, [
+                getItem('Country', 'subCountry1', null, countryList1),
+                getItem('Thailand', 'subThai1', null, provinceList1),
+            ]),
+            { type: 'divider' },
+            getItem('Select Data Type', 'dataType1', <DatabaseOutlined />, selectDataMenuLeft),
+            { type: 'divider' },
+            getItem(
+                <SelectDate date={props.date1} picker={picker1} dateChange={props.dateChange1}/> 
+                
+            , 'dateRange1'),
+        
+    ];
+
+    const onClick = (e) => {
+      const dataNameArray1 = props.data1.split('@')
+      let typeIdex1 = dataNameArray1[2]
+      if (e.keyPath[e.keyPath.length - 1] === 'area1'){
+          props.areaChange1(e.keyPath[0])
+      }
+      else if (e.keyPath[e.keyPath.length - 1] === 'dataType1'){
+          props.dataChange1(e.keyPath[0])
+          if (typeIdex1 === "SPI"){
+              setPicker1('year')
+          }else {
+              setPicker1('month')
+          }
+      }
+  }
 
   return (
     <>
@@ -141,6 +215,7 @@ const SettingCompare = (props) => {
           </Draggable>
         )}
       >
+        <Menu defaultSelectedKeys={['1']} mode="vertical" items={items_1} onClick={onClick}/>
         <br />
         <p className="topic">Graph</p>
         <p className="sub-topic">
@@ -182,20 +257,20 @@ const SettingCompare = (props) => {
         <p className="topic">Legend</p>
         <br />
         <InputNumber
-          prefix="Max:"
-          style={{width: '49%'}}
-          onChange={legendMaxChange}
-          defaultValue={props.legendMax}  
-          value={legendMaxValue}        
-        />
-        <> </>
-        <InputNumber
           prefix="Min:"
           style={{width: '49%'}}
           onChange={legendMinChange}
           defaultValue={props.legendMin}
           value={legendMinValue}
           min={0} 
+        />
+        <> </>
+        <InputNumber
+          prefix="Max:"
+          style={{width: '49%'}}
+          onChange={legendMaxChange}
+          defaultValue={props.legendMax}  
+          value={legendMaxValue}        
         />
       </Modal>
     </>

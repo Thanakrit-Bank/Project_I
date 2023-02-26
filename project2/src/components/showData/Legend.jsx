@@ -7,7 +7,6 @@ import './legend.css'
 const Legend = (props) => {
 
   const mapInstance = useMap();
-  console.log(props.dataIndexName);
   var data = dataIndex.indices.CDD 
   // Indices
   if (props.dataIndexName === 'CDD'){

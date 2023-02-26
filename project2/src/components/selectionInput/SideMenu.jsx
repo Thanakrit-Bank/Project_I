@@ -96,6 +96,8 @@ const SideMenu = (props) => {
             }else {
                 setPicker('year')
             }
+            props.legendMaxChange('')
+            props.legendMinChange('')
         }
     }
     
