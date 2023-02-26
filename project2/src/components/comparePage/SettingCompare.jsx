@@ -194,7 +194,8 @@ const SettingCompare = (props) => {
           style={{width: '49%'}}
           onChange={legendMinChange}
           defaultValue={props.legendMin}
-          value={legendMinValue} 
+          value={legendMinValue}
+          min={0} 
         />
       </Modal>
     </>

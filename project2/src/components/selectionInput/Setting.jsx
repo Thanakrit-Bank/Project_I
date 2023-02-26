@@ -195,6 +195,7 @@ const Setting = (props) => {
           onChange={legendMinChange}
           defaultValue={props.legendMin}
           value={legendMinValue} 
+          min={0}
         />
       </Modal>
     </>
