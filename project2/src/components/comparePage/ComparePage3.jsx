@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 import { Layout } from 'antd';
 import TimeSeries from '../showData/TimeSeries';
@@ -10,7 +10,6 @@ import SettingCompare from './SettingCompare'
 import 'leaflet/dist/leaflet.css';
 import "../../data/dataSelection";
 import './comparePage.css';
-import { useNavigate } from 'react-router-dom'
 
 const ComparePage3 = (props) => {
 

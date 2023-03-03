@@ -45,7 +45,7 @@ const dataIndex = {
         'PRCPTOT': {
             'max': 2800,
             'min': 0.1,
-            'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
+            'color': ["#3288bd","#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43",'#d53e4f'],
             'unit': "mm"
         },
         'R10mm': {

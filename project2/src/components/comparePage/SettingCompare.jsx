@@ -42,7 +42,6 @@ const SettingCompare = (props) => {
   const [legendMinValue, setlegendMinValue] = useState('');
   const [legendMaxValue, setlegendMaxValue] = useState('');
   const [inputValue, setInputValue] = useState(7);
-  const [disLegend, setDisLegend] = useState(false);
   
   const opecityChange = (newValue) => {
     setInputValue(newValue);
@@ -275,15 +274,6 @@ const SettingCompare = (props) => {
         <p className="topic">Legend</p>
         <br />
         <InputNumber
-          prefix="Max:"
-          style={{width: '49%'}}
-          onChange={legendMaxChange}
-          defaultValue={props.legendMax}  
-          value={legendMaxValue}
-          // disabled={disLegend}        
-        />
-        <> </>
-        <InputNumber
           prefix="Min:"
           style={{width: '49%'}}
           onChange={legendMinChange}
@@ -291,6 +281,15 @@ const SettingCompare = (props) => {
           value={legendMinValue} 
           min={0}
           // disabled={disLegend}
+        />
+        <> </>
+        <InputNumber
+          prefix="Max:"
+          style={{width: '49%'}}
+          onChange={legendMaxChange}
+          defaultValue={props.legendMax}  
+          value={legendMaxValue}
+          // disabled={disLegend}        
         />
       </Modal>
     </>
