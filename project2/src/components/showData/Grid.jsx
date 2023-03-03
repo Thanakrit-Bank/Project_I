@@ -7,8 +7,8 @@ const Grid = (props) => {
    
     const [data, setData] = useState([])
         
-    const url = "http://127.0.0.1:8000/get_index"
-    // const url = "https://fastapi-project-378900.et.r.appspot.com//get_index"
+    // const url = "http://127.0.0.1:8000/get_index"
+    const url = "https://fastapi-backend-379503.et.r.appspot.com/get_index"
     const area = props.area
     const dateInput = props.date
     const dataNameArray = props.data.split('@')
