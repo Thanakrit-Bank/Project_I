@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LineChart, 
     Line, 
     XAxis, 
@@ -7,7 +7,8 @@ import { LineChart,
     Tooltip, 
     BarChart, 
     Legend, 
-    Bar } from 'recharts';
+    Bar,
+    ResponsiveContainer } from 'recharts';
 import Draggable from 'react-draggable';
 import './timeSeries.css'
 
@@ -32,14 +33,17 @@ const TimeSeries = (props) => {
  
     if (props.type === 'Linechart') {
         return (
-            <LineChart width={450} height={250}  data={data} className='graph'>
-            {/* <LineChart data={data} margin={{'top': 500}}> */}
-                <CartesianGrid stroke="black" fill='#555' fillOpacity={0.7}/>
+            // <ResponsiveContainer width="50%" height="20%" className='graph'>
+            // <LineChart data={data}>
+            <LineChart width={450} height={250} data={data} className='graph'>
+                {/* <CartesianGrid stroke="black" fill='#555' fillOpacity={0.7}/> */}
+                <CartesianGrid stroke="white" strokeOpacity={0.5} fill='white' fillOpacity={0}/>
                 <Line type="monotone" dataKey={value} stroke="red" dot={false}/>
-                <XAxis dataKey={key} stroke="black"/>
-                <YAxis stroke="black" />
+                <XAxis dataKey={key}/>
+                <YAxis />
                 <Tooltip />
             </LineChart>
+            // </ResponsiveContainer>
         )
     }
     else {

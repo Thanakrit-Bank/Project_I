@@ -8,11 +8,9 @@ import {  AppstoreOutlined,
 import { Layout, Menu } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import { Link } from 'react-router-dom';
-import About from '../showData/About'
 import { deleteToken } from '../authentication/Auth';
 import SelectDate from './SelectDate';
 import './sideMenu.css'
-
 
 const SideMenu = (props) => {
 
@@ -81,7 +79,6 @@ const SideMenu = (props) => {
         // var dataNameArray = props.data.split('@')
         var dataNameArray = e.keyPath[0].split('@')
         let typeIdex = dataNameArray[2]
-        // console.log('click', e.keyPath);
         if (e.keyPath[0] === 'logout'){
             deleteToken()
         }

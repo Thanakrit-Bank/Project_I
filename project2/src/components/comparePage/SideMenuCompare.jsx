@@ -7,7 +7,6 @@ import {  AppstoreOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import About from '../showData/About'
 import { deleteToken } from '../authentication/Auth';
 import './sideMenuCompare.css'
 
@@ -33,8 +32,8 @@ const SideMenuCompare = (props) => {
         { type: 'divider' },
         getItem(<Link to="/SinglePage">Single Mode</Link>, 'comparePage', <AppstoreOutlined />),
         { type: 'divider' },
-        getItem(<About />, null, <QuestionCircleOutlined />),
-        { type: 'divider' },
+        // getItem(<About />, null, <QuestionCircleOutlined />),
+        // { type: 'divider' },
         getItem(<Link to="/">Logout</Link>, 'logout', <LogoutOutlined />)
     ];
 

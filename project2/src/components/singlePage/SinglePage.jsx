@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 import { Layout } from 'antd';
 import TimeSeries from '../showData/TimeSeries';
-import SideMenu from '../selectionInput/SideMenu';
+// import SideMenu from '../selectionInput/SideMenu';
 import Grid from '../showData/Grid';
 import Legend from '../showData/Legend';
 import Breadcrumb from '../showData/Breadcrumb';
@@ -87,7 +87,7 @@ const SinglePage = () => {
         />
         
         <Layout style={{ minHeight: '100vh'}}>
-            <SideMenu 
+            {/* <SideMenu 
               areaChange={areaChange} 
               dataChange={dataChange} 
               dateChange={dateChange} 
@@ -104,7 +104,7 @@ const SinglePage = () => {
               legendMin={legendMin}
               legendMaxChange={legendMaxChange}
               legendMinChange={legendMinChange}
-            />
+            /> */}
             <TimeSeries data={timeSeriesData} data2={seasonalData} type={graphType} dataType={dataType}/>
         </Layout>
 
@@ -137,6 +137,13 @@ const SinglePage = () => {
           legendMinChange={legendMinChange}
           legenMax={legendMax}
           legenMin={legendMin}
+
+          areaChange={areaChange} 
+          dataChange={dataChange} 
+          dateChange={dateChange} 
+          area={selectArea} 
+          data={selectData} 
+          date={selectDate}         
         />
     </MapContainer>    
   )

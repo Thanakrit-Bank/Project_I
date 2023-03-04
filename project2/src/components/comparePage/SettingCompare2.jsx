@@ -14,7 +14,7 @@ import dataSetting from '../../data/dataSelection'
 import SelectDate from './SelectDate';
 import './settingCompare.css'
 
-const SettingCompare = (props) => {
+const SettingCompare2 = (props) => {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [bounds, setBounds] = useState({
@@ -181,8 +181,8 @@ const SettingCompare = (props) => {
         />
         <FloatButton 
           icon={<RedoOutlined />}
-          href={"/ComparePage-Three"}
-          tooltip={<div>View 3 map</div>}
+          href={"/ComparePage"}
+          tooltip={<div>View 2 map</div>}
         />
         <FloatButton 
           icon={<AppstoreOutlined />}
@@ -344,4 +344,4 @@ const SettingCompare = (props) => {
   );
 };
 
-export default SettingCompare;
+export default SettingCompare2;

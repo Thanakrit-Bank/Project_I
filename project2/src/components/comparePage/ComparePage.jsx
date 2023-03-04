@@ -2,7 +2,7 @@ import React, {  useState } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 import { Layout } from 'antd';
 import TimeSeries from '../showData/TimeSeries';
-import SideMenuCompare from './SideMenuCompare'
+// import SideMenuCompare from './SideMenuCompare'
 import Grid from '../showData/Grid';
 import Legend from '../showData/Legend';
 import Breadcrumb from '../showData/Breadcrumb';
@@ -218,7 +218,7 @@ const ComparePage = (props) => {
                         />
                         
                         <Layout style={{ textAlign: "left", minHeight: '100vh'}}>
-                            <SideMenuCompare 
+                            {/* <SideMenuCompare 
                                 className="side-manu"
                                 switchMode={modeChange}
         
@@ -272,7 +272,7 @@ const ComparePage = (props) => {
                                 legendMin3={legendMin3}
                                 legendMaxChange3={legendMaxChange3}
                                 legendMinChange3={legendMinChange3}
-                            />
+                            /> */}
                             <TimeSeries data={timeSeriesData1} data2={seasonalData1} type={graphType1} dataType={dataType1}/>
                         </Layout>
         
@@ -477,7 +477,7 @@ const ComparePage = (props) => {
                         />
                         
                         <Layout style={{ textAlign: "left", minHeight: '100vh'}}>
-                            <SideMenuCompare 
+                            {/* <SideMenuCompare 
                                 className="side-manu"
                                 switchMode={modeChange}
         
@@ -531,7 +531,7 @@ const ComparePage = (props) => {
                                 legendMin3={legendMin3}
                                 legendMaxChange3={legendMaxChange3}
                                 legendMinChange3={legendMinChange3}
-                            />
+                            /> */}
                             <TimeSeries data={timeSeriesData1} data2={seasonalData1} type={graphType1} dataType={dataType1}/>
                         </Layout>
         

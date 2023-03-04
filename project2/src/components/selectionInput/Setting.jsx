@@ -1,8 +1,16 @@
-import { Modal, Radio } from 'antd';
+import { Modal, Radio, Menu } from 'antd';
 import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
-import { SettingFilled } from '@ant-design/icons';
+import { AppstoreOutlined,  
+  QuestionCircleOutlined ,
+  LogoutOutlined,
+  SettingFilled, 
+  DownOutlined,
+  GlobalOutlined,
+  DatabaseOutlined } from '@ant-design/icons';
 import { FloatButton, Button, Col, InputNumber, Row, Slider } from 'antd';
+import dataSetting from '../../data/dataSelection'
+import SelectDate from './SelectDate';
 import './setting.css'
 
 const Setting = (props) => {
@@ -29,6 +37,20 @@ const Setting = (props) => {
     setOpen(false);
   };
 
+  const [open1, setOpen1] = useState(false);
+
+  const showAbout = () => {
+    setOpen1(true);
+  };
+
+  const handleOk1 = (e) => {
+    setOpen1(false);
+  };
+
+  const handleCancel1 = (e) => {
+    setOpen1(false);
+  };
+
   const dataChange = ({ target: { value } }) => {
     props.setDataType(value);
   };
@@ -50,21 +72,11 @@ const Setting = (props) => {
   const legendMinChange =(e) => {
     setlegendMinValue(e);
     props.legendMinChange(e)
-    // if (props.dataIndexName.split(' ')[1] === 'month') {
-    //   setDisLegend(true);
-    // } else {
-    //   setDisLegend(false);
-    // } 
   }
 
   const legendMaxChange =(e) => {
     setlegendMaxValue(e);
     props.legendMaxChange(e)
-    // if (props.dataIndexName.split(' ')[1] === 'month') {
-    //   setDisLegend(true);
-    // } else {
-    //   setDisLegend(false);
-    // } 
   }
 
   const onStart = (_event, uiData) => {
@@ -81,14 +93,111 @@ const Setting = (props) => {
     });
   };
 
+  // ================================================================================
+
+  const [picker, setPicker]  = useState('year')
+
+  function getItem(label, key, icon, children) {
+    return {
+      key,
+      icon,
+      children,
+      label,
+    };
+  }
+  const settingSelection = dataSetting
+  const {province, country, data_provider, type_index, type_value, index_name, SPI_name} = settingSelection
+  
+  const countryList = country.map((cName) => {
+      return getItem(cName, cName)
+  })
+
+  const provinceList = province.map((cName) => {
+      return getItem(cName, cName.replace(' ', '_'))
+  })
+
+  const selectDataMenu = data_provider.map((providerName => {
+      return getItem(providerName, providerName, null, type_value.map(valueName => {
+          return getItem(valueName, providerName.concat("@",valueName,"@"), null, type_index.map(indexName => {
+              if(indexName === "SPI"){
+                  return getItem(indexName, providerName.concat("@",valueName,"@",indexName,"@"), null, SPI_name.map(spiname => {
+                      return getItem(spiname, providerName.concat("@",valueName,"@",indexName,"@",spiname.trim()))
+                  }))
+              }else {
+                  return getItem(indexName, providerName.concat("@",valueName,"@",indexName,"@"), null, index_name.map(spiname => {
+                      return getItem(spiname, providerName.concat("@",valueName,"@",indexName,"@",spiname.trim()))
+                  }))
+              }
+          }))
+      }))
+  }))
+
+  var items_1 = [
+      getItem('Select Area', 'area', <GlobalOutlined />, [
+          // getItem('Southeast Asia', 'subSEA', null, null),
+          getItem('Country', 'subCountry', null, countryList),
+          getItem('Thailand', 'subThai', null, provinceList),
+      ]),
+      { type: 'divider' },
+      getItem('Select Data Type', 'dataType', <DatabaseOutlined />, selectDataMenu),
+      { type: 'divider' },
+      getItem(
+          <SelectDate date={props.date} picker={picker} dateChange={props.dateChange} /> 
+      , 'dateRange'),
+  ];
+
+  const onClick = (e) => {
+      var dataNameArray = e.keyPath[0].split('@')
+      let typeIdex = dataNameArray[2]
+      if (e.keyPath[e.keyPath.length - 1] === 'area') {
+          props.areaChange(e.keyPath[0])
+      }
+      else if (e.keyPath[e.keyPath.length - 1] === 'dataType') {
+          props.dataChange(e.keyPath[0])
+          if (typeIdex === "SPI"){
+              setPicker('month')
+          }else {
+              setPicker('year')
+          }
+      }
+  }
+
   return (
     <>
-      <FloatButton
+      <FloatButton.Group
+        trigger="click"
+        type="primary"
+        className='setting'
+        icon={<DownOutlined />}
+      >
+        <FloatButton
+          icon={<SettingFilled />}
+          onClick={showModal}
+          tooltip={<div>Setting</div>}
+        />
+        <FloatButton 
+          icon={<AppstoreOutlined />}
+          href={"/ComparePage"}
+          tooltip={<div>Compare Mode</div>}
+        />
+        <FloatButton 
+          icon={<QuestionCircleOutlined />}
+          onClick={showAbout}
+          tooltip={<div>About</div>}
+        />
+        <FloatButton 
+          icon={<LogoutOutlined />}
+          href={"/"}
+          tooltip={<div>Logout</div>}
+        />
+      </FloatButton.Group>
+
+      {/* <FloatButton
             icon={<SettingFilled />}
             type="default"
             onClick={showModal}
             className='setting'
-      />
+      /> */}
       <Modal
         title={
           <div
@@ -158,6 +267,7 @@ const Setting = (props) => {
           </Draggable>
         )}
       >
+        <Menu defaultSelectedKeys={['1']} mode="vertical" items={items_1} onClick={onClick}/>
         <br />
         <p className="topic">Graph</p>
         <p className="sub-topic">
@@ -215,6 +325,10 @@ const Setting = (props) => {
           value={legendMaxValue}
           // disabled={disLegend}        
         />
+      </Modal>
+
+      <Modal title="About" open={open1} onOk={handleOk1} onCancel={handleCancel1}>
+          <p>shape file province in thailand : <a href='https://csuwan.weebly.com/360436343623360936603650362736213604--download.html'>click here</a></p>
       </Modal>
     </>
   );
