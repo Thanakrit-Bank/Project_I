@@ -8,7 +8,7 @@
     z-index: 1000;
     margin: 0;
     padding: 0;
-    top: 78vh;
+    top: 75vh;
     left: -20px;
 }
 
@@ -20,6 +20,6 @@
 
 @media screen and (max-height: 720px) {
     .graph{
-        top: 63vh;
+        top: 70vh;
     }
 }
