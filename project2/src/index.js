@@ -7,6 +7,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from './components/authentication/Login';
 import { RequireToken } from './components/authentication/Auth';
 
+import Legend2 from './components/showData/Legend2';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
@@ -39,6 +41,14 @@ root.render(
             element={
               <RequireToken>
                 <ComparePage3/>
+              </RequireToken>
+            } 
+          />
+          <Route 
+            path='/test' 
+            element={
+              <RequireToken>
+                <Legend2/>
               </RequireToken>
             } 
           />
