@@ -15,6 +15,9 @@ const SinglePage = () => {
   const center = [13.2955977,102.2090103]
   const zoom = 6
 
+  const [height, setHeight] = useState("25%")
+  const [width, setWidth] = useState("75%")
+
   const [dataIndex, setDataIndex] = useState('CDD')
   const [timeSeriesData, setTimeSeriesData] = useState([])
   const [seasonalData ,setSeasonalData] = useState([])
@@ -22,11 +25,12 @@ const SinglePage = () => {
   const [selectData, setSelectData] = useState("ecearth@RCP4.5@indices@CDD")
   const [selectDate, setSelectDate] = useState("2006")
   const [graphType, setGraphType] = useState('Linechart')
+  const [graphShow, setGraphShow] = useState('On')
   const [dataType, setDataType] = useState('Overall')
   const [gridOpacity, setGridopacity] = useState(7)
   const [legendMax, setLegendMax] =useState('') 
   const [legendMin, setLegendMin] =useState('') 
-  const [legendType, setLegendType] = useState()
+  const [legendType, setLegendType] = useState('Interval')
 
   const areaChange = (area) => {
     setSelectArea(area)
@@ -92,6 +96,8 @@ const SinglePage = () => {
               data2={seasonalData} 
               type={graphType} 
               dataType={dataType}
+              height={height}
+              width={width}
             />
         </Layout>
 
@@ -122,6 +128,8 @@ const SinglePage = () => {
         <Setting 
           graphType={graphType} 
           setGraphType={setGraphType} 
+          graphShow={graphShow} 
+          setGraphShow={setGraphShow}
           dataType={dataType} 
           setDataType={setDataType}
           opacityChange={opacityChange} 
@@ -131,7 +139,9 @@ const SinglePage = () => {
           legenMax={legendMax}
           legenMin={legendMin}
           legendType={legendType} 
-          setLegendType={setLegendType} 
+          setLegendType={setLegendType}
+          setHeight={setHeight}
+          setWidth={setWidth} 
 
           areaChange={areaChange} 
           dataChange={dataChange} 

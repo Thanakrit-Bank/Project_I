@@ -15,8 +15,8 @@ const TimeSeries = (props) => {
     // width={450} height={250}
     // const data = props.dataType === 'overall'? props.data : props.data1 ;
     const [data, setData] = useState(props.data)
-    const  [key, setKey] = useState('')
-    const  [value, setValue] = useState('')
+    const [key, setKey] = useState('')
+    const [value, setValue] = useState('')
 
     useEffect(() => {
         if (props.dataType === 'Overall'){
@@ -32,7 +32,7 @@ const TimeSeries = (props) => {
  
     if (props.type === 'Linechart') {
         return (
-            <ResponsiveContainer height="25%" width="75%" debounce={1} className='graph'>
+            <ResponsiveContainer height={props.height} width={props.width} debounce={1} className='graph'>
                 <LineChart data={data}>
                 {/* <LineChart width={450} height={250} data={data} className='graph'> */}
                     {/* <CartesianGrid stroke="black" fill='#555' fillOpacity={0.7}/> */}
@@ -48,7 +48,7 @@ const TimeSeries = (props) => {
     }
     else {
         return (
-            <ResponsiveContainer height="25%" width="75%" debounce={1} className='graph'>
+            <ResponsiveContainer height={props.height} width={props.width} debounce={1} className='graph'>
                 <BarChart data={data}>
                 {/* <BarChart width={450} height={250} data={data} className='graph'> */}
                     {/* <CartesianGrid stroke="black" fill='#555' fillOpacity={0.7}/> */}

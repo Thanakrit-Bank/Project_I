@@ -59,8 +59,16 @@ const Setting = (props) => {
     props.setGraphType(e.target.value);
   };
 
-  const graphShow = () => {
-
+  const graphShow = (e) => {
+    if (e.target.value == "On") {
+      props.setWidth("75%")
+      props.setHeight("25%")
+      props.setGraphShow(e.target.value)
+    } else {
+      props.setWidth("0")
+      props.setHeight("0")
+      props.setGraphShow(e.target.value)
+    }
   };
 
   const legendChange = (e) => {
@@ -238,6 +246,8 @@ const Setting = (props) => {
             danger
             type="default"
             onClick={() => {
+              // props.setGraphType('Linechart');
+              // props.setDataType('Overall')
               legendMinChange('');
               legendMaxChange('');
               opecityChange(7);
@@ -249,6 +259,8 @@ const Setting = (props) => {
             key="back" 
             // onClick={handleCancel}
             onClick={() => {
+              // props.setGraphType('Linechart');
+              // props.setDataType('Overall')
               legendMinChange('');
               legendMaxChange('');
               opecityChange(7);
@@ -291,7 +303,7 @@ const Setting = (props) => {
                 </Radio.Group>
         </p>
         <p className="sub-topic">
-          Show: <Radio.Group onChange={graphShow} optionType='button'>
+          Show: <Radio.Group onChange={graphShow} value={props.graphShow} optionType='button'>
                   <Radio value="On">On</Radio>
                   <Radio value="Off">Off</Radio>
                 </Radio.Group>
@@ -324,8 +336,8 @@ const Setting = (props) => {
         <br />
         <p className="sub-topic">
           Type: <Radio.Group onChange={legendChange} value={props.legendType} optionType='button'>
-                  <Radio value="On">On</Radio>
-                  <Radio value="Off">Off</Radio>
+                  <Radio value="Interval">Interval</Radio>
+                  <Radio value="Gradient">Gradient</Radio>
                 </Radio.Group>
         </p>
         <br />
@@ -335,7 +347,6 @@ const Setting = (props) => {
           onChange={legendMinChange}
           defaultValue={props.legendMin}
           value={legendMinValue} 
-          // disabled={disLegend}
         />
         <> </>
         <InputNumber
@@ -343,13 +354,18 @@ const Setting = (props) => {
           style={{width: '49%'}}
           onChange={legendMaxChange}
           defaultValue={props.legendMax}  
-          value={legendMaxValue}
-          // disabled={disLegend}        
+          value={legendMaxValue}      
         />
       </Modal>
 
       <Modal title="About" open={open1} onOk={handleOk1} onCancel={handleCancel1}>
-          <p>shape file province in thailand : <a href='https://csuwan.weebly.com/360436343623360936603650362736213604--download.html'>click here</a></p>
+          <ol className='sub-topic'>Shape file :</ol> 
+            <li>Southeast Asia : <a href='https://csuwan.weebly.com/360436343623360936603650362736213604--download.html'>Click here</a></li>
+            <li>Province in Thailand : <a href='https://csuwan.weebly.com/360436343623360936603650362736213604--download.html'>Click here</a></li>
+            <br />
+          <ol className='sub-topic'>TileLayer :</ol>
+            <li>Stadia maps : <a href='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'>Click here</a></li>
+            <br />
       </Modal>
     </>
   );

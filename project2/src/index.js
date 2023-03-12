@@ -8,6 +8,7 @@ import Login from './components/authentication/Login';
 import { RequireToken } from './components/authentication/Auth';
 
 import Legend2 from './components/showData/Legend2';
+// import Legend3 from './components/showData/Legend3';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -49,6 +50,7 @@ root.render(
             element={
               <RequireToken>
                 <Legend2/>
+                {/* <Legend3/> */}
               </RequireToken>
             } 
           />
