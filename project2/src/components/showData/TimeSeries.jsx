@@ -9,7 +9,6 @@ import { LineChart,
     Legend, 
     Bar,
     ResponsiveContainer } from 'recharts';
-import Draggable from 'react-draggable';
 import './timeSeries.css'
 
 const TimeSeries = (props) => {
@@ -42,20 +41,26 @@ const TimeSeries = (props) => {
                     <XAxis dataKey={key}/>
                     <YAxis />
                     <Tooltip />
+                    <Legend verticalAlign="bottom"/>
                 </LineChart>
             </ResponsiveContainer>
         )
     }
     else {
         return (
-            <BarChart width={450} height={250} data={data} className='graph'>
-                <CartesianGrid stroke="black" fill='#555' fillOpacity={0.7}/>
-                <XAxis dataKey={key} />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey={value} fill="#8884d8" />
-             </BarChart>
+            <ResponsiveContainer height="25%" width="75%" debounce={1} className='graph'>
+                <BarChart data={data}>
+                {/* <BarChart width={450} height={250} data={data} className='graph'> */}
+                    {/* <CartesianGrid stroke="black" fill='#555' fillOpacity={0.7}/> */}
+                    <CartesianGrid stroke="white" strokeOpacity={0.5} fill='white' fillOpacity={0}/>
+                    <XAxis dataKey={key} />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey={value} fill="#3288bd" /> 
+                    {/* #8884d8 */}
+                </BarChart>
+             </ResponsiveContainer>
         )
     }
 }

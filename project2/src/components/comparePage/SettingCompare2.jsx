@@ -1,14 +1,14 @@
 import { Modal, Radio, Menu } from 'antd';
 import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
-import { AppstoreOutlined,  
-  QuestionCircleOutlined ,
+import { FileOutlined,  
+  QuestionOutlined ,
   LogoutOutlined,
   SettingFilled, 
   DownOutlined,
   GlobalOutlined,
   DatabaseOutlined,
-  RedoOutlined } from '@ant-design/icons';
+  SwapOutlined } from '@ant-design/icons';
 import { FloatButton, Button, Col, InputNumber, Row, Slider } from 'antd';
 import dataSetting from '../../data/dataSelection'
 import SelectDate from './SelectDate';
@@ -141,7 +141,7 @@ const SettingCompare2 = (props) => {
                 getItem('Thailand', 'subThai1', null, provinceList1),
             ]),
             { type: 'divider' },
-            getItem('Select Data Type', 'dataType1', <DatabaseOutlined />, selectDataMenuLeft),
+            getItem('Select Dataset', 'dataType1', <DatabaseOutlined />, selectDataMenuLeft),
             { type: 'divider' },
             getItem(
                 <SelectDate date={props.date1} picker={picker1} dateChange={props.dateChange1}/> 
@@ -180,17 +180,17 @@ const SettingCompare2 = (props) => {
           tooltip={<div>Setting</div>}
         />
         <FloatButton 
-          icon={<RedoOutlined />}
+          icon={<SwapOutlined />}
           href={"/ComparePage"}
           tooltip={<div>View 2 map</div>}
         />
         <FloatButton 
-          icon={<AppstoreOutlined />}
+          icon={<FileOutlined />}
           href={"/SinglePage"}
           tooltip={<div>Single Page</div>}
         />
         <FloatButton 
-          icon={<QuestionCircleOutlined />}
+          icon={<QuestionOutlined />}
           onClick={showAbout}
           tooltip={<div>About</div>}
         />

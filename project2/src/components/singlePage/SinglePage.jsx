@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 import { Layout } from 'antd';
 import TimeSeries from '../showData/TimeSeries';
-// import SideMenu from '../selectionInput/SideMenu';
 import Grid from '../showData/Grid';
 import Legend from '../showData/Legend';
 import Breadcrumb from '../showData/Breadcrumb';
@@ -27,6 +26,7 @@ const SinglePage = () => {
   const [gridOpacity, setGridopacity] = useState(7)
   const [legendMax, setLegendMax] =useState('') 
   const [legendMin, setLegendMin] =useState('') 
+  const [legendType, setLegendType] = useState()
 
   const areaChange = (area) => {
     setSelectArea(area)
@@ -87,25 +87,12 @@ const SinglePage = () => {
         />
         
         <Layout style={{ minHeight: '100vh'}}>
-            {/* <SideMenu 
-              areaChange={areaChange} 
-              dataChange={dataChange} 
-              dateChange={dateChange} 
-              area={selectArea} 
-              data={selectData} 
-              date={selectDate} 
-              graphType={graphType} 
-              setGraphType={setGraphType}
+            <TimeSeries 
+              data={timeSeriesData} 
+              data2={seasonalData} 
+              type={graphType} 
               dataType={dataType}
-              setDataType={setDataType}
-              opacityChange={opacityChange}
-              gridOpacity={gridOpacity}
-              legendMax={legendMax}
-              legendMin={legendMin}
-              legendMaxChange={legendMaxChange}
-              legendMinChange={legendMinChange}
-            /> */}
-            <TimeSeries data={timeSeriesData} data2={seasonalData} type={graphType} dataType={dataType}/>
+            />
         </Layout>
 
         <Grid 
@@ -113,19 +100,25 @@ const SinglePage = () => {
           data={selectData} 
           date={selectDate} 
           SetViewOnChange={SetViewOnChange} 
-          setTimeSeriesData = {getTimeSeriesData} 
+          setTimeSeriesData={getTimeSeriesData} 
           setSeasonalData={getSeasonalData}
           gridOpacity={gridOpacity}
           legendMax={legendMax}
           legendMin={legendMin}
         />
+
         <Legend 
-          dataIndexName = {dataIndex}
+          dataIndexName={dataIndex}
           legendMax={legendMax}
           legendMin={legendMin}
         />
 
-        <Breadcrumb selectArea={selectArea} selectData={selectData} selectDate={selectDate}/>
+        <Breadcrumb 
+          selectArea={selectArea} 
+          selectData={selectData} 
+          selectDate={selectDate}
+        />
+
         <Setting 
           graphType={graphType} 
           setGraphType={setGraphType} 
@@ -137,6 +130,8 @@ const SinglePage = () => {
           legendMinChange={legendMinChange}
           legenMax={legendMax}
           legenMin={legendMin}
+          legendType={legendType} 
+          setLegendType={setLegendType} 
 
           areaChange={areaChange} 
           dataChange={dataChange} 

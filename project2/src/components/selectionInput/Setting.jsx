@@ -1,8 +1,8 @@
 import { Modal, Radio, Menu } from 'antd';
 import { useRef, useState } from 'react';
 import Draggable from 'react-draggable';
-import { AppstoreOutlined,  
-  QuestionCircleOutlined ,
+import { BlockOutlined,  
+  QuestionOutlined ,
   LogoutOutlined,
   SettingFilled, 
   DownOutlined,
@@ -57,6 +57,14 @@ const Setting = (props) => {
 
   const graphChange = (e) => {
     props.setGraphType(e.target.value);
+  };
+
+  const graphShow = () => {
+
+  };
+
+  const legendChange = (e) => {
+    props.setLegendType(e.target.value);
   };
 
   const [legendMinValue, setlegendMinValue] = useState('');
@@ -139,7 +147,7 @@ const Setting = (props) => {
           getItem('Thailand', 'subThai', null, provinceList),
       ]),
       { type: 'divider' },
-      getItem('Select Data Type', 'dataType', <DatabaseOutlined />, selectDataMenu),
+      getItem('Select Dataset', 'dataType', <DatabaseOutlined />, selectDataMenu),
       { type: 'divider' },
       getItem(
           <SelectDate date={props.date} picker={picker} dateChange={props.dateChange} /> 
@@ -176,12 +184,12 @@ const Setting = (props) => {
           tooltip={<div>Setting</div>}
         />
         <FloatButton 
-          icon={<AppstoreOutlined />}
+          icon={<BlockOutlined />}
           href={"/ComparePage"}
           tooltip={<div>Compare Mode</div>}
         />
         <FloatButton 
-          icon={<QuestionCircleOutlined />}
+          icon={<QuestionOutlined />}
           onClick={showAbout}
           tooltip={<div>About</div>}
         />
@@ -282,6 +290,12 @@ const Setting = (props) => {
                   <Radio value="Seasonal">Seasonal</Radio>
                 </Radio.Group>
         </p>
+        <p className="sub-topic">
+          Show: <Radio.Group onChange={graphShow} optionType='button'>
+                  <Radio value="On">On</Radio>
+                  <Radio value="Off">Off</Radio>
+                </Radio.Group>
+        </p>
         <br />
         <p className="topic">Grid opacity</p>
         <Row>
@@ -307,6 +321,13 @@ const Setting = (props) => {
         </Row>
         <br />
         <p className="topic">Legend</p>
+        <br />
+        <p className="sub-topic">
+          Type: <Radio.Group onChange={legendChange} value={props.legendType} optionType='button'>
+                  <Radio value="On">On</Radio>
+                  <Radio value="Off">Off</Radio>
+                </Radio.Group>
+        </p>
         <br />
         <InputNumber
           prefix="Min:"
