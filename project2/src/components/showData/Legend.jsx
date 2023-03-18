@@ -7,6 +7,7 @@ import './legend.css'
 const Legend = (props) => {
 
   const mapInstance = useMap();
+  
   var data = dataIndex.indices.CDD 
   // Indices
   if (props.dataIndexName === 'CDD'){
@@ -146,7 +147,7 @@ const Legend = (props) => {
           labels.push(
             '<i style="background:' +
               getColor(from + 1) +
-              '"></i>' + to 
+              '"></i>' + to.toFixed(1) 
           );
         }
   
@@ -212,10 +213,15 @@ const Legend = (props) => {
   
           labels.push(
             '<i style="background:' +
-              getColor(to + 1) +
-              '"></i>' 
-              + (from ? "" + from.toFixed(0) : "<")
-              + (to ? (i < grades.length-1 ? " &ndash; " : "")  + to.toFixed(0) : "")
+            getColor(to + 1) +
+            '"></i>' + to.toFixed(0)
+
+            // '<i style="background:' +
+            //   getColor(to + 1) +
+            //   '"></i>' 
+            //   + (from ? "" + from.toFixed(0) : "<")
+            //   + (to ? (i < grades.length-1 ? " &ndash; " : "")  + to.toFixed(0) : "")
+
               // + from.toFixed(0) 
               // + (to ? " &ndash; " + to.toFixed(0) : "")
           );

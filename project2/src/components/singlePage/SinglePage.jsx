@@ -4,6 +4,7 @@ import { Layout } from 'antd';
 import TimeSeries from '../showData/TimeSeries';
 import Grid from '../showData/Grid';
 import Legend from '../showData/Legend';
+import Legend2 from '../showData/Legend2';
 import Breadcrumb from '../showData/Breadcrumb';
 import Setting from '../selectionInput/Setting';
 import 'leaflet/dist/leaflet.css';
@@ -117,6 +118,10 @@ const SinglePage = () => {
           dataIndexName={dataIndex}
           legendMax={legendMax}
           legendMin={legendMin}
+        />
+
+        <Legend2 
+
         />
 
         <Breadcrumb 

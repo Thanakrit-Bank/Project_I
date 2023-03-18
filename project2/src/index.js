@@ -49,7 +49,6 @@ root.render(
             element={
               <RequireToken>
                 <Legend2/>
-                {/* <Legend3/> */}
               </RequireToken>
             } 
           />
