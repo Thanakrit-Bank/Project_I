@@ -15,8 +15,8 @@ const SinglePage = () => {
   const center = [13.2955977,102.2090103]
   const zoom = 6
 
-  const [height, setHeight] = useState("25%")
-  const [width, setWidth] = useState("75%")
+  const [height, setHeight] = useState("30%")
+  const [width, setWidth] = useState("30%")
 
   const [dataIndex, setDataIndex] = useState('CDD')
   const [timeSeriesData, setTimeSeriesData] = useState([])

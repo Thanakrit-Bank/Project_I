@@ -150,7 +150,7 @@ const Setting = (props) => {
 
   var items_1 = [
       getItem('Select Area', 'area', <GlobalOutlined />, [
-          // getItem('Southeast Asia', 'subSEA', null, null),
+          getItem('Southeast Asia', 'subSEA', null, null),
           getItem('Country', 'subCountry', null, countryList),
           getItem('Thailand', 'subThai', null, provinceList),
       ]),
@@ -208,12 +208,6 @@ const Setting = (props) => {
         />
       </FloatButton.Group>
 
-      {/* <FloatButton
-            icon={<SettingFilled />}
-            type="default"
-            onClick={showModal}
-            className='setting'
-      /> */}
       <Modal
         title={
           <div

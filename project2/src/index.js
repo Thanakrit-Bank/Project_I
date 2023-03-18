@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import SinglePage from './components/singlePage/SinglePage';
-import ComparePage2 from './components/comparePage/ComparePage2';
+import ComparePage from './components/comparePage/ComparePage';
 import ComparePage3 from './components/comparePage/ComparePage3';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from './components/authentication/Login';
 import { RequireToken } from './components/authentication/Auth';
 
 import Legend2 from './components/showData/Legend2';
-// import Legend3 from './components/showData/Legend3';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -33,7 +32,7 @@ root.render(
             path='/ComparePage' 
             element={
               <RequireToken>
-                <ComparePage2/>
+                <ComparePage/>
               </RequireToken>
             } 
           />

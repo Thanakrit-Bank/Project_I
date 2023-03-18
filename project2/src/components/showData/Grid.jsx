@@ -82,7 +82,7 @@ const Grid = (props) => {
                     weight: 0,
                     fillOpacity: props.gridOpacity/10,
                     fillColor: 'white',
-                    // borderColor: 'black'
+                    borderColor: 'black'
                 }
 
                 if (data.properties.time_index){
@@ -96,8 +96,9 @@ const Grid = (props) => {
                     let opacity = (props.gridOpacity/10).toString().concat(")")
                     let color = defualtColor.splice(defualtColor.length-1,1,opacity)
                     let rgbaColor = defualtColor.join(', ')
-                    // console.log(rgbaColor);
                     myStyleGrid.fillColor = rgbaColor
+                    // console.log(rgbaColor);
+                    // myStyleGrid.fillColor = color[8]
                 }else if(data.properties.index < min + interval){
                     let defualtColor = colors[7].split(', ')
                     let opacity = (props.gridOpacity/10).toString().concat(")")

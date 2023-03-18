@@ -60,6 +60,22 @@ const SettingCompare2 = (props) => {
     props.setGraphType(e.target.value);
   };
 
+  const graphShow = (e) => {
+    if (e.target.value == "On") {
+      props.setWidth("60%")
+      props.setHeight("30%")
+      props.setGraphShow(e.target.value)
+    } else {
+      props.setWidth("0")
+      props.setHeight("0")
+      props.setGraphShow(e.target.value)
+    }
+  };
+
+  const legendChange = (e) => {
+    props.setLegendType(e.target.value);
+  };
+
   const [legendMinValue, setlegendMinValue] = useState('');
   const [legendMaxValue, setlegendMaxValue] = useState('');
   const [inputValue, setInputValue] = useState(7);
@@ -137,6 +153,7 @@ const SettingCompare2 = (props) => {
   const items_1 = [
         
             getItem('Select Area', 'area1', <GlobalOutlined />, [
+                getItem('Southeast Asia', 'subSEA', null, null),
                 getItem('Country', 'subCountry1', null, countryList1),
                 getItem('Thailand', 'subThai1', null, provinceList1),
             ]),
@@ -201,12 +218,6 @@ const SettingCompare2 = (props) => {
         />
       </FloatButton.Group>
 
-      {/* <FloatButton
-            icon={<SettingFilled />}
-            type="default"
-            onClick={showModal}
-            className='setting'
-      /> */}
       <Modal
         title={
           <div
@@ -291,6 +302,12 @@ const SettingCompare2 = (props) => {
                   <Radio value="Seasonal">Seasonal</Radio>
                 </Radio.Group>
         </p>
+        <p className="sub-topic">
+          Show: <Radio.Group onChange={graphShow} value={props.graphShow} optionType='button'>
+                  <Radio value="On">On</Radio>
+                  <Radio value="Off">Off</Radio>
+                </Radio.Group>
+        </p>
         <br />
         <p className="topic">Grid opacity</p>
         <Row>
@@ -317,6 +334,13 @@ const SettingCompare2 = (props) => {
         <br />
         <p className="topic">Legend</p>
         <br />
+        <p className="sub-topic">
+          Type: <Radio.Group onChange={legendChange} value={props.legendType} optionType='button'>
+                  <Radio value="Interval">Interval</Radio>
+                  <Radio value="Gradient">Gradient</Radio>
+                </Radio.Group>
+        </p>
+        <br />
         <InputNumber
           prefix="Min:"
           style={{width: '49%'}}
@@ -338,7 +362,13 @@ const SettingCompare2 = (props) => {
       </Modal>
 
       <Modal title="About" open={open1} onOk={handleOk1} onCancel={handleCancel1}>
-          <p>shape file province in thailand : <a href='https://csuwan.weebly.com/360436343623360936603650362736213604--download.html'>click here</a></p>
+          <ol className='sub-topic'>Shape file :</ol> 
+            <li>Southeast Asia : <a href='https://csuwan.weebly.com/360436343623360936603650362736213604--download.html'>Click here</a></li>
+            <li>Province in Thailand : <a href='https://csuwan.weebly.com/360436343623360936603650362736213604--download.html'>Click here</a></li>
+            <br />
+          <ol className='sub-topic'>TileLayer :</ol>
+            <li>Stadia maps : <a href='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'>Click here</a></li>
+            <br />
       </Modal>
     </>
   );
