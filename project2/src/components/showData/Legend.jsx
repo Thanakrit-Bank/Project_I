@@ -78,12 +78,15 @@ const Legend = (props) => {
   // SPI
   else if (props.dataIndexName.split(' ')[1] === 'month' ) {
     data = dataIndex.SPI.spi
+  } else if (props.dataIndexName.split(' ')[2] === 'month' ) {
+    data = dataIndex.SPI.spi
   }
 
   // get color depending on population density value
   var color = data.color
   var max = data.max
   var min = data.min
+  var unit = data.unit
   
   if (props.legendMax !== '' && props.legendMin !== ''){
       max = props.legendMax
@@ -152,7 +155,8 @@ const Legend = (props) => {
         }
   
         div.innerHTML = 
-          "<h4> Legend </h4>" +
+          "<h4>" + "SPI " + "(" + props.dataIndexName + ")" 
+          + "</h4>" +
           labels.join("<br>")
           ;
         return div;
@@ -161,6 +165,73 @@ const Legend = (props) => {
       legend.addTo(mapInstance);
   
       return () => legend.remove();
+
+    } else if (props.dataIndexName.split(' ')[2] === 'month') {
+        const getColor = d => {
+          return d > min + 9*interval
+            ? color[0]
+            : d > min + 8*interval
+            ? color[1]
+            : d > min + 7*interval
+            ? color[2]
+            : d > min + 6*interval
+            ? color[3]
+            : d > min + 5*interval
+            ? color[4]
+            : d > min + 4*interval
+            ? color[5]
+            : d > min + 3*interval
+            ? color[6]
+            : d > min + 2*interval
+            ? color[7]
+            : d > min
+            ? color[8]
+            : color[9]
+        };
+  
+        const legend = L.control({ position: "bottomright" });
+  
+        legend.onAdd = () => {
+          const div = L.DomUtil.create("div", "info legend");
+          const grades = 
+          [
+            min + 8*interval,
+            min + 7*interval, 
+            min + 6*interval, 
+            min + 5*interval, 
+            min + 4*interval, 
+            min + 3*interval, 
+            min + 2*interval, 
+            min + interval,
+            min
+          ];
+    
+          let labels = [];
+          let from;
+          let to;
+    
+          for (let i = 0; i < grades.length; i++) {
+            to = grades[i];
+            from = grades[i];
+    
+            labels.push(
+              '<i style="background:' +
+                getColor(from + 1) +
+                '"></i>' + to.toFixed(1) 
+            );
+          }
+    
+          div.innerHTML = 
+            "<h4>" + "SPI " + "(" + props.dataIndexName + ")"  
+            + "</h4>" +
+            labels.join("<br>")
+            ;
+          return div;
+        };
+    
+        legend.addTo(mapInstance);
+    
+        return () => legend.remove();
 
     // } else if (textSplit[2],substring(0,3) === 'indices') {
     } else {
@@ -204,17 +275,17 @@ const Legend = (props) => {
         ];
   
         let labels = [];
-        let from;
+        // let from;
         let to;
   
         for (let i = 0; i < grades.length; i++) {
           to = grades[i];
-          from = grades[i + 1];
+          // from = grades[i + 1];
   
           labels.push(
-            '<i style="background:' +
-            getColor(to + 1) +
-            '"></i>' + to.toFixed(0)
+            '<i style="background:' 
+            + getColor(to + 1) 
+            + '"></i>' + to.toFixed(0)
 
             // '<i style="background:' +
             //   getColor(to + 1) +
@@ -226,9 +297,11 @@ const Legend = (props) => {
               // + (to ? " &ndash; " + to.toFixed(0) : "")
           );
         }
-  
-        div.innerHTML = 
-          "<h4> Legend </h4>" +
+        
+        div.innerHTML =
+          "<h4>" + props.dataIndexName 
+          + " (" + unit + ")" 
+          + "</h4>" +
           labels.join("<br>")
           ;
         return div;

@@ -92,76 +92,25 @@ const Grid = (props) => {
                 }
 
                 if(data.properties.index < min){
-                    let defualtColor = colors[8].split(', ')
-                    let opacity = (props.gridOpacity/10).toString().concat(")")
-                    let color = defualtColor.splice(defualtColor.length-1,1,opacity)
-                    let rgbaColor = defualtColor.join(', ')
-                    myStyleGrid.fillColor = rgbaColor
-                    // console.log(rgbaColor);
-                    // myStyleGrid.fillColor = color[8]
+                    myStyleGrid.fillColor = colors[8]
                 }else if(data.properties.index < min + interval){
-                    let defualtColor = colors[7].split(', ')
-                    let opacity = (props.gridOpacity/10).toString().concat(")")
-                    let color = defualtColor.splice(defualtColor.length-1,1,opacity)
-                    let rgbaColor = defualtColor.join(', ')
-                    myStyleGrid.fillColor = rgbaColor
-                    // myStyleGrid.fillColor = color[7]
+                    myStyleGrid.fillColor = colors[7]
                 }else if(data.properties.index < min + 2*interval){
-                    let defualtColor = colors[6].split(', ')
-                    let opacity = (props.gridOpacity/10).toString().concat(")")
-                    let color = defualtColor.splice(defualtColor.length-1,1,opacity)
-                    let rgbaColor = defualtColor.join(', ')
-                    myStyleGrid.fillColor = rgbaColor
-                    // myStyleGrid.fillColor = color[6]
+                    myStyleGrid.fillColor = colors[6]
                 }else if(data.properties.index < min + 3*interval){
-                    let defualtColor = colors[5].split(', ')
-                    let opacity = (props.gridOpacity/10).toString().concat(")")
-                    let color = defualtColor.splice(defualtColor.length-1,1,opacity)
-                    let rgbaColor = defualtColor.join(', ')
-                    myStyleGrid.fillColor = rgbaColor
-                    // myStyleGrid.fillColor = color[5]
+                    myStyleGrid.fillColor = colors[5]
                 }else if(data.properties.index < min + 4*interval){
-                    let defualtColor = colors[4].split(', ')
-                    let opacity = (props.gridOpacity/10).toString().concat(")")
-                    let color = defualtColor.splice(defualtColor.length-1,1,opacity)
-                    let rgbaColor = defualtColor.join(', ')
-                    myStyleGrid.fillColor = rgbaColor
-                    // myStyleGrid.fillColor = color[4]
+                    myStyleGrid.fillColor = colors[4]
                 }else if(data.properties.index < min + 5*interval){
-                    let defualtColor = colors[3].split(', ')
-                    let opacity = (props.gridOpacity/10).toString().concat(")")
-                    let color = defualtColor.splice(defualtColor.length-1,1,opacity)
-                    let rgbaColor = defualtColor.join(', ')
-                    myStyleGrid.fillColor = rgbaColor
-                    // myStyleGrid.fillColor = color[3]
+                    myStyleGrid.fillColor = colors[3]
                 }else if(data.properties.index < min + 6*interval){
-                    let defualtColor = colors[2].split(', ')
-                    let opacity = (props.gridOpacity/10).toString().concat(")")
-                    let color = defualtColor.splice(defualtColor.length-1,1,opacity)
-                    let rgbaColor = defualtColor.join(', ')
-                    myStyleGrid.fillColor = rgbaColor
-                    // myStyleGrid.fillColor = color[2]
+                    myStyleGrid.fillColor = colors[2]
                 }else if(data.properties.index < min + 7*interval){
-                    let defualtColor = colors[1].split(', ')
-                    let opacity = (props.gridOpacity/10).toString().concat(")")
-                    let color = defualtColor.splice(defualtColor.length-1,1,opacity)
-                    let rgbaColor = defualtColor.join(', ')
-                    myStyleGrid.fillColor = rgbaColor
-                    // myStyleGrid.fillColor = color[1]
+                    myStyleGrid.fillColor = colors[1]
                 }else if(data.properties.index < min + 8*interval){
-                    let defualtColor = colors[0].split(', ')
-                    let opacity = (props.gridOpacity/10).toString().concat(")")
-                    let color = defualtColor.splice(defualtColor.length-1,1,opacity)
-                    let rgbaColor = defualtColor.join(', ')
-                    myStyleGrid.fillColor = rgbaColor
-                    // myStyleGrid.fillColor = color[0]
+                    myStyleGrid.fillColor = colors[0]
                 }else {
-                    let defualtColor = colors[0].split(', ')
-                    let opacity = (props.gridOpacity/10).toString().concat(")")
-                    let color = defualtColor.splice(defualtColor.length-1,1,opacity)
-                    let rgbaColor = defualtColor.join(', ')
-                    myStyleGrid.fillColor = rgbaColor
-                    // myStyleGrid.fillColor = color[0]
+                    myStyleGrid.fillColor = colors[0]
                 }
 
                 try {

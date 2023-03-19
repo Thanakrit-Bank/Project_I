@@ -23,7 +23,7 @@ const ComparePage = (props) => {
   const [seasonalData1 ,setSeasonalData1] = useState([])
   const [selectArea1, setSelectArea1] = useState("Thailand")
   const [selectData1, setSelectData1] = useState("ecearth@RCP4.5@indices@CDD")
-  const [selectDate1, setSelectDate1] = useState("2006")
+  const [selectDate1, setSelectDate1] = useState('Thu, 19 Mar 1970 17:50:44 GMT,Sat, 19 Mar 2005 17:50:44 GMT')
   const [graphType1, setGraphType1] = useState('Linechart')
   const [dataType1, setDataType1] = useState('Overall')
   const [gridOpacity1, setGridopacity1] = useState(7)
@@ -89,7 +89,7 @@ const ComparePage = (props) => {
     const [seasonalData2 ,setSeasonalData2] = useState([])
     const [selectArea2, setSelectArea2] = useState("Thailand")
     const [selectData2, setSelectData2] = useState("ecearth@RCP4.5@indices@CDD")
-    const [selectDate2, setSelectDate2] = useState("2006")
+    const [selectDate2, setSelectDate2] = useState('Thu, 19 Mar 1970 17:50:44 GMT,Sat, 19 Mar 2005 17:50:44 GMT')
     const [graphType2, setGraphType2] = useState('Linechart')
     const [dataType2, setDataType2] = useState('Overall')
     const [gridOpacity2, setGridopacity2] = useState(7)
@@ -163,7 +163,8 @@ const ComparePage = (props) => {
                     />
                         
                     <Layout style={{ textAlign: "left", minHeight: '100vh'}}>
-                        <TimeSeries 
+                        <TimeSeries
+                            dataIndexName={dataIndex1} 
                             data={timeSeriesData1} 
                             data2={seasonalData1} 
                             type={graphType1} 
@@ -240,7 +241,8 @@ const ComparePage = (props) => {
                     />
                         
                     <Layout style={{ minHeight: '100vh'}}>
-                        <TimeSeries 
+                        <TimeSeries
+                            dataIndexName={dataIndex2} 
                             data={timeSeriesData2} 
                             data2={seasonalData2} 
                             type={graphType2} 

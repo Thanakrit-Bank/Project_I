@@ -24,7 +24,7 @@ const SinglePage = () => {
   const [seasonalData ,setSeasonalData] = useState([])
   const [selectArea, setSelectArea] = useState("Thailand")
   const [selectData, setSelectData] = useState("ecearth@RCP4.5@indices@CDD")
-  const [selectDate, setSelectDate] = useState("2006")
+  const [selectDate, setSelectDate] = useState('Thu, 19 Mar 1970 17:50:44 GMT,Sat, 19 Mar 2005 17:50:44 GMT')
   const [graphType, setGraphType] = useState('Linechart')
   const [graphShow, setGraphShow] = useState('On')
   const [dataType, setDataType] = useState('Overall')
@@ -92,7 +92,8 @@ const SinglePage = () => {
         />
         
         <Layout style={{ minHeight: '100vh'}}>
-            <TimeSeries 
+            <TimeSeries
+              dataIndexName={dataIndex} 
               data={timeSeriesData} 
               data2={seasonalData} 
               type={graphType} 

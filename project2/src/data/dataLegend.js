@@ -70,13 +70,13 @@ const dataIndex = {
             'max': 1200,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "Days"
+            'unit': "mm"
         },
         'R99p': {
             'max': 800,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "Days"
+            'unit': "mm"
         },
         'RX1day': {
             'max': 440,
@@ -112,43 +112,43 @@ const dataIndex = {
             'max': 36,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "%"
+            'unit': "°C"
         },
         'TMEANmean': {
             'max': 32,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "%"
+            'unit': "°C"
         },
         'TMINmean': {
             'max': 28,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "%"
+            'unit': "°C"
         },
         'TN10P': {
             'max': 8,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "%"
+            'unit': "Days"
         },
         'TN90P': {
             'max': 33,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "%"
+            'unit': "Days"
         },
         'TNn': {
             'max': 25,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "Days"
+            'unit': "°C"
         },
         'TNx': {
             'max': 28,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "Days"
+            'unit': "°C"
         },
         'TR20': {
             'max': 360,
@@ -166,25 +166,25 @@ const dataIndex = {
             'max': 11,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "%"
+            'unit': "Days"
         },
         'TX90P': {
             'max': 32,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "%"
+            'unit': "Days"
         },
         'TXn': {
             'max': 32,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "Days"
+            'unit': "°C"
         },
         'TXx': {
             'max': 40,
             'min': 0,
             'color': ['#d53e4f',"#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd"],
-            'unit': "Days"
+            'unit': "°C"
         },
         'WSDI': {
             'max': 64,
