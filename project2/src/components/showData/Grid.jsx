@@ -51,9 +51,10 @@ const Grid = (props) => {
 
     let urlRequest = url.concat('/',dataProvider,'_',typeValue,'_', indexName, '&', area.split(' ')[0], '&', dateInput, '&', typeIdex)
 
+    
     if (typeIdex === 'SPI') {
         typeIdex = '_SPI'
-        if (typeValue === 'RCP4.5') {
+        if (typeValue === 'rcp45') {
             typeValue = '45'
         } else {
             typeValue = '85'
@@ -70,7 +71,12 @@ const Grid = (props) => {
         console.log(urlRequest);
         fetch(urlRequest, reqOptions)
         .then(r => r.json())
-        .then(data => setData(data))
+        .then(dataApi => {
+            setData(dataApi)
+            if(props.setCompareData !== undefined){
+                props.setCompareData(dataApi)
+            }
+        })
         .catch(error => console.log(error.message))
     },[props.area, props.data, props.date, props.gridOpacity, props.legendMax, props.legendMin, urlRequest])
 
@@ -80,7 +86,7 @@ const Grid = (props) => {
                 var myStyleGrid = {
                     color: "white",
                     weight: 0,
-                    fillOpacity: props.gridOpacity/10,
+                    fillOpacity: props.gridOpacity/100,
                     fillColor: 'white',
                     borderColor: 'black'
                 }

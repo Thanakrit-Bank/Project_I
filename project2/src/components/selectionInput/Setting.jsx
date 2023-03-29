@@ -25,6 +25,8 @@ const Setting = (props) => {
 
   const draggleRef = useRef(null);
 
+  const formatter = (value) => `${value}%`;
+
   const showModal = () => {
     setOpen(true);
   };
@@ -60,9 +62,9 @@ const Setting = (props) => {
   };
 
   const graphShow = (e) => {
-    if (e.target.value == "On") {
-      props.setWidth("75%")
-      props.setHeight("25%")
+    if (e.target.value === "On") {
+      props.setWidth("30%")
+      props.setHeight("30%")
       props.setGraphShow(e.target.value)
     } else {
       props.setWidth("0")
@@ -232,6 +234,9 @@ const Setting = (props) => {
             <h3>Setting</h3>
           </div>
         }
+        style={{
+          top: 20,
+        }}
         open={open}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -244,7 +249,7 @@ const Setting = (props) => {
               // props.setDataType('Overall')
               legendMinChange('');
               legendMaxChange('');
-              opecityChange(7);
+              opecityChange(70);
             }}
           >
             Reset
@@ -257,7 +262,7 @@ const Setting = (props) => {
               // props.setDataType('Overall')
               legendMinChange('');
               legendMaxChange('');
-              opecityChange(7);
+              opecityChange(70);
               handleCancel();
             }}
           >
@@ -308,19 +313,22 @@ const Setting = (props) => {
           <Col span={12}>
             <Slider
               min={1}
-              max={10}
+              max={100}
               onChange={opecityChange}
+              tooltip={{formatter}}
               value={typeof inputValue === 'number' ? inputValue : 7}
             />
           </Col>
           <Col span={4}>
             <InputNumber
               min={1}
-              max={10}
+              max={100}
               style={{
                 margin: '0 16px',
               }}
               value={inputValue}
+              formatter={(value) => `${value}%`}
+              parser={(value) => value.replace('%', '')}
               onChange={opecityChange}
             />
           </Col>

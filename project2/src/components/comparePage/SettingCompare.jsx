@@ -61,7 +61,7 @@ const SettingCompare = (props) => {
   };
 
   const graphShow = (e) => {
-    if (e.target.value == "On") {
+    if (e.target.value === "On") {
       props.setWidth("50%")
       props.setHeight("30%")
       props.setGraphShow(e.target.value)
@@ -78,7 +78,7 @@ const SettingCompare = (props) => {
 
   const [legendMinValue, setlegendMinValue] = useState('');
   const [legendMaxValue, setlegendMaxValue] = useState('');
-  const [inputValue, setInputValue] = useState(7);
+  const [inputValue, setInputValue] = useState(70);
   
   const opecityChange = (newValue) => {
     setInputValue(newValue);
@@ -113,7 +113,7 @@ const SettingCompare = (props) => {
   // ================================================================================
 
   const [picker1, setPicker1]  = useState('year')
-
+  const formatter = (value) => `${value}%`;
   function getItem(label, key, icon, children, type) {
     return {
       key,
@@ -314,9 +314,10 @@ const SettingCompare = (props) => {
           <Col span={12}>
             <Slider
               min={1}
-              max={10}
+              max={100}
               onChange={opecityChange}
-              value={typeof inputValue === 'number' ? inputValue : 7}
+              tooltip={{formatter}}
+              value={typeof inputValue === 'number' ? inputValue : 70}
             />
           </Col>
           <Col span={4}>

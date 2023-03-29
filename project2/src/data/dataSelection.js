@@ -12,7 +12,7 @@ const dataSelection = {
                 "Tak", "Trang", "Trat", 
                 "Ubon Ratchathani", "Udon Thani", "Uthai Thani", "Uttaradit", 
                 "Yala", "Yasothon"],
-    "country" : ["Brunei Darussalam", "Cambodia", "Malaysia", "Indonesia", "Lao People's Democratic Republic", "Myanmar","Philippines", "Thailand", "Timor-Leste", "Vietnam", "Singapore"],
+    "country" : ["Brunei Darussalam", "Cambodia", "Malaysia", "Indonesia", "Laos People's Democratic Republic", "Myanmar","Philippines", "Thailand", "Timor-Leste", "Vietnam", "Singapore"],
     "data_provider" : ["ecearth", "hadgem2", "ensemble", "mpi"],
     "type_index" : ["SPI", "indices"],
     "type_value" : ["RCP4.5", "RCP8.5"],

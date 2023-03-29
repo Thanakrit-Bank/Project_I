@@ -155,9 +155,13 @@ const Legend = (props) => {
         }
   
         div.innerHTML = 
-          "<h4>" + "SPI " + "(" + props.dataIndexName + ")" 
-          + "</h4>" +
-          labels.join("<br>")
+          // "<h4>" + "SPI " + "(" + props.dataIndexName + ")" 
+          // + "</h4>" +
+          // labels.join("<br>")
+
+          "<h4>".concat("SPI ", "(" , props.dataIndexName , ")" 
+          , "</h4>" ,
+          labels.join("<br>")) 
           ;
         return div;
       };
@@ -221,10 +225,12 @@ const Legend = (props) => {
             );
           }
     
-          div.innerHTML = 
-            "<h4>" + "SPI " + "(" + props.dataIndexName + ")"  
-            + "</h4>" +
-            labels.join("<br>")
+          div.innerHTML = "<h4>".concat("SPI ", "(" , props.dataIndexName , ")"  
+          , "</h4>" ,
+          labels.join("<br>")) 
+            // "<h4>" + "SPI " + "(" + props.dataIndexName + ")"  
+            // + "</h4>" +
+            // labels.join("<br>")
             ;
           return div;
         };
@@ -311,7 +317,7 @@ const Legend = (props) => {
   
       return () => legend.remove();
     }
-  }, [props.dataIndexName, props.legendMax,props.legendMin, data.color, mapInstance, color, interval, min]);
+  }, [props.dataIndexName, props.legendMax,props.legendMin, data.color, mapInstance, color, interval, min, unit]);
 };
 
 export default Legend;

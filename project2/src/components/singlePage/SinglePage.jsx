@@ -28,7 +28,7 @@ const SinglePage = () => {
   const [graphType, setGraphType] = useState('Linechart')
   const [graphShow, setGraphShow] = useState('On')
   const [dataType, setDataType] = useState('Overall')
-  const [gridOpacity, setGridopacity] = useState(7)
+  const [gridOpacity, setGridopacity] = useState(70)
   const [legendMax, setLegendMax] =useState('') 
   const [legendMin, setLegendMin] =useState('') 
   const [legendType, setLegendType] = useState('Interval')
@@ -36,7 +36,9 @@ const SinglePage = () => {
   const areaChange = (area) => {
     setSelectArea(area)
   }
+ 
   var indexName = ''
+  
   const dataChange = (data) => {
     setSelectData(data)
     indexName = data.split('@')[selectData.split('@').length - 1]
@@ -79,84 +81,102 @@ const SinglePage = () => {
   }
 
   return (
-    <MapContainer 
-      center={center} 
-      zoom={zoom} 
-      scrollWheelZoom={true} 
-      zoomControl={false} 
-      className="map-container"
-    >
-        
-        <TileLayer
-            url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
-        />
-        
-        <Layout style={{ minHeight: '100vh'}}>
-            <TimeSeries
-              dataIndexName={dataIndex} 
-              data={timeSeriesData} 
-              data2={seasonalData} 
-              type={graphType} 
-              dataType={dataType}
-              height={height}
-              width={width}
-            />
-        </Layout>
+    <div>
+      <MapContainer 
+        center={center} 
+        zoom={zoom} 
+        scrollWheelZoom={true} 
+        zoomControl={false} 
+        className="map-container"
+      >
+          
+          <TileLayer
+              url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+          />
+          
+          <Layout style={{ minHeight: '100vh'}}>
+              <TimeSeries
+                dataIndexName={dataIndex} 
+                data={timeSeriesData} 
+                data2={seasonalData} 
+                type={graphType} 
+                dataType={dataType}
+                height={height}
+                width={width}
+              />
+          </Layout>
 
-        <Grid 
-          area={selectArea} 
-          data={selectData} 
-          date={selectDate} 
-          SetViewOnChange={SetViewOnChange} 
-          setTimeSeriesData={getTimeSeriesData} 
-          setSeasonalData={getSeasonalData}
-          gridOpacity={gridOpacity}
-          legendMax={legendMax}
-          legendMin={legendMin}
-        />
+          <Grid 
+            area={selectArea} 
+            data={selectData} 
+            date={selectDate} 
+            SetViewOnChange={SetViewOnChange} 
+            setTimeSeriesData={getTimeSeriesData} 
+            setSeasonalData={getSeasonalData}
+            gridOpacity={gridOpacity}
+            legendMax={legendMax}
+            legendMin={legendMin}
+          />
 
-        <Legend 
-          dataIndexName={dataIndex}
-          legendMax={legendMax}
-          legendMin={legendMin}
-        />
+          <Legend 
+            dataIndexName={dataIndex}
+            legendMax={legendMax}
+            legendMin={legendMin}
+          />
 
-        <Legend2 
+          <Legend2
 
-        />
+          />
 
-        <Breadcrumb 
-          selectArea={selectArea} 
-          selectData={selectData} 
-          selectDate={selectDate}
-        />
+          <Breadcrumb 
+            selectArea={selectArea} 
+            selectData={selectData} 
+            selectDate={selectDate}
+          />
 
-        <Setting 
-          graphType={graphType} 
-          setGraphType={setGraphType} 
-          graphShow={graphShow} 
-          setGraphShow={setGraphShow}
-          dataType={dataType} 
-          setDataType={setDataType}
-          opacityChange={opacityChange} 
-          gridOpacity={gridOpacity}
-          legendMaxChange={legendMaxChange}
-          legendMinChange={legendMinChange}
-          legenMax={legendMax}
-          legenMin={legendMin}
-          legendType={legendType} 
-          setLegendType={setLegendType}
-          setHeight={setHeight}
-          setWidth={setWidth} 
+          <Setting 
+            graphType={graphType} 
+            setGraphType={setGraphType} 
+            graphShow={graphShow} 
+            setGraphShow={setGraphShow}
+            dataType={dataType} 
+            setDataType={setDataType}
+            opacityChange={opacityChange} 
+            gridOpacity={gridOpacity}
+            legendMaxChange={legendMaxChange}
+            legendMinChange={legendMinChange}
+            legenMax={legendMax}
+            legenMin={legendMin}
+            legendType={legendType} 
+            setLegendType={setLegendType}
+            setHeight={setHeight}
+            setWidth={setWidth} 
 
-          areaChange={areaChange} 
-          dataChange={dataChange} 
-          dateChange={dateChange} 
-          area={selectArea} 
-          data={selectData} 
-          date={selectDate}         
-        />
-    </MapContainer>    
+            areaChange={areaChange} 
+            dataChange={dataChange} 
+            dateChange={dateChange} 
+            area={selectArea} 
+            data={selectData} 
+            date={selectDate}         
+          />
+      </MapContainer> 
+{/* 
+      <Layout style={{minHeight: '100vh'}}> 
+      <div className='body'>        
+        <Legend2/>  
+      </div>
+  
+        <TimeSeries
+          dataIndexName={dataIndex} 
+          data={timeSeriesData} 
+          data2={seasonalData} 
+          type={graphType} 
+          dataType={dataType}
+          height={height}
+          width={width}
+         />
+      </Layout> */}
+    </div>  
   )
 }
 
